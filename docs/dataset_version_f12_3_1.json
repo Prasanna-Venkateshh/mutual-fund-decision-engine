@@ -1,0 +1,50 @@
+{
+  "dataset_version": "f12_3_1_v1.0.0",
+  "reconciliation_run_id": "run_f12_3_1_20260915_113000",
+  "execution_timestamp_utc": "2026-09-15T11:30:00.000000+00:00",
+  "database_target": "db/backfill_f12_2.db",
+  "reconciliation_status": "RECONCILIED",
+  "dataset_boundaries": {
+    "extension_start_date": "2024-02-01",
+    "extension_end_date": "2025-01-31",
+    "pre_2024_start_date": "2014-02-28",
+    "pre_2024_end_date": "2024-01-31"
+  },
+  "extension_metrics_reconciled": {
+    "extension_daily_windows": 366,
+    "extension_single_pass_raw_observations": 1966531,
+    "extension_normalized_records": 1571698,
+    "extension_nav_quarantine_ledger": 26338,
+    "extension_mapping_quarantine_ledger": 368495,
+    "extension_total_quarantine_ledger": 394833,
+    "disposition_identity_reconciled": true,
+    "extension_raw_table_multi_run_rows": 7196960,
+    "extension_unique_raw_observation_grain": 1966531,
+    "extension_quarantine_table_multi_run_rows": 1444773
+  },
+  "cumulative_metrics_reconciled": {
+    "cumulative_ledger_windows": 1515,
+    "cumulative_ledger_raw_sum": 7993379,
+    "cumulative_ledger_normalized_sum": 6210103,
+    "cumulative_ledger_nav_quarantine_sum": 118611,
+    "cumulative_ledger_mapping_quarantine_sum": 1664665,
+    "cumulative_raw_table_rows": 13469115,
+    "cumulative_unique_raw_observation_grain": 8154191,
+    "cumulative_normalized_table_rows": 6337995,
+    "cumulative_quarantine_table_rows": 2866136,
+    "pre_2024_normalized_table_rows": 4766297
+  },
+  "cohort_2024_01_31_reconciled": {
+    "evaluation_cohort_schemes": 5874,
+    "forward_1y_reachable_schemes": 5750,
+    "forward_1y_reach_rate_pct": 97.89,
+    "unreachable_schemes": 124,
+    "unreachable_reason": "Scheme matured, closed, or merged during 2024",
+    "pit_zero_lookahead_verified": true
+  },
+  "governance": {
+    "production_methodology_frozen": true,
+    "synthetic_data_used": false,
+    "nav_stitching_used": false
+  }
+}

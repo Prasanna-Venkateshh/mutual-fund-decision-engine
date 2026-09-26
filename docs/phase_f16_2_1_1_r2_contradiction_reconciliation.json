@@ -1,0 +1,179 @@
+{
+  "final_status": "PASSED WITH LIMITATIONS",
+  "governed_production_model": {
+    "scoring_engine": "FundQualityScoringEngine",
+    "peer_key": "category::subcategory::plan_type",
+    "normalization": "percentile_rank"
+  },
+  "production_methodology_changed": false,
+  "contradiction_origin": "Table A in Phase F.16.2.1 contained manual transcription errors copied from unverified early prototype markdown drafts for 2022 and 2023. Table B is generated directly by python execution on exact production data and is 100% authoritative.",
+  "authoritative_table": "TABLE B AUTHORITATIVE",
+  "disputed_reconciliation_table": [
+    {
+      "anchor_year": 2022,
+      "version_table": "Table A",
+      "M0": 0.0,
+      "M1": 0.0021,
+      "M2": 0.0412,
+      "M3": 0.0583,
+      "delta_R2": 0.0171,
+      "N": 3705,
+      "source": "Initial draft markdown text (unverified manual copy from early prototype calculations)",
+      "status": "DISPROVED / REJECTED"
+    },
+    {
+      "anchor_year": 2022,
+      "version_table": "Table B",
+      "M0": 0.0,
+      "M1": 0.0014,
+      "M2": 0.0025,
+      "M3": 0.0027,
+      "delta_R2": 0.0001,
+      "N": 3705,
+      "source": "Executable output from run_f16_2_1_multi_period_lineage_reconciliation.py",
+      "status": "AUTHORITATIVE"
+    },
+    {
+      "anchor_year": 2023,
+      "version_table": "Table A",
+      "M0": 0.0,
+      "M1": 0.2814,
+      "M2": 0.3105,
+      "M3": 0.3341,
+      "delta_R2": 0.0236,
+      "N": 4249,
+      "source": "Initial draft markdown text (unverified manual copy from early prototype calculations)",
+      "status": "DISPROVED / REJECTED"
+    },
+    {
+      "anchor_year": 2023,
+      "version_table": "Table B",
+      "M0": 0.0,
+      "M1": 0.0006,
+      "M2": 0.0508,
+      "M3": 0.1056,
+      "delta_R2": 0.0548,
+      "N": 4249,
+      "source": "Executable output from run_f16_2_1_multi_period_lineage_reconciliation.py",
+      "status": "AUTHORITATIVE"
+    },
+    {
+      "anchor_year": 2024,
+      "version_table": "Table A",
+      "M0": 0.0,
+      "M1": 0.2053,
+      "M2": 0.228,
+      "M3": 0.3325,
+      "delta_R2": 0.1045,
+      "N": 4958,
+      "source": "Executable output matching F.16 / F.16.1",
+      "status": "AUTHORITATIVE"
+    },
+    {
+      "anchor_year": 2024,
+      "version_table": "Table B",
+      "M0": 0.0,
+      "M1": 0.2053,
+      "M2": 0.228,
+      "M3": 0.3325,
+      "delta_R2": 0.1045,
+      "N": 4958,
+      "source": "Executable output matching F.16 / F.16.1",
+      "status": "AUTHORITATIVE"
+    }
+  ],
+  "authoritative_incremental_r2_by_period": [
+    {
+      "anchor_year": 2022,
+      "anchor_date": "2022-01-31",
+      "outcome_period": "2022-01-31 to 2023-01-31",
+      "classification": "REUSED / REPLICATION",
+      "common_N": 3705,
+      "M0_R2": 0.0,
+      "M1_R2": 0.0014,
+      "M2_R2": 0.0025,
+      "M3_R2": 0.0027,
+      "delta_R2": 0.0001,
+      "full_precision": {
+        "M1_R2": 0.0013989352004766253,
+        "M2_R2": 0.0025243699279342557,
+        "M3_R2": 0.0026671977558528903,
+        "delta_R2": 0.00014282782791863458
+      },
+      "same_sample_verified": true,
+      "dependent_variable": "1Y forward gross NAV return",
+      "predictors": [
+        "Intercept",
+        "Trailing 1Y Return",
+        "Annualized Volatility",
+        "Exact Production FQ"
+      ]
+    },
+    {
+      "anchor_year": 2023,
+      "anchor_date": "2023-01-31",
+      "outcome_period": "2023-01-31 to 2024-01-31",
+      "classification": "REUSED / REPLICATION",
+      "common_N": 4249,
+      "M0_R2": 0.0,
+      "M1_R2": 0.0006,
+      "M2_R2": 0.0508,
+      "M3_R2": 0.1056,
+      "delta_R2": 0.0548,
+      "full_precision": {
+        "M1_R2": 0.0005807254628262815,
+        "M2_R2": 0.05076510163178172,
+        "M3_R2": 0.10560660616666473,
+        "delta_R2": 0.05484150453488301
+      },
+      "same_sample_verified": true,
+      "dependent_variable": "1Y forward gross NAV return",
+      "predictors": [
+        "Intercept",
+        "Trailing 1Y Return",
+        "Annualized Volatility",
+        "Exact Production FQ"
+      ]
+    },
+    {
+      "anchor_year": 2024,
+      "anchor_date": "2024-01-31",
+      "outcome_period": "2024-01-31 to 2025-01-31",
+      "classification": "GENUINELY UNSEEN OOS",
+      "common_N": 4958,
+      "M0_R2": 0.0,
+      "M1_R2": 0.2053,
+      "M2_R2": 0.228,
+      "M3_R2": 0.3325,
+      "delta_R2": 0.1045,
+      "full_precision": {
+        "M1_R2": 0.2052676828031157,
+        "M2_R2": 0.22799739941003583,
+        "M3_R2": 0.3324531193155471,
+        "delta_R2": 0.10445571990551128
+      },
+      "same_sample_verified": true,
+      "dependent_variable": "1Y forward gross NAV return",
+      "predictors": [
+        "Intercept",
+        "Trailing 1Y Return",
+        "Annualized Volatility",
+        "Exact Production FQ"
+      ]
+    }
+  ],
+  "same_sample_status": "VERIFIED (Models M0-M3 evaluate identical schemes within each period)",
+  "dependent_variable": "1Y forward gross NAV return",
+  "predictors": [
+    "Intercept",
+    "Trailing 1Y Return",
+    "Annualized Volatility",
+    "Exact Production FQ Score"
+  ],
+  "production_engine_used": true,
+  "circularity_statement": "Production FQ is constructed from Return and Reciprocal Volatility ranks. Therefore incremental R2 represents non-linear composite model-fit contribution, NOT independent alpha or predictive discovery.",
+  "claim_status": "SUPPORTED (Positive incremental model-fit contribution observed in all 3 evaluated periods, subject to component circularity)",
+  "f16_2_1_correction_required": "Yes. F.16.2.1 report text updated to align strictly with Authoritative Table B.",
+  "production_status": "Production scoring engine remains frozen, immutable, and unchanged.",
+  "unresolved_items": "None"
+}

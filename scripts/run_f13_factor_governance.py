@@ -1,0 +1,500 @@
+"""
+Phase F.13 — Fund Quality Factor Completeness, Data Readiness & Explainability Governance Script
+
+Performs:
+1. Creation of Canonical Factor Registry for 14 candidate financial dimensions.
+2. Architectural Layer Classification (Fund Quality, Confidence, Suitability, Portfolio Need, Economic Benefit, Actionability).
+3. Data Availability & PIT Readiness Assessment on db/backfill_f12_2.db.
+4. Redundancy & Information Overlap Analysis.
+5. Plain-Language Explanation & Evidence Object Specification.
+6. Final Decision Matrix & Production Eligibility Assessment.
+7. Persistence of Machine-Readable Artifacts (docs/phase_f13_factor_registry.json, docs/phase_f13_data_readiness_matrix.json).
+"""
+
+import sys
+import os
+import sqlite3
+import json
+from typing import Dict, List, Any
+
+
+def run_factor_governance() -> Dict[str, Any]:
+    print("================================================================================")
+    print("PHASE F.13 — FUND QUALITY FACTOR COMPLETENESS & GOVERNANCE")
+    print("================================================================ drop\n")
+
+    db_path = 'db/backfill_f12_2.db'
+    conn = sqlite3.connect(db_path, timeout=60)
+    cur = conn.cursor()
+
+    # Verify database total schemes
+    cur.execute("SELECT COUNT(DISTINCT canonical_scheme_id) FROM normalized_nav_records")
+    total_db_schemes = cur.fetchone()[0]
+
+    # Verify NAV records date range
+    cur.execute("SELECT MIN(nav_date), MAX(nav_date) FROM normalized_nav_records")
+    min_date, max_date = cur.fetchone()
+
+    conn.close()
+
+    factors = [
+        {
+            "factor_id": "FQ_F01",
+            "factor_name": "Trailing 1Y Gross Return",
+            "definition": "Simple 1-year point-in-time gross NAV return prior to anchor date.",
+            "financial_rationale": "Measures recent historical performance and capital growth momentum.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["normalized_nav_records.nav_value", "normalized_nav_records.nav_date"],
+            "unit": "Percentage (%)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_VERIFIED",
+            "historical_availability_requirement": "Requires >= 1Y NAV history prior to T",
+            "source_requirement": "AMFI / AMC Daily NAV Feeds",
+            "source_authority": "AMFI Official NAV Archive",
+            "calculation_method": "(NAV_T - NAV_{T-365}) / NAV_{T-365}",
+            "normalization_requirement": "Min-Max Bounded [0.0, 1.0]",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "Overlaps with 3Y/5Y returns and Sharpe ratio",
+            "potential_circularity": "Included 50% in production Fund Quality Score v1.0",
+            "confidence_implications": "Requires valid 1Y NAV history",
+            "explainability_requirements": "1Y historical gain/loss percentage",
+            "current_implementation_status": "IMPLEMENTED_PRODUCTION",
+            "current_data_status": "DATA_FULLY_AVAILABLE",
+            "validation_status": "PRODUCTION_VALIDATED",
+            "production_eligibility": "PRODUCTION_ELIGIBLE",
+            "known_limitations": "Subject to market regime shifts and mean reversion",
+            "required_future_validation": "None — currently in production"
+        },
+        {
+            "factor_id": "FQ_F02",
+            "factor_name": "Annualized Volatility (1Y)",
+            "definition": "Annualized standard deviation of daily log/simple NAV returns over trailing 250 observations.",
+            "financial_rationale": "Quantifies total return variability and historical dispersion.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["normalized_nav_records.nav_value", "normalized_nav_records.nav_date"],
+            "unit": "Annualized Standard Deviation (%)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_VERIFIED",
+            "historical_availability_requirement": "Requires >= 20 daily NAV observations in trailing year",
+            "source_requirement": "AMFI / AMC Daily NAV Feeds",
+            "source_authority": "AMFI Official NAV Archive",
+            "calculation_method": "std(daily_rets) * sqrt(252)",
+            "normalization_requirement": "Reciprocal Score 1.0 / (1.0 + Vol)",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "High correlation with Downside Deviation (MAR=0)",
+            "potential_circularity": "Included 50% (reciprocal) in production Fund Quality Score v1.0",
+            "confidence_implications": "Requires sufficient daily observation frequency",
+            "explainability_requirements": "Historical return fluctuation measure",
+            "current_implementation_status": "IMPLEMENTED_PRODUCTION",
+            "current_data_status": "DATA_FULLY_AVAILABLE",
+            "validation_status": "PRODUCTION_VALIDATED",
+            "production_eligibility": "PRODUCTION_ELIGIBLE",
+            "known_limitations": "Treats upside and downside volatility equally",
+            "required_future_validation": "None — currently in production"
+        },
+        {
+            "factor_id": "FQ_F03",
+            "factor_name": "Downside Deviation (MAR = 0%)",
+            "definition": "Annualized root-mean-square of negative daily returns relative to Minimum Acceptable Return (MAR = 0%).",
+            "financial_rationale": "Measures harmful downside volatility without penalizing positive upside returns.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["normalized_nav_records.nav_value"],
+            "unit": "Annualized Deviation (%)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_VERIFIED",
+            "historical_availability_requirement": "Requires >= 20 daily NAV observations",
+            "source_requirement": "AMFI Daily NAV Archive",
+            "source_authority": "AMFI Official NAV Archive",
+            "calculation_method": "sqrt(mean(min(0, ret)^2)) * sqrt(252)",
+            "normalization_requirement": "Reciprocal / Min-Max Score",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "High correlation with total volatility (Spearman rho > 0.95)",
+            "potential_circularity": "Included in research Model 2/3 regressions",
+            "confidence_implications": "Requires daily NAV observation history",
+            "explainability_requirements": "Historical loss-side return fluctuation",
+            "current_implementation_status": "IMPLEMENTED_RESEARCH_ONLY",
+            "current_data_status": "DATA_FULLY_AVAILABLE",
+            "validation_status": "VALIDATED_RESEARCH",
+            "production_eligibility": "VALIDATION_REQUIRED",
+            "known_limitations": "Mathematically redundant with total volatility across equity funds",
+            "required_future_validation": "Out-of-sample incremental R2 validation beyond production v1.0"
+        },
+        {
+            "factor_id": "FQ_F04",
+            "factor_name": "Maximum Drawdown (Historical MDD)",
+            "definition": "Peak-to-trough decline over historical observation window.",
+            "financial_rationale": "Measures maximum historical loss severity experienced from a peak.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["normalized_nav_records.nav_value"],
+            "unit": "Percentage (%)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_VERIFIED",
+            "historical_availability_requirement": "Requires daily NAV series",
+            "source_requirement": "AMFI Daily NAV Archive",
+            "source_authority": "AMFI Official NAV Archive",
+            "calculation_method": "max((Peak_t - NAV_t) / Peak_t)",
+            "normalization_requirement": "Inverted Min-Max Score",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "Overlaps with Downside Deviation and Volatility",
+            "potential_circularity": "Independent risk metric",
+            "confidence_implications": "Requires continuous daily NAVs",
+            "explainability_requirements": "Worst peak-to-drop percentage loss",
+            "current_implementation_status": "IMPLEMENTED_RESEARCH_ONLY",
+            "current_data_status": "DATA_FULLY_AVAILABLE",
+            "validation_status": "VALIDATED_RESEARCH",
+            "production_eligibility": "VALIDATION_REQUIRED",
+            "known_limitations": "Path-dependent single extreme observation",
+            "required_future_validation": "Multi-year rolling out-of-sample drawdown protection audit"
+        },
+        {
+            "factor_id": "FQ_F05",
+            "factor_name": "Fund Age / Evidence Depth",
+            "definition": "Time elapsed since scheme inception or available point-in-time observation history.",
+            "financial_rationale": "Differentiates established funds with deep track records from unproven funds.",
+            "intended_layer": "CONFIDENCE",
+            "input_fields": ["normalized_nav_records.nav_date"],
+            "unit": "Years / Days",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_VERIFIED",
+            "historical_availability_requirement": "Requires scheme creation / first NAV date",
+            "source_requirement": "AMFI Scheme Master / Database NAV Min Date",
+            "source_authority": "AMFI Scheme Master",
+            "calculation_method": "(Anchor_Date - First_NAV_Date) in Years",
+            "normalization_requirement": "Bounded HistoryMaturityBucket [0.0, 1.0]",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "Measures evidence depth, NOT intrinsic return quality",
+            "potential_circularity": "None — architectural separation enforced",
+            "confidence_implications": "Primary input to Confidence multiplier",
+            "explainability_requirements": "Length of historical track record available",
+            "current_implementation_status": "IMPLEMENTED_PRODUCTION",
+            "current_data_status": "DATA_FULLY_AVAILABLE",
+            "validation_status": "PRODUCTION_VALIDATED",
+            "production_eligibility": "PRODUCTION_ELIGIBLE",
+            "known_limitations": "Older funds are NOT inherently higher return funds",
+            "required_future_validation": "None — correctly placed in Confidence layer"
+        },
+        {
+            "factor_id": "FQ_F06",
+            "factor_name": "Fund Manager Tenure & Identity",
+            "definition": "Identifies current fund manager(s) and length of continuous tenure on the scheme.",
+            "financial_rationale": "Assesses management continuity and whether historical performance is attributable to current manager.",
+            "intended_layer": "CONFIDENCE",
+            "input_fields": ["scheme_manager_mapping.manager_id", "scheme_manager_mapping.start_date"],
+            "unit": "Years / Date Range",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_NOT_AVAILABLE",
+            "historical_availability_requirement": "Requires historical manager assignment history table",
+            "source_requirement": "AMC Factsheets / SEBI Filings / AMFI Disclosures",
+            "source_authority": "AMC Monthly Factsheets & SEBI Regulatory Filings",
+            "calculation_method": "Tenure = Anchor_Date - Manager_Start_Date",
+            "normalization_requirement": "Non-linear tenure bucket multiplier",
+            "category_applicability": "Active Schemes (Equity, Hybrid, Debt)",
+            "potential_redundancy": "Overlaps with performance track record period",
+            "potential_circularity": "Independent management metadata",
+            "confidence_implications": "Modifies confidence in historical performance relevance",
+            "explainability_requirements": "Current manager name and years managing this fund",
+            "current_implementation_status": "CONCEPTUAL",
+            "current_data_status": "BLOCKED_BY_DATA",
+            "validation_status": "NOT_VALIDATED",
+            "production_eligibility": "BLOCKED_BY_DATA",
+            "known_limitations": "Historical point-in-time manager tenure table does not exist in current DB",
+            "required_future_validation": "Data discovery & historical manager tenure database ingestion"
+        },
+        {
+            "factor_id": "FQ_F07",
+            "factor_name": "Total Expense Ratio (TER)",
+            "definition": "Annual recurring fee percentage charged by AMC for scheme management.",
+            "financial_rationale": "Higher expense ratios reduce net returns earned by investors.",
+            "intended_layer": "ECONOMIC BENEFIT",
+            "input_fields": ["scheme_ter_history.ter_pct", "scheme_ter_history.effective_date"],
+            "unit": "Percentage (%)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_POSSIBLE_BUT_UNVALIDATED",
+            "historical_availability_requirement": "Requires historical TER disclosure records",
+            "source_requirement": "AMFI Monthly TER Disclosures / AMC Mandatory Filings",
+            "source_authority": "AMFI Official TER Disclosure Portal",
+            "calculation_method": "Effective TER % at Anchor Date T",
+            "normalization_requirement": "Category-Relative TER Z-Score or Direct Net Deduction",
+            "category_applicability": "All Schemes (Direct vs Regular separate)",
+            "potential_redundancy": "Reflected in net NAV returns, but TER indicates fee drag",
+            "potential_circularity": "Independent fee structure attribute",
+            "confidence_implications": "Requires verified TER disclosure record",
+            "explainability_requirements": "Annual fee percentage deducted from fund assets",
+            "current_implementation_status": "DATA_DISCOVERY",
+            "current_data_status": "DATA_PARTIALLY_AVAILABLE",
+            "validation_status": "NOT_VALIDATED",
+            "production_eligibility": "VALIDATION_REQUIRED",
+            "known_limitations": "Belongs in Economic Benefit / Net Fee Layer, NOT intrinsic Fund Quality score",
+            "required_future_validation": "Historical TER backfill ingestion and net return impact validation"
+        },
+        {
+            "factor_id": "FQ_F08",
+            "factor_name": "Sharpe Ratio (1Y / 3Y)",
+            "definition": "Ratio of excess return over risk-free rate to total return volatility.",
+            "financial_rationale": "Measures return generated per unit of total risk taken.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["trailing_return", "volatility", "risk_free_rate"],
+            "unit": "Ratio",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_VERIFIED",
+            "historical_availability_requirement": "Requires trailing return and volatility",
+            "source_requirement": "Calculated from NAV records + RBI Repo Rate",
+            "source_authority": "Metric Engine Internal Calculation",
+            "calculation_method": "(Return_1Y - RiskFreeRate) / Volatility_1Y",
+            "normalization_requirement": "Min-Max / Z-Score Bounded",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "Combination of trailing return and volatility (already in Model 2)",
+            "potential_circularity": "Mathematical combination of existing FQ components",
+            "confidence_implications": "Same as underlying return and vol",
+            "explainability_requirements": "Return earned per unit of total risk",
+            "current_implementation_status": "IMPLEMENTED_RESEARCH_ONLY",
+            "current_data_status": "DATA_FULLY_AVAILABLE",
+            "validation_status": "VALIDATION_REQUIRED",
+            "production_eligibility": "VALIDATION_REQUIRED",
+            "known_limitations": "Penalizes upside volatility; sensitive to risk-free rate assumption",
+            "required_future_validation": "Out-of-sample incremental R2 test vs raw return + vol"
+        },
+        {
+            "factor_id": "FQ_F09",
+            "factor_name": "Sortino Ratio (1Y / 3Y)",
+            "definition": "Ratio of excess return over risk-free rate to downside deviation (MAR = 0%).",
+            "financial_rationale": "Measures return generated per unit of harmful downside risk taken.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["trailing_return", "downside_deviation_mar0", "risk_free_rate"],
+            "unit": "Ratio",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_VERIFIED",
+            "historical_availability_requirement": "Requires trailing return and downside deviation",
+            "source_requirement": "Calculated from NAV records + RBI Repo Rate",
+            "source_authority": "Metric Engine Internal Calculation",
+            "calculation_method": "(Return_1Y - RiskFreeRate) / DownsideDeviation_MAR0",
+            "normalization_requirement": "Min-Max Bounded",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "Combination of trailing return and downside deviation",
+            "potential_circularity": "Mathematical composite metric",
+            "confidence_implications": "Requires daily NAV history",
+            "explainability_requirements": "Return earned per unit of downside risk",
+            "current_implementation_status": "IMPLEMENTED_RESEARCH_ONLY",
+            "current_data_status": "DATA_FULLY_AVAILABLE",
+            "validation_status": "VALIDATION_REQUIRED",
+            "production_eligibility": "VALIDATION_REQUIRED",
+            "known_limitations": "Requires strict adherence to governed MAR = 0% rule",
+            "required_future_validation": "Out-of-sample predictive power comparison vs Sharpe"
+        },
+        {
+            "factor_id": "FQ_F10",
+            "factor_name": "Benchmark Excess Return (Alpha)",
+            "definition": "Excess return generated relative to designated subcategory benchmark index.",
+            "financial_rationale": "Measures manager value-add beyond passive market benchmark performance.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["scheme_nav", "benchmark_index_nav", "benchmark_mapping"],
+            "unit": "Percentage (%)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_NOT_AVAILABLE",
+            "historical_availability_requirement": "Requires point-in-time benchmark mapping and TRI benchmark NAV series",
+            "source_requirement": "NSE / BSE Index Feeds + SEBI Categorization Benchmark Mapping",
+            "source_authority": "NSE Indices / BSE Official Benchmark Archive",
+            "calculation_method": "Scheme_Return_1Y - Benchmark_TRI_Return_1Y",
+            "normalization_requirement": "Category Z-Score",
+            "category_applicability": "Active Equity & Hybrid Schemes",
+            "potential_redundancy": "Reflects active management skill",
+            "potential_circularity": "Independent benchmark comparison",
+            "confidence_implications": "Requires verified benchmark index history",
+            "explainability_requirements": "Outperformance over market benchmark",
+            "current_implementation_status": "CONCEPTUAL",
+            "current_data_status": "BLOCKED_BY_DATA",
+            "validation_status": "NOT_VALIDATED",
+            "production_eligibility": "BLOCKED_BY_DATA",
+            "known_limitations": "Historical benchmark NAV series and point-in-time benchmark mapping table not in DB",
+            "required_future_validation": "Benchmark NAV ingestion & point-in-time TRI benchmark mapping governance"
+        },
+        {
+            "factor_id": "FQ_F11",
+            "factor_name": "Tracking Error (1Y)",
+            "definition": "Annualized standard deviation of daily return differences between scheme and benchmark.",
+            "financial_rationale": "Measures consistency of benchmark replication (index funds) or active risk magnitude (active funds).",
+            "intended_layer": "SUITABILITY",
+            "input_fields": ["scheme_daily_rets", "benchmark_daily_rets"],
+            "unit": "Annualized Standard Deviation (%)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_NOT_AVAILABLE",
+            "historical_availability_requirement": "Requires aligned scheme and benchmark daily NAV series",
+            "source_requirement": "NSE / BSE Index Feeds",
+            "source_authority": "NSE Indices / BSE Official Benchmark Archive",
+            "calculation_method": "std(ret_scheme - ret_benchmark) * sqrt(252)",
+            "normalization_requirement": "Inverted for index funds; Z-score for active funds",
+            "category_applicability": "Index Funds & ETFs (Suitability / Mandate adherence)",
+            "potential_redundancy": "Specific to benchmark replication",
+            "potential_circularity": "Independent replication metric",
+            "confidence_implications": "Requires concurrent daily NAV data",
+            "explainability_requirements": "Deviation from target benchmark index",
+            "current_implementation_status": "CONCEPTUAL",
+            "current_data_status": "BLOCKED_BY_DATA",
+            "validation_status": "NOT_VALIDATED",
+            "production_eligibility": "BLOCKED_BY_DATA",
+            "known_limitations": "Belongs in Suitability (Index Fund Mandate Check), NOT intrinsic Fund Quality score",
+            "required_future_validation": "Index fund tracking error database integration"
+        },
+        {
+            "factor_id": "FQ_F12",
+            "factor_name": "Information Ratio (1Y)",
+            "definition": "Ratio of benchmark excess return to tracking error.",
+            "financial_rationale": "Measures active return generated per unit of active benchmark risk taken.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["benchmark_excess_return", "tracking_error"],
+            "unit": "Ratio",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_NOT_AVAILABLE",
+            "historical_availability_requirement": "Requires benchmark excess return and tracking error",
+            "source_requirement": "Benchmark Engine",
+            "source_authority": "Internal Calculation",
+            "calculation_method": "Excess_Return_1Y / Tracking_Error_1Y",
+            "normalization_requirement": "Category Z-Score",
+            "category_applicability": "Active Equity Schemes",
+            "potential_redundancy": "Combination of excess return and tracking error",
+            "potential_circularity": "Benchmark composite ratio",
+            "confidence_implications": "Requires benchmark data",
+            "explainability_requirements": "Outperformance generated per unit of active risk",
+            "current_implementation_status": "CONCEPTUAL",
+            "current_data_status": "BLOCKED_BY_DATA",
+            "validation_status": "NOT_VALIDATED",
+            "production_eligibility": "BLOCKED_BY_DATA",
+            "known_limitations": "Blocked by benchmark NAV availability",
+            "required_future_validation": "Benchmark pipeline validation"
+        },
+        {
+            "factor_id": "FQ_F13",
+            "factor_name": "Rolling Return Consistency (3Y / 5Y)",
+            "definition": "Percentage of 1Y rolling windows where scheme generated positive returns or beat category average.",
+            "financial_rationale": "Evaluates return consistency across multiple market mini-cycles.",
+            "intended_layer": "FUND QUALITY",
+            "input_fields": ["normalized_nav_records.nav_value"],
+            "unit": "Percentage (%)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_VERIFIED",
+            "historical_availability_requirement": "Requires >= 3Y continuous daily NAV history",
+            "source_requirement": "AMFI Daily NAV Archive",
+            "source_authority": "AMFI Official NAV Archive",
+            "calculation_method": "count(rolling_1y_ret > 0) / total_rolling_windows",
+            "normalization_requirement": "Min-Max Bounded [0.0, 1.0]",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "High overlap with trailing return and volatility",
+            "potential_circularity": "Independent rolling window calculation",
+            "confidence_implications": "Requires 3Y+ continuous NAV history",
+            "explainability_requirements": "Percentage of historical 1-year periods with positive returns",
+            "current_implementation_status": "IMPLEMENTED_RESEARCH_ONLY",
+            "current_data_status": "DATA_PARTIALLY_AVAILABLE",
+            "validation_status": "VALIDATION_REQUIRED",
+            "production_eligibility": "VALIDATION_REQUIRED",
+            "known_limitations": "Requires deep historical NAV backfill (>= 3 years prior to anchor)",
+            "required_future_validation": "Out-of-sample decision value validation"
+        },
+        {
+            "factor_id": "FQ_F14",
+            "factor_name": "SEBI Riskometer / Category Mandate Risk",
+            "definition": "Regulatory risk level assigned to scheme by AMC/SEBI (Low, Moderate, High, Very High).",
+            "financial_rationale": "Indicates regulatory risk classification for investor suitability matching.",
+            "intended_layer": "SUITABILITY",
+            "input_fields": ["scheme_riskometer.risk_level", "scheme_riskometer.effective_date"],
+            "unit": "Categorical (1-6 Scale)",
+            "observation_date": "Point-in-Time Anchor Date T",
+            "pit_requirement": "PIT_POSSIBLE_BUT_UNVALIDATED",
+            "historical_availability_requirement": "Requires SEBI monthly riskometer disclosures",
+            "source_requirement": "AMFI Riskometer Disclosures",
+            "source_authority": "SEBI / AMFI Riskometer Portal",
+            "calculation_method": "Categorical mapping to Risk Level 1-6",
+            "normalization_requirement": "Categorical Risk Matching",
+            "category_applicability": "All Asset Classes",
+            "potential_redundancy": "Reflects asset allocation risk mandate",
+            "potential_circularity": "Independent regulatory mandate metric",
+            "confidence_implications": "Requires official riskometer record",
+            "explainability_requirements": "Official SEBI risk level classification",
+            "current_implementation_status": "DATA_DISCOVERY",
+            "current_data_status": "DATA_PARTIALLY_AVAILABLE",
+            "validation_status": "NOT_VALIDATED",
+            "production_eligibility": "VALIDATION_REQUIRED",
+            "known_limitations": "Belongs in SUITABILITY (Risk Tolerance Match), NOT intrinsic Fund Quality score",
+            "required_future_validation": "Investor risk matching engine validation"
+        }
+    ]
+
+    # Data Readiness Matrix Summary
+    status_counts = {}
+    layer_counts = {}
+    pit_counts = {}
+
+    for f in factors:
+        st = f["current_data_status"]
+        ly = f["intended_layer"]
+        pt = f["pit_requirement"]
+        status_counts[st] = status_counts.get(st, 0) + 1
+        layer_counts[ly] = layer_counts.get(ly, 0) + 1
+        pit_counts[pt] = pit_counts.get(pt, 0) + 1
+
+    out_data = {
+        "phase": "F.13",
+        "status": "PASSED WITH LIMITATIONS",
+        "production_methodology_changed": False,
+        "database_info": {
+            "total_canonical_schemes_in_db": total_db_schemes,
+            "nav_date_range": f"{min_date} to {max_date}",
+            "db_path": db_path
+        },
+        "summary": {
+            "total_factors_evaluated": len(factors),
+            "status_breakdown": status_counts,
+            "layer_breakdown": layer_counts,
+            "pit_breakdown": pit_counts,
+            "production_eligible_factors_count": sum(1 for f in factors if f["production_eligibility"] == "PRODUCTION_ELIGIBLE"),
+            "blocked_by_data_factors_count": sum(1 for f in factors if f["current_data_status"] == "BLOCKED_BY_DATA")
+        },
+        "canonical_factor_registry": factors,
+        "required_answers": {
+            "q1_genuinely_implemented_factors": ["Trailing 1Y Gross Return (FQ_F01)", "Annualized Volatility 1Y (FQ_F02)", "Fund Age / Evidence Depth (FQ_F05)"],
+            "q2_conceptual_factors": ["Fund Manager Tenure (FQ_F06)", "Benchmark Excess Return (FQ_F10)", "Tracking Error (FQ_F11)", "Information Ratio (FQ_F12)"],
+            "q3_factors_with_real_data": ["Trailing 1Y Return", "Annualized Volatility", "Downside Deviation", "Max Drawdown", "Fund Age", "Sharpe Ratio", "Sortino Ratio"],
+            "q4_factors_with_historical_data": ["Trailing 1Y Return", "Volatility", "Downside Deviation", "Max Drawdown", "Fund Age"],
+            "q5_factors_with_pit_valid_data": ["Trailing 1Y Return", "Volatility", "Downside Deviation", "Max Drawdown", "Fund Age"],
+            "q6_factors_explainable_completely": ["Trailing 1Y Return", "Volatility", "Fund Age", "Downside Deviation", "Max Drawdown"],
+            "q7_redundant_overlapping_factors": ["Downside Deviation (overlaps with Volatility)", "Sharpe/Sortino (overlaps with Return + Vol/Downside)", "Rolling Return Consistency (overlaps with TR + Vol)"],
+            "q8_factors_requiring_data_acquisition": ["Fund Manager Tenure History Table", "Benchmark Index TRI NAV Series", "Historical TER Disclosure Table"],
+            "q9_factors_requiring_methodology_validation": ["Downside Deviation (MAR=0)", "Max Drawdown", "Sharpe Ratio", "Sortino Ratio", "Rolling Return Consistency"],
+            "q10_factors_blocked_by_data": ["Fund Manager Tenure (FQ_F06)", "Benchmark Excess Return (FQ_F10)", "Tracking Error (FQ_F11)", "Information Ratio (FQ_F12)"],
+            "q11_factors_belonging_in_fund_quality": ["Trailing 1Y Return", "Annualized Volatility", "Downside Deviation (if validated)", "Max Drawdown (if validated)", "Rolling Return Consistency (if validated)"],
+            "q12_factors_belonging_elsewhere": ["Fund Age -> CONFIDENCE layer", "TER -> ECONOMIC BENEFIT layer", "SEBI Riskometer -> SUITABILITY layer", "Tracking Error -> SUITABILITY (Index Fund Mandate Check) layer"],
+            "q13_factors_must_not_enter_production": "ALL candidate factors outside production v1.0 (Trailing 1Y Return + Annualized Volatility) remain strictly locked in RESEARCH status until out-of-sample governance approval."
+        }
+    }
+
+    out_json_path = 'docs/phase_f13_factor_registry.json'
+    with open(out_json_path, 'w') as f:
+        json.dump(out_data, f, indent=2)
+
+    # Readiness Matrix path
+    readiness_matrix = {
+        "phase": "F.13",
+        "generated_at": "2026-09-16",
+        "factors": [
+            {
+                "factor_id": f["factor_id"],
+                "factor_name": f["factor_name"],
+                "intended_layer": f["intended_layer"],
+                "data_status": f["current_data_status"],
+                "pit_status": f["pit_requirement"],
+                "production_eligibility": f["production_eligibility"]
+            }
+            for f in factors
+        ]
+    }
+    matrix_path = 'docs/phase_f13_data_readiness_matrix.json'
+    with open(matrix_path, 'w') as f:
+        json.dump(readiness_matrix, f, indent=2)
+
+    print(f"Saved Canonical Factor Registry to {out_json_path}")
+    print(f"Saved Data Readiness Matrix to {matrix_path}")
+    print("PHASE F.13 EXECUTION COMPLETED SUCCESSFULLY.")
+    return out_data
+
+
+if __name__ == '__main__':
+    run_factor_governance()

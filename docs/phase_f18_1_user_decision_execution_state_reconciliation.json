@@ -1,0 +1,47 @@
+{
+  "manifest": {
+    "manifest_version": "F.18.1-STATE-RECONCILIATION-v1.0",
+    "audited_at_utc": "2026-09-16T19:29:20.761431",
+    "orchestrator_class": "DecisionOrchestrator",
+    "action_field_meaning": "System Recommendation (emitted by DecisionOrchestrator)",
+    "user_decision_meaning": "Investor Agency Choice (ACCEPTED, REJECTED, ADJUSTED) stored in separate Audit record",
+    "execution_status_meaning": "NOT_EXECUTED (Safe by absence of execution layer in engine)",
+    "reassessment_confirmation_meaning": "Reassessment is a system calculation (No user confirmation needed to compute v2). Applying/executing recommendation requires explicit confirmation.",
+    "cases_evaluated_count": 4,
+    "cases_passed_count": 4
+  },
+  "audit_records": [
+    {
+      "case": "P24_SEMANTICS: System=BUY, User=REJECTED, Execution=NOT_EXECUTED, State=UNCHANGED",
+      "system_recommendation": "BUY",
+      "user_decision": "REJECTED",
+      "execution_status": "NOT_EXECUTED",
+      "portfolio_mutated": false,
+      "passed": true
+    },
+    {
+      "case": "P25_SEMANTICS: System=BUY, User=ADJUSTED (INR 5k), Execution=NOT_EXECUTED, State=UNCHANGED",
+      "system_recommendation": "ACCUMULATE",
+      "user_decision": "ADJUSTED",
+      "execution_status": "NOT_EXECUTED",
+      "portfolio_mutated": false,
+      "passed": true
+    },
+    {
+      "case": "ACCEPTED_SEMANTICS: System=BUY, User=ACCEPTED, Execution=NOT_EXECUTED (Decoupled), State=UNCHANGED",
+      "system_recommendation": "BUY",
+      "user_decision": "ACCEPTED",
+      "execution_status": "NOT_EXECUTED",
+      "portfolio_mutated": false,
+      "passed": true
+    },
+    {
+      "case": "REJECT_SELL_SEMANTICS: System=SELL, User=REJECTED, Execution=NOT_EXECUTED, State=UNCHANGED",
+      "system_recommendation": "SELL",
+      "user_decision": "REJECTED",
+      "execution_status": "NOT_EXECUTED",
+      "portfolio_mutated": false,
+      "passed": true
+    }
+  ]
+}

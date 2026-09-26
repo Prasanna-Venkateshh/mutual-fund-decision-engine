@@ -1,0 +1,395 @@
+{
+  "phase": "F.11.3.5.4.1",
+  "status": "PASSED WITH LIMITATIONS",
+  "production_methodology_changed": false,
+  "summary": {
+    "evaluation_periods_count": 5,
+    "simple_mean_incremental_r2": 0.027879,
+    "n_weighted_mean_incremental_r2": 0.044304,
+    "fq_beat_trailing_return_count": "0 / 5",
+    "monotonic_quintile_count": "1 / 5",
+    "positive_association_periods": "4 / 5"
+  },
+  "period_reconciliations": [
+    {
+      "period_id": "P1_2020",
+      "anchor_date": "2020-01-31",
+      "fwd_end_date": "2021-01-31",
+      "regime_label": "2020 Market Crash & Recovery",
+      "coverage_class": "Limited-coverage historical validation period",
+      "population_reconciliation": {
+        "total_known_schemes_in_db": 17507,
+        "eligible_population_N": 307,
+        "excluded_no_pit_history": 3321,
+        "excluded_stale_or_insufficient_history": 10017,
+        "excluded_no_forward_nav": 3862,
+        "minimum_history_rule": ">= 20 PIT daily NAV observations",
+        "staleness_threshold": "<= 30 days gap to anchor date",
+        "forward_nav_completion_rule": "<= 20 days gap to forward end date"
+      },
+      "correlations": {
+        "fq_vs_fwd_ret": 0.4031,
+        "tr_vs_fwd_ret": 0.8462,
+        "vol_vs_fwd_ret": 0.4402,
+        "fq_vs_fwd_mdd": -0.5459
+      },
+      "nested_regressions": {
+        "N": 307,
+        "r2_m0": 0.0,
+        "r2_m1": 0.430597,
+        "r2_m2": 0.448851,
+        "r2_m3": 0.449487,
+        "inc_r2_m1": 0.430597,
+        "inc_r2_m2_beyond_m1": 0.018254,
+        "inc_r2_m3_beyond_m2": 0.000636,
+        "fq_coefficient": 0.029699,
+        "fq_std_err": 0.0,
+        "fq_t_stat": 0.0,
+        "fq_p_val": 1.0,
+        "degrees_of_freedom": 302
+      },
+      "strategies": {
+        "strategy_a_top_tr": {
+          "fwd_ret": "7.12%",
+          "fwd_mdd": "4.16%"
+        },
+        "strategy_b_lowest_vol": {
+          "fwd_ret": "0.43%",
+          "fwd_mdd": "0.02%"
+        },
+        "strategy_c_top_fq": {
+          "fwd_ret": "4.38%",
+          "fwd_mdd": "0.00%"
+        },
+        "fq_beat_trailing_return": false
+      },
+      "quintiles": {
+        "values": [
+          "4.70%",
+          "3.55%",
+          "0.01%",
+          "2.03%",
+          "0.80%"
+        ],
+        "is_monotonic": false
+      }
+    },
+    {
+      "period_id": "P2_2021",
+      "anchor_date": "2021-01-31",
+      "fwd_end_date": "2022-01-31",
+      "regime_label": "2021 Post-COVID Bull Market",
+      "coverage_class": "Limited-coverage historical validation period",
+      "population_reconciliation": {
+        "total_known_schemes_in_db": 17507,
+        "eligible_population_N": 426,
+        "excluded_no_pit_history": 2982,
+        "excluded_stale_or_insufficient_history": 13985,
+        "excluded_no_forward_nav": 114,
+        "minimum_history_rule": ">= 20 PIT daily NAV observations",
+        "staleness_threshold": "<= 30 days gap to anchor date",
+        "forward_nav_completion_rule": "<= 20 days gap to forward end date"
+      },
+      "correlations": {
+        "fq_vs_fwd_ret": 0.2935,
+        "tr_vs_fwd_ret": 0.8869,
+        "vol_vs_fwd_ret": 0.6262,
+        "fq_vs_fwd_mdd": -0.3256
+      },
+      "nested_regressions": {
+        "N": 426,
+        "r2_m0": 0.0,
+        "r2_m1": 0.579831,
+        "r2_m2": 0.702694,
+        "r2_m3": 0.703903,
+        "inc_r2_m1": 0.579831,
+        "inc_r2_m2_beyond_m1": 0.122863,
+        "inc_r2_m3_beyond_m2": 0.001209,
+        "fq_coefficient": 0.042261,
+        "fq_std_err": 0.0,
+        "fq_t_stat": 0.0,
+        "fq_p_val": 1.0,
+        "degrees_of_freedom": 421
+      },
+      "strategies": {
+        "strategy_a_top_tr": {
+          "fwd_ret": "4.99%",
+          "fwd_mdd": "0.59%"
+        },
+        "strategy_b_lowest_vol": {
+          "fwd_ret": "-0.35%",
+          "fwd_mdd": "0.41%"
+        },
+        "strategy_c_top_fq": {
+          "fwd_ret": "3.29%",
+          "fwd_mdd": "0.00%"
+        },
+        "fq_beat_trailing_return": false
+      },
+      "quintiles": {
+        "values": [
+          "3.68%",
+          "1.78%",
+          "1.41%",
+          "1.08%",
+          "1.84%"
+        ],
+        "is_monotonic": false
+      }
+    },
+    {
+      "period_id": "P3_2022",
+      "anchor_date": "2022-01-31",
+      "fwd_end_date": "2023-01-31",
+      "regime_label": "2022 Inflation & Rate Hike Regimes",
+      "coverage_class": "Full-coverage historical validation period",
+      "population_reconciliation": {
+        "total_known_schemes_in_db": 17507,
+        "eligible_population_N": 4515,
+        "excluded_no_pit_history": 2374,
+        "excluded_stale_or_insufficient_history": 9517,
+        "excluded_no_forward_nav": 1101,
+        "minimum_history_rule": ">= 20 PIT daily NAV observations",
+        "staleness_threshold": "<= 30 days gap to anchor date",
+        "forward_nav_completion_rule": "<= 20 days gap to forward end date"
+      },
+      "correlations": {
+        "fq_vs_fwd_ret": 0.1877,
+        "tr_vs_fwd_ret": 0.0449,
+        "vol_vs_fwd_ret": -0.1641,
+        "fq_vs_fwd_mdd": 0.1129
+      },
+      "nested_regressions": {
+        "N": 4515,
+        "r2_m0": 0.0,
+        "r2_m1": 0.000374,
+        "r2_m2": 0.003508,
+        "r2_m3": 0.003508,
+        "inc_r2_m1": 0.000374,
+        "inc_r2_m2_beyond_m1": 0.003134,
+        "inc_r2_m3_beyond_m2": 0.0,
+        "fq_coefficient": 0.001536,
+        "fq_std_err": 0.0,
+        "fq_t_stat": 0.0,
+        "fq_p_val": 1.0,
+        "degrees_of_freedom": 4510
+      },
+      "strategies": {
+        "strategy_a_top_tr": {
+          "fwd_ret": "2.02%",
+          "fwd_mdd": "17.52%"
+        },
+        "strategy_b_lowest_vol": {
+          "fwd_ret": "11.88%",
+          "fwd_mdd": "1.00%"
+        },
+        "strategy_c_top_fq": {
+          "fwd_ret": "1.78%",
+          "fwd_mdd": "17.41%"
+        },
+        "fq_beat_trailing_return": false
+      },
+      "quintiles": {
+        "values": [
+          "0.94%",
+          "3.93%",
+          "5.63%",
+          "1.02%",
+          "-0.03%"
+        ],
+        "is_monotonic": false
+      }
+    },
+    {
+      "period_id": "P4_2023",
+      "anchor_date": "2023-01-31",
+      "fwd_end_date": "2024-01-31",
+      "regime_label": "2023 Market Recovery & Expansion",
+      "coverage_class": "Full-coverage historical validation period",
+      "population_reconciliation": {
+        "total_known_schemes_in_db": 17507,
+        "eligible_population_N": 5166,
+        "excluded_no_pit_history": 1398,
+        "excluded_stale_or_insufficient_history": 10657,
+        "excluded_no_forward_nav": 286,
+        "minimum_history_rule": ">= 20 PIT daily NAV observations",
+        "staleness_threshold": "<= 30 days gap to anchor date",
+        "forward_nav_completion_rule": "<= 20 days gap to forward end date"
+      },
+      "correlations": {
+        "fq_vs_fwd_ret": -0.5737,
+        "tr_vs_fwd_ret": -0.0019,
+        "vol_vs_fwd_ret": 0.7136,
+        "fq_vs_fwd_mdd": -0.8403
+      },
+      "nested_regressions": {
+        "N": 5166,
+        "r2_m0": 0.0,
+        "r2_m1": 0.001628,
+        "r2_m2": 0.430221,
+        "r2_m3": 0.561895,
+        "inc_r2_m1": 0.001628,
+        "inc_r2_m2_beyond_m1": 0.428593,
+        "inc_r2_m3_beyond_m2": 0.131674,
+        "fq_coefficient": -3.932705,
+        "fq_std_err": 0.0,
+        "fq_t_stat": 0.0,
+        "fq_p_val": 1.0,
+        "degrees_of_freedom": 5161
+      },
+      "strategies": {
+        "strategy_a_top_tr": {
+          "fwd_ret": "27.75%",
+          "fwd_mdd": "5.70%"
+        },
+        "strategy_b_lowest_vol": {
+          "fwd_ret": "4.47%",
+          "fwd_mdd": "0.08%"
+        },
+        "strategy_c_top_fq": {
+          "fwd_ret": "7.46%",
+          "fwd_mdd": "0.83%"
+        },
+        "fq_beat_trailing_return": false
+      },
+      "quintiles": {
+        "values": [
+          "7.60%",
+          "5.69%",
+          "8.19%",
+          "31.07%",
+          "32.40%"
+        ],
+        "is_monotonic": false
+      }
+    },
+    {
+      "period_id": "P5_2024",
+      "anchor_date": "2024-01-31",
+      "fwd_end_date": "2025-01-31",
+      "regime_label": "2024 Unseen Outcome Period",
+      "coverage_class": "Full-coverage historical validation period",
+      "population_reconciliation": {
+        "total_known_schemes_in_db": 17507,
+        "eligible_population_N": 5713,
+        "excluded_no_pit_history": 699,
+        "excluded_stale_or_insufficient_history": 10976,
+        "excluded_no_forward_nav": 119,
+        "minimum_history_rule": ">= 20 PIT daily NAV observations",
+        "staleness_threshold": "<= 30 days gap to anchor date",
+        "forward_nav_completion_rule": "<= 20 days gap to forward end date"
+      },
+      "correlations": {
+        "fq_vs_fwd_ret": 0.5098,
+        "tr_vs_fwd_ret": 0.5882,
+        "vol_vs_fwd_ret": 0.4011,
+        "fq_vs_fwd_mdd": 0.5434
+      },
+      "nested_regressions": {
+        "N": 5713,
+        "r2_m0": 0.0,
+        "r2_m1": 0.155483,
+        "r2_m2": 0.380564,
+        "r2_m3": 0.386438,
+        "inc_r2_m1": 0.155483,
+        "inc_r2_m2_beyond_m1": 0.22508,
+        "inc_r2_m3_beyond_m2": 0.005874,
+        "fq_coefficient": 0.93534,
+        "fq_std_err": 0.0,
+        "fq_t_stat": 0.0,
+        "fq_p_val": 1.0,
+        "degrees_of_freedom": 5708
+      },
+      "strategies": {
+        "strategy_a_top_tr": {
+          "fwd_ret": "12.23%",
+          "fwd_mdd": "16.83%"
+        },
+        "strategy_b_lowest_vol": {
+          "fwd_ret": "4.34%",
+          "fwd_mdd": "0.11%"
+        },
+        "strategy_c_top_fq": {
+          "fwd_ret": "11.85%",
+          "fwd_mdd": "16.80%"
+        },
+        "fq_beat_trailing_return": false
+      },
+      "quintiles": {
+        "values": [
+          "12.02%",
+          "10.18%",
+          "8.07%",
+          "7.10%",
+          "3.17%"
+        ],
+        "is_monotonic": true
+      }
+    }
+  ],
+  "claim_matrix": [
+    {
+      "claim_id": 1,
+      "claim": "FQ had positive association in four of five periods.",
+      "status": "SUPPORTED",
+      "evidence": "Spearman rank correlation FQ vs forward 1Y return was positive in 4 of 5 periods (P1: +0.4031, P2: +0.2935, P3: +0.1877, P5: +0.5098; P4: -0.5737).",
+      "limitation": "Negative in P4 (2023 recovery expansion) where speculative high-volatility funds outperformed low-volatility score components."
+    },
+    {
+      "claim_id": 2,
+      "claim": "FQ association was stable across periods.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Correlation ranged from -0.5737 (P4) to +0.5098 (P5). Ranking stability is highly regime-dependent.",
+      "limitation": "High sensitivity to macro regime shifts."
+    },
+    {
+      "claim_id": 3,
+      "claim": "FQ added incremental explanatory association.",
+      "status": "SUPPORTED WITH LIMITATIONS",
+      "evidence": "Model 3 incremental R2 beyond Model 2 was non-negative in all 5 periods (P1: +0.000636, P2: +0.001209, P3: 0.000000, P4: +0.131674, P5: +0.0005874; simple mean +0.027879, N-weighted mean +0.043516).",
+      "limitation": "The mean is heavily skewed by P4 (+0.131674). In 4 of 5 periods, incremental R2 is negligible (< +0.006)."
+    },
+    {
+      "claim_id": 4,
+      "claim": "FQ added independent information.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Fund Quality is mathematically constructed 50% from reciprocal volatility and 50% from trailing return, both of which are directly included in Model 2.",
+      "limitation": "Composite transformation circularity. FQ tests non-linear combination, not novel underlying data."
+    },
+    {
+      "claim_id": 5,
+      "claim": "FQ consistently beat trailing-return selection.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Strategy C (Top 10% FQ) did NOT exceed Strategy A (Top 10% Trailing Return) in mean forward return in any of the five evaluated periods (0/5).",
+      "limitation": "Important negative finding. Trailing return delivered higher forward returns in all 5 periods."
+    },
+    {
+      "claim_id": 6,
+      "claim": "FQ reduced future drawdowns.",
+      "status": "NOT SUPPORTED",
+      "evidence": "In full-coverage equity samples (P3, P5), Strategy C mean forward MDD (P3: 17.41%, P5: 16.80%) was virtually identical to Strategy A (P3: 17.52%, P5: 16.83%).",
+      "limitation": "No evidence of causal drawdown reduction beyond underlying asset class exposure."
+    },
+    {
+      "claim_id": 7,
+      "claim": "FQ produced economic benefit.",
+      "status": "UNRESOLVED",
+      "evidence": "Transaction costs, taxes, exit loads, expense ratios, and portfolio rebalancing dynamics were not evaluated.",
+      "limitation": "Requires investor-level portfolio and execution modeling."
+    },
+    {
+      "claim_id": 8,
+      "claim": "FQ was robust across market regimes.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Performance and quintile ordering varied drastically across market regimes (bull, bear inflation, recovery).",
+      "limitation": "Monotonic quintile ordering occurred in only 1 of 5 periods (P5)."
+    },
+    {
+      "claim_id": 9,
+      "claim": "FQ should change production Buy/Sell decisions.",
+      "status": "RESEARCH-ONLY",
+      "evidence": "Production Fund Quality methodology remains frozen. Research findings do not alter production decision logic.",
+      "limitation": "Governed pre-freeze research status."
+    }
+  ]
+}

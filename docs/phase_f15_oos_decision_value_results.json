@@ -1,0 +1,159 @@
+{
+  "validation_phase": "Phase F.15 Out-Of-Sample Decision-Value Validation",
+  "manifest_hash": "b1a41fa15e48d3e4a35d92a85d82a73b0f7edfd9fbea868c9e6e02a557300c2e",
+  "anchor_date": "2024-01-31",
+  "outcome_window": "2024-02-01 to 2025-01-31",
+  "population_waterfall": {
+    "total_db_schemes": 17507,
+    "active_at_anchor": 16808,
+    "forward_reachable": 6588,
+    "final_common_cohort_N": 5126
+  },
+  "strategy_results_table": [
+    {
+      "strategy_id": "COMP_RETURN",
+      "strategy_name": "Trailing 1Y Gross Return Baseline",
+      "N_selected": 513,
+      "mean_forward_return": 0.131117,
+      "median_forward_return": 0.113073,
+      "mean_forward_mdd": 0.166814,
+      "median_forward_mdd": 0.16439,
+      "forward_volatility": 0.190977,
+      "forward_downside_deviation": 0.147743,
+      "overlap_with_prod_fq_count": 30,
+      "overlap_with_prod_fq_pct": 5.85,
+      "cohort_membership_turnover_proxy_pct": 94.15
+    },
+    {
+      "strategy_id": "PROD_FQ",
+      "strategy_name": "Production Fund Quality v1.0 (Baseline)",
+      "N_selected": 513,
+      "mean_forward_return": 0.0812,
+      "median_forward_return": 0.077617,
+      "mean_forward_mdd": 0.013551,
+      "median_forward_mdd": 0.000348,
+      "forward_volatility": 0.017481,
+      "forward_downside_deviation": 0.011261,
+      "overlap_with_prod_fq_count": 513,
+      "overlap_with_prod_fq_pct": 100.0,
+      "cohort_membership_turnover_proxy_pct": 0.0
+    },
+    {
+      "strategy_id": "COMP_VOL",
+      "strategy_name": "Historical Risk Baseline (Lowest Volatility)",
+      "N_selected": 513,
+      "mean_forward_return": 0.041518,
+      "median_forward_return": 0.065871,
+      "mean_forward_mdd": 0.001113,
+      "median_forward_mdd": 0.0,
+      "forward_volatility": 0.001922,
+      "forward_downside_deviation": 0.000903,
+      "overlap_with_prod_fq_count": 158,
+      "overlap_with_prod_fq_pct": 30.8,
+      "cohort_membership_turnover_proxy_pct": 69.2
+    },
+    {
+      "strategy_id": "CAND_CONSISTENCY",
+      "strategy_name": "Rolling Return Consistency Candidate",
+      "N_selected": 513,
+      "mean_forward_return": 0.07413,
+      "median_forward_return": 0.075371,
+      "mean_forward_mdd": 0.00192,
+      "median_forward_mdd": 0.001172,
+      "forward_volatility": 0.006047,
+      "forward_downside_deviation": 0.002702,
+      "overlap_with_prod_fq_count": 277,
+      "overlap_with_prod_fq_pct": 54.0,
+      "cohort_membership_turnover_proxy_pct": 46.0
+    },
+    {
+      "strategy_id": "CAND_DOWNSIDE",
+      "strategy_name": "Downside Deviation MAR=0% Candidate (Lowest DD)",
+      "N_selected": 513,
+      "mean_forward_return": 0.049794,
+      "median_forward_return": 0.067433,
+      "mean_forward_mdd": 0.001094,
+      "median_forward_mdd": 0.0,
+      "forward_volatility": 0.002194,
+      "forward_downside_deviation": 0.000891,
+      "overlap_with_prod_fq_count": 211,
+      "overlap_with_prod_fq_pct": 41.13,
+      "cohort_membership_turnover_proxy_pct": 58.87
+    },
+    {
+      "strategy_id": "CAND_MDD",
+      "strategy_name": "Maximum Drawdown Candidate (Lowest MDD)",
+      "N_selected": 513,
+      "mean_forward_return": 0.04992,
+      "median_forward_return": 0.067434,
+      "mean_forward_mdd": 0.001096,
+      "median_forward_mdd": 0.0,
+      "forward_volatility": 0.002207,
+      "forward_downside_deviation": 0.000897,
+      "overlap_with_prod_fq_count": 211,
+      "overlap_with_prod_fq_pct": 41.13,
+      "cohort_membership_turnover_proxy_pct": 58.87
+    }
+  ],
+  "equity_category_breakdown": [
+    {
+      "strategy_id": "PROD_FQ",
+      "category": "Equity",
+      "N": 128,
+      "mean_forward_return": 0.119865,
+      "mean_forward_mdd": 0.093036
+    },
+    {
+      "strategy_id": "COMP_RETURN",
+      "category": "Equity",
+      "N": 128,
+      "mean_forward_return": 0.125125,
+      "mean_forward_mdd": 0.181064
+    },
+    {
+      "strategy_id": "CAND_CONSISTENCY",
+      "category": "Equity",
+      "N": 128,
+      "mean_forward_return": 0.080681,
+      "mean_forward_mdd": 0.007871
+    },
+    {
+      "strategy_id": "CAND_DOWNSIDE",
+      "category": "Equity",
+      "N": 128,
+      "mean_forward_return": 0.071712,
+      "mean_forward_mdd": 0.001039
+    },
+    {
+      "strategy_id": "CAND_MDD",
+      "category": "Equity",
+      "N": 128,
+      "mean_forward_return": 0.071817,
+      "mean_forward_mdd": 0.00101
+    }
+  ],
+  "claim_matrix": [
+    {
+      "claim": "Rolling Consistency improves forward return beyond Production Baseline",
+      "evidence": "Production FQ Mean Fwd Return = 0.0812, Rolling Consistency Mean Fwd Return = 0.0741",
+      "supported": false,
+      "limitation": "Evaluated on a single 1Y OOS validation period (2024-02-01 to 2025-01-31). Subject to regime sensitivity.",
+      "production_impact": "PRODUCTION PROMOTION: NOT AUTHORIZED BY F.15"
+    },
+    {
+      "claim": "Downside Deviation reduces forward MDD beyond Production Baseline",
+      "evidence": "Production FQ Mean Fwd MDD = 0.0136, Downside Dev Mean Fwd MDD = 0.0011",
+      "supported": true,
+      "limitation": "High selection overlap with Historical Volatility comparator.",
+      "production_impact": "PRODUCTION PROMOTION: NOT AUTHORIZED BY F.15"
+    },
+    {
+      "claim": "Maximum Drawdown strategy provides superior forward return",
+      "evidence": "MDD Mean Fwd Return = 0.0499 vs Production FQ = 0.0812",
+      "supported": false,
+      "limitation": "MDD selection yields lower forward return than Production FQ and Trailing Return baselines.",
+      "production_impact": "PRODUCTION PROMOTION: NOT AUTHORIZED BY F.15"
+    }
+  ],
+  "production_promotion": "NOT AUTHORIZED BY F.15"
+}

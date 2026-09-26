@@ -1,0 +1,26 @@
+{
+  "manifest_version": "F.11.3.5.5-v1.0",
+  "anchor_date": "2024-01-31",
+  "forward_start_date": "2024-02-01",
+  "forward_end_date": "2025-01-31",
+  "dataset_version": "F.12.3.1.2 Reconciled Baseline Dataset",
+  "fund_quality_methodology_version": "Frozen Production Fund Quality v1.0",
+  "population_definition": "5,874 anchor cohort -> 5,750 forward reachable -> 5,713 final outcome population",
+  "minimum_history_rule": ">= 20 PIT daily NAV observations within 30 days prior to anchor",
+  "lifecycle_rule": "Closed/merged schemes filtered point-in-time without forward outcome leakage",
+  "strategy_a_definition": "Top 10% by trailing 1Y gross NAV return",
+  "strategy_b_definition": "Lowest 10% by historical 1Y raw annualized volatility",
+  "strategy_c_definition": "Top 10% by frozen Fund Quality Score",
+  "comparator_b_down_definition": "Lowest 10% by historical downside deviation (MAR = 0%)",
+  "return_definition": "1Y Gross NAV Return (equal-weighted mean across cohort schemes)",
+  "mdd_definition": "Mean Individual-Fund Forward Maximum Drawdown",
+  "cohort_size_rule": "Top decile N = floor(N_total / 10) = 571 schemes",
+  "quintile_rule": "5 equal-sized quintiles N_quintile = floor(N_total / 5) = 1,142 schemes",
+  "limitations": [
+    "Single unseen forward period (2024-2025)",
+    "Mathematical component circularity with Model 2 predictors",
+    "Classical OLS standard errors assume independent observations (uncorrected for fund/AMC clustering)",
+    "Research-only pre-freeze status; zero production scoring or decision rule changes"
+  ],
+  "manifest_sha256": "d695dec668c8c53e51e92d99cd0672ae0fe7f0d5dafb06ce7f63f3adeeca33e4"
+}

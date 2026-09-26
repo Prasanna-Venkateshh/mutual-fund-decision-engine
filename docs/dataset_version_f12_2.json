@@ -1,0 +1,38 @@
+{
+  "dataset_version": "f12_2_v1.0.0",
+  "run_id": "run_f12_2_20260914_150236",
+  "execution_timestamp_utc": "2026-09-14T16:58:55.202786+00:00",
+  "backfill_scope": {
+    "backfill_start_date": "2014-02-01",
+    "backfill_end_date": "2024-01-31",
+    "monthly_start_date": "2014-02-01",
+    "monthly_end_date": "2021-01-31",
+    "daily_start_date": "2021-02-01",
+    "daily_end_date": "2024-01-31"
+  },
+  "windows_summary": {
+    "total_windows_requested": 1179,
+    "monthly_windows": 84,
+    "daily_windows": 1095,
+    "windows_success_with_records": 1180,
+    "windows_success_zero_records": 0,
+    "windows_failed": 0
+  },
+  "observation_counts": {
+    "total_raw_records": 6187660,
+    "total_normalized_records": 4766297,
+    "total_nav_quarantine": 94541,
+    "total_mapping_quarantine": 1326822,
+    "disposition_reconciliation": true
+  },
+  "scheme_coverage": {
+    "unique_canonical_schemes": 16808,
+    "earliest_acquired_date": "2014-02-28",
+    "latest_acquired_date": "2024-01-31"
+  },
+  "performance": {
+    "elapsed_seconds": 6975.85,
+    "average_seconds_per_window": 5.917,
+    "database_size_mb": 8859.72
+  }
+}

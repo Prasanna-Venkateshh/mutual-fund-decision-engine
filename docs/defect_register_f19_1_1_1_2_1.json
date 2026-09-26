@@ -1,0 +1,20 @@
+{
+  "defect_id": "DEFECT-FQ-2026-001",
+  "title": "Legitimate Zero-Return Value (0.0) Treated as Missing Data via Python Boolean OR Fallback",
+  "severity": "HIGH",
+  "classification": "GENUINE PRODUCTION CODE DEFECT",
+  "status": "FIXED",
+  "production_fix_status": "FIXED_IN_PHASE_F19_2",
+  "remediation_timestamp": "2026-09-17T00:35:00+05:30",
+  "affected_component": "scoring/engine.py (FundQualityScoringEngine.calculate_fund_quality_score)",
+  "affected_lines": "Line 81 & Line 89 (target_input.metrics.cagr_overall if target_input.metrics.cagr_overall is not None else target_input.metrics.rolling_1y_mean)",
+  "observed_behavior": "When cagr_overall is float 0.0 (a legitimate numerical observation), Python evaluates 0.0 as boolean False in the OR expression. It falls back to rolling_1y_mean, which is None. This sets raw Return to None and data_available to False, suppressing Return dimension evaluation.",
+  "expected_behavior": "Engine evaluates explicit missingness (e.g. cagr_overall is not None) so that 0.0 is retained as a valid 0% return input.",
+  "reproduction": "Pass SchemeMetricSnapshot(cagr_overall=0.0) to FundQualityScoringEngine. The resulting Return DimensionScore has raw_value=0.0 and data_available=True.",
+  "f16_population_impact": "167 schemes had cagr_overall == 0.0 in historical F.16 execution. 90 schemes had valid Volatility (>0) and 77 schemes had constant NAV series (volatility = None). All 167 schemes lost the Return dimension. 90 schemes were rescaled to 100% Volatility, but because active weight sum (15.0%) fell below the engine's 40.0% threshold (scoring/engine.py L179), final score became None. 77 schemes had active weight sum = 0.0% < 40.0%, final score None.",
+  "f16_downstream_oos_impact": "0 CONTAMINATION. All 167 affected schemes received score None and were completely excluded from the valid scored population (N = 4,958) used for downstream forward OOS analysis. Historical F.16 artifacts remain immutable.",
+  "current_mitigation": "DEFECT REMEDIATED in scoring/engine.py. Explicit non-None evaluation (cagr_overall if cagr_overall is not None else rolling_1y_mean) ensures 0.0 is retained as a valid return observation.",
+  "proposed_future_fix": "Remediated in Phase F.19.2. Unit tests test_f19_2_zero_return_defect_remediation.py pass with 100% coverage.",
+  "phase_f19_1_1_1_2_1_status": "Documented and confirmed as genuine production defect.",
+  "phase_f19_2_status": "FIXED AND VERIFIED."
+}

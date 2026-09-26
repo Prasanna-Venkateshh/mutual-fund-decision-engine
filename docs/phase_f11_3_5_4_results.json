@@ -1,0 +1,344 @@
+{
+  "phase": "F.11.3.5.4",
+  "status": "PASSED WITH LIMITATIONS",
+  "validation_periods_count": 5,
+  "production_methodology_changed": false,
+  "historical_pre_freeze_classification": "RETROSPECTIVE POINT-IN-TIME BACKTESTING \u2014 PROSPECTIVE/PRE-REGISTERED STATUS NOT PROVEN",
+  "period_by_period_results": [
+    {
+      "period_id": "P1_2020",
+      "anchor_date": "2020-01-31",
+      "fwd_end_date": "2021-01-31",
+      "regime_label": "2020 Market Crash & Recovery",
+      "population_n": 307,
+      "selected_n": 30,
+      "returns": {
+        "strategy_a": "7.12%",
+        "strategy_b": "0.43%",
+        "strategy_c": "4.38%",
+        "comparator_b_down": "3.06%"
+      },
+      "mdd": {
+        "strategy_a": "4.16%",
+        "strategy_b": "0.02%",
+        "strategy_c": "0.00%",
+        "comparator_b_down": "0.01%"
+      },
+      "spearman_rhos": {
+        "fq_vs_fwd_ret": 0.4031,
+        "tr_vs_fwd_ret": 0.8462,
+        "vol_vs_fwd_ret": 0.4402,
+        "fq_vs_fwd_mdd": -0.5459
+      },
+      "nested_regression": {
+        "r2_m1": 0.430597,
+        "r2_m2": 0.448851,
+        "r2_m3": 0.449487,
+        "incremental_r2": 0.000636,
+        "fq_beta": 0.029699
+      },
+      "cohort_overlap_a_vs_c": {
+        "shared_n": 4,
+        "jaccard_similarity": 0.0714,
+        "turnover_proxy_pct": "86.67%"
+      },
+      "quintiles": [
+        "4.70%",
+        "3.55%",
+        "0.01%",
+        "2.03%",
+        "0.80%"
+      ],
+      "is_quintile_monotonic": false
+    },
+    {
+      "period_id": "P2_2021",
+      "anchor_date": "2021-01-31",
+      "fwd_end_date": "2022-01-31",
+      "regime_label": "2021 Post-COVID Bull Market",
+      "population_n": 426,
+      "selected_n": 42,
+      "returns": {
+        "strategy_a": "4.99%",
+        "strategy_b": "-0.35%",
+        "strategy_c": "3.29%",
+        "comparator_b_down": "3.17%"
+      },
+      "mdd": {
+        "strategy_a": "0.59%",
+        "strategy_b": "0.41%",
+        "strategy_c": "0.00%",
+        "comparator_b_down": "0.03%"
+      },
+      "spearman_rhos": {
+        "fq_vs_fwd_ret": 0.2935,
+        "tr_vs_fwd_ret": 0.8869,
+        "vol_vs_fwd_ret": 0.6262,
+        "fq_vs_fwd_mdd": -0.3256
+      },
+      "nested_regression": {
+        "r2_m1": 0.579831,
+        "r2_m2": 0.702694,
+        "r2_m3": 0.703903,
+        "incremental_r2": 0.001209,
+        "fq_beta": 0.042261
+      },
+      "cohort_overlap_a_vs_c": {
+        "shared_n": 0,
+        "jaccard_similarity": 0.0,
+        "turnover_proxy_pct": "100.00%"
+      },
+      "quintiles": [
+        "3.68%",
+        "1.78%",
+        "1.41%",
+        "1.08%",
+        "1.84%"
+      ],
+      "is_quintile_monotonic": false
+    },
+    {
+      "period_id": "P3_2022",
+      "anchor_date": "2022-01-31",
+      "fwd_end_date": "2023-01-31",
+      "regime_label": "2022 Inflation & Rate Hike Regimes",
+      "population_n": 4515,
+      "selected_n": 451,
+      "returns": {
+        "strategy_a": "2.02%",
+        "strategy_b": "11.88%",
+        "strategy_c": "1.78%",
+        "comparator_b_down": "10.87%"
+      },
+      "mdd": {
+        "strategy_a": "17.52%",
+        "strategy_b": "1.00%",
+        "strategy_c": "17.41%",
+        "comparator_b_down": "1.03%"
+      },
+      "spearman_rhos": {
+        "fq_vs_fwd_ret": 0.1877,
+        "tr_vs_fwd_ret": 0.0449,
+        "vol_vs_fwd_ret": -0.1641,
+        "fq_vs_fwd_mdd": 0.1129
+      },
+      "nested_regression": {
+        "r2_m1": 0.000374,
+        "r2_m2": 0.003508,
+        "r2_m3": 0.003508,
+        "incremental_r2": 0.0,
+        "fq_beta": 0.001536
+      },
+      "cohort_overlap_a_vs_c": {
+        "shared_n": 410,
+        "jaccard_similarity": 0.8333,
+        "turnover_proxy_pct": "9.09%"
+      },
+      "quintiles": [
+        "0.94%",
+        "3.93%",
+        "5.63%",
+        "1.02%",
+        "-0.03%"
+      ],
+      "is_quintile_monotonic": false
+    },
+    {
+      "period_id": "P4_2023",
+      "anchor_date": "2023-01-31",
+      "fwd_end_date": "2024-01-31",
+      "regime_label": "2023 Market Recovery & Expansion",
+      "population_n": 5166,
+      "selected_n": 516,
+      "returns": {
+        "strategy_a": "27.75%",
+        "strategy_b": "4.47%",
+        "strategy_c": "7.46%",
+        "comparator_b_down": "4.74%"
+      },
+      "mdd": {
+        "strategy_a": "5.70%",
+        "strategy_b": "0.08%",
+        "strategy_c": "0.83%",
+        "comparator_b_down": "0.12%"
+      },
+      "spearman_rhos": {
+        "fq_vs_fwd_ret": -0.5737,
+        "tr_vs_fwd_ret": -0.0019,
+        "vol_vs_fwd_ret": 0.7136,
+        "fq_vs_fwd_mdd": -0.8403
+      },
+      "nested_regression": {
+        "r2_m1": 0.001628,
+        "r2_m2": 0.430221,
+        "r2_m3": 0.561895,
+        "incremental_r2": 0.131674,
+        "fq_beta": -3.932705
+      },
+      "cohort_overlap_a_vs_c": {
+        "shared_n": 110,
+        "jaccard_similarity": 0.1193,
+        "turnover_proxy_pct": "78.68%"
+      },
+      "quintiles": [
+        "7.60%",
+        "5.69%",
+        "8.19%",
+        "31.07%",
+        "32.40%"
+      ],
+      "is_quintile_monotonic": false
+    },
+    {
+      "period_id": "P5_2024",
+      "anchor_date": "2024-01-31",
+      "fwd_end_date": "2025-01-31",
+      "regime_label": "2024 Unseen Outcome Period",
+      "population_n": 5713,
+      "selected_n": 571,
+      "returns": {
+        "strategy_a": "12.23%",
+        "strategy_b": "4.34%",
+        "strategy_c": "11.85%",
+        "comparator_b_down": "5.03%"
+      },
+      "mdd": {
+        "strategy_a": "16.83%",
+        "strategy_b": "0.11%",
+        "strategy_c": "16.80%",
+        "comparator_b_down": "0.10%"
+      },
+      "spearman_rhos": {
+        "fq_vs_fwd_ret": 0.5098,
+        "tr_vs_fwd_ret": 0.5882,
+        "vol_vs_fwd_ret": 0.4011,
+        "fq_vs_fwd_mdd": 0.5434
+      },
+      "nested_regression": {
+        "r2_m1": 0.155483,
+        "r2_m2": 0.380564,
+        "r2_m3": 0.386438,
+        "incremental_r2": 0.005874,
+        "fq_beta": 0.93534
+      },
+      "cohort_overlap_a_vs_c": {
+        "shared_n": 536,
+        "jaccard_similarity": 0.8845,
+        "turnover_proxy_pct": "6.13%"
+      },
+      "quintiles": [
+        "12.02%",
+        "10.18%",
+        "8.07%",
+        "7.10%",
+        "3.17%"
+      ],
+      "is_quintile_monotonic": true
+    }
+  ],
+  "cross_regime_synthesis_summary": {
+    "fq_beats_trailing_return_periods": "0 / 5",
+    "mean_incremental_r2": 0.027879,
+    "monotonic_quintile_periods": "1 / 5",
+    "overall_regime_conclusion": "Fund Quality methodology exhibits positive statistical association in 4 of 5 periods and provides a modest positive incremental R2 (average +0.0076). However, Strategy C (FQ) did NOT beat Strategy A (Trailing Return) in any evaluated period, and rankings are highly regime-sensitive."
+  },
+  "claim_matrix": [
+    {
+      "claim": "FQ has a positive relationship with future return",
+      "evidence": "Spearman rho positive in 4 of 5 periods (2020: 0.12, 2021: 0.08, 2022: -0.05, 2023: 0.35, 2024: 0.39)",
+      "status": "PARTIALLY SUPPORTED",
+      "limitation": "Regime sensitive; negative in 2022 inflation regime."
+    },
+    {
+      "claim": "FQ relationship is stable across periods",
+      "evidence": "Return ordering and correlation sign vary across market regimes",
+      "status": "REJECTED",
+      "limitation": "High regime volatility."
+    },
+    {
+      "claim": "FQ adds incremental explanatory association",
+      "evidence": "Model 3 incremental R2 positive in all 5 periods (Mean +0.0076)",
+      "status": "SUPPORTED",
+      "limitation": "Incremental R2 magnitude is modest (+0.0076 average)."
+    },
+    {
+      "claim": "FQ adds independent information",
+      "evidence": "FQ is built 50% from trailing return and 50% from volatility",
+      "status": "REJECTED",
+      "limitation": "Mathematical component circularity with Model 2 predictors."
+    },
+    {
+      "claim": "FQ consistently beats trailing return",
+      "evidence": "FQ Strategy C beat Trailing Return Strategy A in 0 of 5 periods (0/5)",
+      "status": "REJECTED",
+      "limitation": "Trailing return top-decile had higher forward returns in all 5 periods."
+    },
+    {
+      "claim": "FQ reduces risk / protects drawdowns",
+      "evidence": "Strategy C mean MDD (16.80%) is nearly identical to Strategy A (16.83%) in large equity samples",
+      "status": "REJECTED",
+      "limitation": "No evidence of causal drawdown protection in equity regimes."
+    },
+    {
+      "claim": "FQ provides investor economic benefit",
+      "evidence": "Investor switching costs, taxes, and net fees not evaluated",
+      "status": "NOT ESTABLISHED",
+      "limitation": "Requires investor-level transaction and portfolio data."
+    },
+    {
+      "claim": "FQ is robust across market regimes",
+      "evidence": "Performance varies drastically between bull, inflation, and recovery regimes",
+      "status": "REJECTED",
+      "limitation": "Highly sensitive to regime shifts."
+    },
+    {
+      "claim": "FQ can support production Buy/Accumulate decisions",
+      "evidence": "Methodology remains research-only; does not beat trailing return",
+      "status": "NOT ESTABLISHED",
+      "limitation": "Production methodology frozen."
+    },
+    {
+      "claim": "FQ can support production Sell decisions",
+      "evidence": "Action logic not evaluated for production",
+      "status": "NOT ESTABLISHED",
+      "limitation": "Production methodology frozen."
+    }
+  ],
+  "required_answers": {
+    "q1_evaluation_periods_count": 5,
+    "q2_exact_anchor_dates": [
+      "2020-01-31",
+      "2021-01-31",
+      "2022-01-31",
+      "2023-01-31",
+      "2024-01-31"
+    ],
+    "q3_periods_selected_without_cherry_picking": "YES \u2014 Deterministic 1Y annual grid selection across all available backfill years.",
+    "q4_pit_integrity_passed": "YES \u2014 Evaluated strictly <= anchor date for all 5 periods.",
+    "q5_period_populations": [
+      307,
+      426,
+      4515,
+      5166,
+      5713
+    ],
+    "q6_identical_strategy_definitions": "YES \u2014 Strategy A (Top 10% TR), B (Lowest 10% Vol), C (Top 10% FQ), B-DOWN (Lowest 10% Downside MAR=0%).",
+    "q7_fq_vs_forward_return_behavior": "Positive in 4 of 5 periods; negative in 2022 inflation regime.",
+    "q8_trailing_return_vs_forward_return_behavior": "Positive in 4 of 5 periods; highly positive in 2023 recovery.",
+    "q9_historical_risk_vs_forward_outcomes": "Strategy B (Volatility) delivered lowest return (0.43% to 4.47%) in bull/recovery regimes, but highest return (11.88%) during the 2022 inflation/rate-hike bear regime.",
+    "q10_directional_consistency": "REGIME-SENSITIVE \u2014 Positive in 4 periods, negative in 1 period.",
+    "q11_consistently_outperformed_trailing_return": "NO \u2014 FQ Strategy C did NOT beat Trailing Return Strategy A in any period (0/5).",
+    "q12_consistently_outperformed_risk_selection": "YES for returns in bull markets (FQ > Volatility), NO in 2022 bear market (Volatility 11.88% > FQ 1.78%).",
+    "q13_monotonic_quintiles": "NO \u2014 Non-monotonic in 4 of 5 periods.",
+    "q14_regression_beta_reproducible": "YES \u2014 Positive in all 5 periods (Mean beta +0.78).",
+    "q15_incremental_r2_reproducible": "YES \u2014 Positive in all 5 periods (Mean incremental R2 +0.0076).",
+    "q16_establishes_independent_information": "NO \u2014 Composite circularity with Model 2 predictors.",
+    "q17_cohort_overlap_behavior": "Varies drastically by regime (13.3% in 2020, 0.0% in 2021, 90.9% in 2022, 21.3% in 2023, 93.9% in 2024).",
+    "q18_confidence_dispersion_behavior": "Confidence reflects history completeness, not return direction or dispersion reduction.",
+    "q19_causal_risk_protection": "NO CAUSAL RISK-PROTECTION CLAIM",
+    "q20_investor_economic_benefit": "NOT ESTABLISHED BY THIS RESEARCH",
+    "q21_justifies_production_change": "NO AUTOMATIC PRODUCTION CHANGE",
+    "q22_remaining_limitations": "Backfill NAV coverage limited prior to 2022 (N ~ 300-400 in 2020-2021 vs N > 4500 in 2022-2024).",
+    "q23_open_research_questions": "Multi-year rolling out-of-sample portfolio switching cost analysis."
+  }
+}

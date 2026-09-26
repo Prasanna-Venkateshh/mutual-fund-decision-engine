@@ -1,0 +1,617 @@
+{
+  "anchor_date": "2024-03-28",
+  "total_schemes_analyzed": 6720,
+  "pairwise_relationships": [
+    {
+      "metric_a": "FQ_F01",
+      "metric_b": "FQ_F02",
+      "relationship_label": "Return vs Volatility",
+      "overall_N": 6720,
+      "spearman_rho": 0.5149,
+      "pearson_r": 0.7038,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.5718
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": -0.0766
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.6577
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Return vs Volatility exhibits a Spearman rank correlation of 0.5149 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F01",
+      "metric_b": "FQ_F03",
+      "relationship_label": "Return vs Downside Deviation",
+      "overall_N": 6720,
+      "spearman_rho": 0.4193,
+      "pearson_r": 0.1032,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.508
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": -0.2301
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.5465
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Return vs Downside Deviation exhibits a Spearman rank correlation of 0.4193 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F01",
+      "metric_b": "FQ_F04",
+      "relationship_label": "Return vs MDD",
+      "overall_N": 6720,
+      "spearman_rho": 0.4104,
+      "pearson_r": 0.1178,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.3732
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": -0.1635
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.5064
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Return vs MDD exhibits a Spearman rank correlation of 0.4104 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F01",
+      "metric_b": "FQ_F13",
+      "relationship_label": "Return vs Consistency",
+      "overall_N": 6720,
+      "spearman_rho": 0.1103,
+      "pearson_r": 0.0944,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.0599
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": 0.4366
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.0059
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Return vs Consistency exhibits a Spearman rank correlation of 0.1103 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F02",
+      "metric_b": "FQ_F03",
+      "relationship_label": "Volatility vs Downside Deviation",
+      "overall_N": 6720,
+      "spearman_rho": 0.9752,
+      "pearson_r": 0.6781,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.977
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": 0.9635
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.9805
+        }
+      },
+      "redundancy_classification": "STRONG OVERLAP",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Volatility vs Downside Deviation exhibits a Spearman rank correlation of 0.9752 across all schemes. Classified as STRONG OVERLAP.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F02",
+      "metric_b": "FQ_F04",
+      "relationship_label": "Volatility vs MDD",
+      "overall_N": 6720,
+      "spearman_rho": 0.9613,
+      "pearson_r": 0.6669,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.8875
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": 0.9608
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.9433
+        }
+      },
+      "redundancy_classification": "STRONG OVERLAP",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Volatility vs MDD exhibits a Spearman rank correlation of 0.9613 across all schemes. Classified as STRONG OVERLAP.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F02",
+      "metric_b": "FQ_F13",
+      "relationship_label": "Volatility vs Consistency",
+      "overall_N": 6720,
+      "spearman_rho": -0.3733,
+      "pearson_r": -0.0634,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": -0.4367
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": -0.3204
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": -0.4881
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Volatility vs Consistency exhibits a Spearman rank correlation of -0.3733 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F03",
+      "metric_b": "FQ_F04",
+      "relationship_label": "Downside Deviation vs MDD",
+      "overall_N": 6720,
+      "spearman_rho": 0.9825,
+      "pearson_r": 0.9563,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.9136
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": 0.984
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.9566
+        }
+      },
+      "redundancy_classification": "STRONG OVERLAP",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Downside Deviation vs MDD exhibits a Spearman rank correlation of 0.9825 across all schemes. Classified as STRONG OVERLAP.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F03",
+      "metric_b": "FQ_F13",
+      "relationship_label": "Downside Deviation vs Consistency",
+      "overall_N": 6720,
+      "spearman_rho": -0.4291,
+      "pearson_r": -0.0905,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": -0.4388
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": -0.4302
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": -0.531
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Downside Deviation vs Consistency exhibits a Spearman rank correlation of -0.4291 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F04",
+      "metric_b": "FQ_F13",
+      "relationship_label": "MDD vs Consistency",
+      "overall_N": 6720,
+      "spearman_rho": -0.4229,
+      "pearson_r": -0.1102,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": -0.5824
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": -0.3674
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": -0.5908
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "MDD vs Consistency exhibits a Spearman rank correlation of -0.4229 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F08",
+      "metric_b": "FQ_F01",
+      "relationship_label": "Sharpe vs Return",
+      "overall_N": 6629,
+      "spearman_rho": 0.2824,
+      "pearson_r": -0.0514,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1419,
+          "spearman_rho": 0.1224
+        },
+        "Debt": {
+          "N": 2130,
+          "spearman_rho": 0.6288
+        },
+        "Hybrid": {
+          "N": 536,
+          "spearman_rho": 0.1375
+        }
+      },
+      "redundancy_classification": "MATHEMATICAL DEPENDENCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Sharpe vs Return exhibits a Spearman rank correlation of 0.2824 across all schemes. Classified as MATHEMATICAL DEPENDENCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F08",
+      "metric_b": "FQ_F02",
+      "relationship_label": "Sharpe vs Volatility",
+      "overall_N": 6629,
+      "spearman_rho": -0.5438,
+      "pearson_r": -0.0961,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1419,
+          "spearman_rho": -0.5198
+        },
+        "Debt": {
+          "N": 2130,
+          "spearman_rho": -0.7325
+        },
+        "Hybrid": {
+          "N": 536,
+          "spearman_rho": -0.542
+        }
+      },
+      "redundancy_classification": "MATHEMATICAL DEPENDENCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Sharpe vs Volatility exhibits a Spearman rank correlation of -0.5438 across all schemes. Classified as MATHEMATICAL DEPENDENCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F09",
+      "metric_b": "FQ_F01",
+      "relationship_label": "Sortino vs Return",
+      "overall_N": 6342,
+      "spearman_rho": 0.3279,
+      "pearson_r": -0.0142,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1419,
+          "spearman_rho": 0.0635
+        },
+        "Debt": {
+          "N": 1883,
+          "spearman_rho": 0.7261
+        },
+        "Hybrid": {
+          "N": 536,
+          "spearman_rho": 0.1111
+        }
+      },
+      "redundancy_classification": "MATHEMATICAL DEPENDENCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Sortino vs Return exhibits a Spearman rank correlation of 0.3279 across all schemes. Classified as MATHEMATICAL DEPENDENCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F09",
+      "metric_b": "FQ_F03",
+      "relationship_label": "Sortino vs Downside Deviation",
+      "overall_N": 6342,
+      "spearman_rho": -0.5959,
+      "pearson_r": -0.057,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1419,
+          "spearman_rho": -0.6472
+        },
+        "Debt": {
+          "N": 1883,
+          "spearman_rho": -0.7479
+        },
+        "Hybrid": {
+          "N": 536,
+          "spearman_rho": -0.6669
+        }
+      },
+      "redundancy_classification": "MATHEMATICAL DEPENDENCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Sortino vs Downside Deviation exhibits a Spearman rank correlation of -0.5959 across all schemes. Classified as MATHEMATICAL DEPENDENCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F08",
+      "metric_b": "FQ_F09",
+      "relationship_label": "Sharpe vs Sortino",
+      "overall_N": 6342,
+      "spearman_rho": 0.9687,
+      "pearson_r": 0.204,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1419,
+          "spearman_rho": 0.9827
+        },
+        "Debt": {
+          "N": 1883,
+          "spearman_rho": 0.9813
+        },
+        "Hybrid": {
+          "N": 536,
+          "spearman_rho": 0.9939
+        }
+      },
+      "redundancy_classification": "MATHEMATICAL DEPENDENCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Sharpe vs Sortino exhibits a Spearman rank correlation of 0.9687 across all schemes. Classified as MATHEMATICAL DEPENDENCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F05",
+      "metric_b": "FQ_F01",
+      "relationship_label": "Fund Age vs Return",
+      "overall_N": 6720,
+      "spearman_rho": 0.1381,
+      "pearson_r": -0.0006,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.2959
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": 0.0658
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.1565
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Fund Age vs Return exhibits a Spearman rank correlation of 0.1381 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    },
+    {
+      "metric_a": "FQ_F05",
+      "metric_b": "FQ_F02",
+      "relationship_label": "Fund Age vs Volatility",
+      "overall_N": 6720,
+      "spearman_rho": -0.0559,
+      "pearson_r": -0.1712,
+      "category_breakdown": {
+        "Equity": {
+          "N": 1429,
+          "spearman_rho": 0.2451
+        },
+        "Debt": {
+          "N": 2191,
+          "spearman_rho": -0.3645
+        },
+        "Hybrid": {
+          "N": 544,
+          "spearman_rho": 0.0632
+        }
+      },
+      "redundancy_classification": "NO EVIDENCE OF REDUNDANCY",
+      "anchor_date": "2024-03-28",
+      "dataset_version": "db/backfill_f12_2.db (canonical_schemes)",
+      "interpretation": "Fund Age vs Volatility exhibits a Spearman rank correlation of -0.0559 across all schemes. Classified as NO EVIDENCE OF REDUNDANCY.",
+      "limitation": "High correlation indicates co-movement but does not prove conceptual redundancy or identical path sensitivity."
+    }
+  ],
+  "quadrant_examples": {
+    "downside_vs_mdd": {
+      "high_high": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100033",
+          "FQ_F03": 0.0769707604807111,
+          "FQ_F04": 0.07588506998227766
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_100034",
+          "FQ_F03": 0.10978152663067521,
+          "FQ_F04": 0.10155676909283555
+        }
+      ],
+      "high_low": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100844",
+          "FQ_F03": 0.027603816349619538,
+          "FQ_F04": 0.016624449327164413
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_101356",
+          "FQ_F03": 0.02473523610935926,
+          "FQ_F04": 0.011806233986470285
+        }
+      ],
+      "low_high": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100417",
+          "FQ_F03": 0.02124966655770585,
+          "FQ_F04": 0.02713431811264307
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_100418",
+          "FQ_F03": 0.021235543124036048,
+          "FQ_F04": 0.027015493697478903
+        }
+      ],
+      "low_low": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100038",
+          "FQ_F03": 0.011858799436402391,
+          "FQ_F04": 0.013065614719973797
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_100042",
+          "FQ_F03": 0.0,
+          "FQ_F04": 0.0
+        }
+      ]
+    },
+    "volatility_vs_downside": {
+      "high_high": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100033",
+          "FQ_F02": 0.10743497769920439,
+          "FQ_F03": 0.0769707604807111
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_100034",
+          "FQ_F02": 0.1336382398199934,
+          "FQ_F03": 0.10978152663067521
+        }
+      ],
+      "high_low": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_101169",
+          "FQ_F02": 0.03403359379026293,
+          "FQ_F03": 0.01764905011903457
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_101609",
+          "FQ_F02": 0.034832312205004656,
+          "FQ_F03": 0.02210080868859286
+        }
+      ],
+      "low_high": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100844",
+          "FQ_F02": 0.02780550002895846,
+          "FQ_F03": 0.027603816349619538
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_101356",
+          "FQ_F02": 0.02542734286104188,
+          "FQ_F03": 0.02473523610935926
+        }
+      ],
+      "low_low": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100038",
+          "FQ_F02": 0.01987104854145761,
+          "FQ_F03": 0.011858799436402391
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_100042",
+          "FQ_F02": 0.000699623929561719,
+          "FQ_F03": 0.0
+        }
+      ]
+    },
+    "volatility_vs_mdd": {
+      "high_high": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100033",
+          "FQ_F02": 0.10743497769920439,
+          "FQ_F04": 0.07588506998227766
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_100034",
+          "FQ_F02": 0.1336382398199934,
+          "FQ_F04": 0.10155676909283555
+        }
+      ],
+      "high_low": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_101609",
+          "FQ_F02": 0.034832312205004656,
+          "FQ_F04": 0.017185574842157096
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_101837",
+          "FQ_F02": 0.07369356727879771,
+          "FQ_F04": 0.001491338441144106
+        }
+      ],
+      "low_high": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100417",
+          "FQ_F02": 0.025237350968462784,
+          "FQ_F04": 0.02713431811264307
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_100418",
+          "FQ_F02": 0.02523499183032885,
+          "FQ_F04": 0.027015493697478903
+        }
+      ],
+      "low_low": [
+        {
+          "canonical_scheme_id": "CAN_AMFI_100038",
+          "FQ_F02": 0.01987104854145761,
+          "FQ_F04": 0.013065614719973797
+        },
+        {
+          "canonical_scheme_id": "CAN_AMFI_100042",
+          "FQ_F02": 0.000699623929561719,
+          "FQ_F04": 0.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "set_counts": {
+    "set_g_governed": 5874,
+    "set_a_original": 5832,
+    "set_b_reconstructed": 5824,
+    "set_a_minus_set_b": 8,
+    "set_b_minus_set_a": 0,
+    "set_g_minus_set_a": 50,
+    "set_a_intersect_set_g": 5824
+  },
+  "audit_eight_schemes": [
+    {
+      "canonical_scheme_id": "CAN_AMFI_144681",
+      "last_obs_date": "2024-01-19",
+      "obs_count": 752,
+      "set_a_status": "INCLUDED_5832",
+      "set_b_status": "EXCLUDED_5824",
+      "set_g_status": "EXCLUDED_5874",
+      "jan2025_reachable": false,
+      "exact_cause": "Scheme active in Jan 2024 with last NAV on 2024-01-19 (< 2024-01-31). Included in F.11.3.5.3 (SET_A, last_date >= 2024-01-01), but excluded from F.11.3.5.3.1 (SET_B, required exact NAV on 2024-01-31).",
+      "valid_change": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_144730",
+      "last_obs_date": "2024-01-19",
+      "obs_count": 752,
+      "set_a_status": "INCLUDED_5832",
+      "set_b_status": "EXCLUDED_5824",
+      "set_g_status": "EXCLUDED_5874",
+      "jan2025_reachable": false,
+      "exact_cause": "Scheme active in Jan 2024 with last NAV on 2024-01-19 (< 2024-01-31). Included in F.11.3.5.3 (SET_A, last_date >= 2024-01-01), but excluded from F.11.3.5.3.1 (SET_B, required exact NAV on 2024-01-31).",
+      "valid_change": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_147164",
+      "last_obs_date": "2024-01-29",
+      "obs_count": 1103,
+      "set_a_status": "INCLUDED_5832",
+      "set_b_status": "EXCLUDED_5824",
+      "set_g_status": "EXCLUDED_5874",
+      "jan2025_reachable": true,
+      "exact_cause": "Scheme active in Jan 2024 with last NAV on 2024-01-29 (< 2024-01-31). Included in F.11.3.5.3 (SET_A, last_date >= 2024-01-01), but excluded from F.11.3.5.3.1 (SET_B, required exact NAV on 2024-01-31).",
+      "valid_change": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_147707",
+      "last_obs_date": "2024-01-15",
+      "obs_count": 1093,
+      "set_a_status": "INCLUDED_5832",
+      "set_b_status": "EXCLUDED_5824",
+      "set_g_status": "EXCLUDED_5874",
+      "jan2025_reachable": false,
+      "exact_cause": "Scheme active in Jan 2024 with last NAV on 2024-01-15 (< 2024-01-31). Included in F.11.3.5.3 (SET_A, last_date >= 2024-01-01), but excluded from F.11.3.5.3.1 (SET_B, required exact NAV on 2024-01-31).",
+      "valid_change": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_149349",
+      "last_obs_date": "2024-01-12",
+      "obs_count": 520,
+      "set_a_status": "INCLUDED_5832",
+      "set_b_status": "EXCLUDED_5824",
+      "set_g_status": "EXCLUDED_5874",
+      "jan2025_reachable": false,
+      "exact_cause": "Scheme active in Jan 2024 with last NAV on 2024-01-12 (< 2024-01-31). Included in F.11.3.5.3 (SET_A, last_date >= 2024-01-01), but excluded from F.11.3.5.3.1 (SET_B, required exact NAV on 2024-01-31).",
+      "valid_change": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_149350",
+      "last_obs_date": "2024-01-12",
+      "obs_count": 520,
+      "set_a_status": "INCLUDED_5832",
+      "set_b_status": "EXCLUDED_5824",
+      "set_g_status": "EXCLUDED_5874",
+      "jan2025_reachable": false,
+      "exact_cause": "Scheme active in Jan 2024 with last NAV on 2024-01-12 (< 2024-01-31). Included in F.11.3.5.3 (SET_A, last_date >= 2024-01-01), but excluded from F.11.3.5.3.1 (SET_B, required exact NAV on 2024-01-31).",
+      "valid_change": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_151269",
+      "last_obs_date": "2024-01-10",
+      "obs_count": 359,
+      "set_a_status": "INCLUDED_5832",
+      "set_b_status": "EXCLUDED_5824",
+      "set_g_status": "EXCLUDED_5874",
+      "jan2025_reachable": false,
+      "exact_cause": "Scheme active in Jan 2024 with last NAV on 2024-01-10 (< 2024-01-31). Included in F.11.3.5.3 (SET_A, last_date >= 2024-01-01), but excluded from F.11.3.5.3.1 (SET_B, required exact NAV on 2024-01-31).",
+      "valid_change": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_151271",
+      "last_obs_date": "2024-01-10",
+      "obs_count": 359,
+      "set_a_status": "INCLUDED_5832",
+      "set_b_status": "EXCLUDED_5824",
+      "set_g_status": "EXCLUDED_5874",
+      "jan2025_reachable": false,
+      "exact_cause": "Scheme active in Jan 2024 with last NAV on 2024-01-10 (< 2024-01-31). Included in F.11.3.5.3 (SET_A, last_date >= 2024-01-01), but excluded from F.11.3.5.3.1 (SET_B, required exact NAV on 2024-01-31).",
+      "valid_change": true
+    }
+  ],
+  "hash_reproduction": {
+    "calculated_hash": "e2c8c732520891c2a2fcb24ebd3acfe77b6f88e228a90fa31d41e6de986062e5",
+    "original_hash": "e2c8c732520891c2a2fcb24ebd3acfe77b6f88e228a90fa31d41e6de986062e5",
+    "match": true
+  },
+  "validations": {
+    "set_a_original_5832": {
+      "name": "Original F.11.3.5.3 (5,832)",
+      "anchor_n": 5832,
+      "eligible_n": 5713,
+      "unavailable_n": 119,
+      "valid_scored_n": 5713,
+      "spearman_fq_ret": 0.2991,
+      "spearman_tr_ret": 0.5882,
+      "pearson_fq_ret": 0.1503,
+      "pearson_tr_ret": 0.3943,
+      "inc_r2_ret": 0.034028,
+      "q1_q5_fq_spread": 0.033,
+      "strat_a_ret": 0.1223,
+      "strat_a_mdd": 0.1683,
+      "strat_b_ret": 0.0434,
+      "strat_b_mdd": 0.0011,
+      "strat_c_ret": 0.0781,
+      "strat_c_mdd": 0.0126
+    },
+    "set_b_reconstructed_5824": {
+      "name": "Reconstructed 5,824",
+      "anchor_n": 5824,
+      "eligible_n": 5712,
+      "unavailable_n": 112,
+      "valid_scored_n": 5712,
+      "spearman_fq_ret": 0.2985,
+      "spearman_tr_ret": 0.588,
+      "pearson_fq_ret": 0.1498,
+      "pearson_tr_ret": 0.3942,
+      "inc_r2_ret": 0.034003,
+      "q1_q5_fq_spread": 0.0329,
+      "strat_a_ret": 0.1223,
+      "strat_a_mdd": 0.1683,
+      "strat_b_ret": 0.0434,
+      "strat_b_mdd": 0.0011,
+      "strat_c_ret": 0.0781,
+      "strat_c_mdd": 0.0126
+    },
+    "set_g_governed_5874": {
+      "name": "Governed F.12.3.1.2 (5,874)",
+      "anchor_n": 5874,
+      "eligible_n": 5750,
+      "unavailable_n": 124,
+      "valid_scored_n": 5712,
+      "spearman_fq_ret": 0.297,
+      "spearman_tr_ret": 0.588,
+      "pearson_fq_ret": 0.1493,
+      "pearson_tr_ret": 0.3942,
+      "inc_r2_ret": 0.034448,
+      "q1_q5_fq_spread": 0.0326,
+      "strat_a_ret": 0.1223,
+      "strat_a_mdd": 0.1683,
+      "strat_b_ret": 0.0434,
+      "strat_b_mdd": 0.0011,
+      "strat_c_ret": 0.077,
+      "strat_c_mdd": 0.0107
+    }
+  }
+}

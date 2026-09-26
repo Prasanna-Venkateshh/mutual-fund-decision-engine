@@ -1,0 +1,64 @@
+{
+  "audit_phase": "Phase F.15.1 Forensic Reconciliation",
+  "anchor_date": "2024-01-31",
+  "population_reconciliation": {
+    "prior_f11_3_5_5_cohort_N": 5713,
+    "f15_cohort_N": 5126,
+    "common_cohort_N": 5118,
+    "f11_only_N": 595,
+    "f15_only_N": 8,
+    "primary_exclusion_reason": "F.15 enforced a strict minimum history of 252 trading days, excluding 587 schemes with <252 daily observations that were eligible under F.11.3.5.5."
+  },
+  "discrepancy_reconciliation_table": [
+    {
+      "metric_population": "Production FQ Mean Fwd Return",
+      "prior_f11_3_5_5_result": "11.85%",
+      "f15_result": "8.12%",
+      "difference": "-3.73%",
+      "exact_cause": "Scoring Formula Difference. F.11 used raw value component scaling; F.15 used percentile rank scoring. Rank scoring heavily selected low-volatility debt funds (~6-7% return) into the top decile.",
+      "authoritative_definition": "Percentile Rank Score (50% Rank(1/Vol) + 50% Rank(Return)) on N=5,126 cohort."
+    },
+    {
+      "metric_population": "Production FQ Mean Fwd MDD",
+      "prior_f11_3_5_5_result": "16.80%",
+      "f15_result": "1.36%",
+      "difference": "-15.44%",
+      "exact_cause": "Scoring Formula Difference. F.15 percentile rank score selected 158 low-volatility debt funds (mean MDD ~0.1%) into the top decile, lowering aggregate mean MDD to 1.36%.",
+      "authoritative_definition": "Equal-weighted mean individual-scheme forward MDD on top decile."
+    },
+    {
+      "metric_population": "Trailing Return Mean Fwd Return",
+      "prior_f11_3_5_5_result": "12.23%",
+      "f15_result": "13.11%",
+      "difference": "+0.88%",
+      "exact_cause": "Cohort Minimum History Difference. Excluding <252-day schemes in F.15 increased top-decile trailing return selection average.",
+      "authoritative_definition": "Equal-weighted mean individual-scheme forward return on top decile."
+    },
+    {
+      "metric_population": "Trailing Return Mean Fwd MDD",
+      "prior_f11_3_5_5_result": "16.83%",
+      "f15_result": "16.68%",
+      "difference": "-0.15%",
+      "exact_cause": "Cohort Minimum History Difference. Minor variation due to filtering.",
+      "authoritative_definition": "Equal-weighted mean individual-scheme forward MDD on top decile."
+    },
+    {
+      "metric_population": "0.11% MDD Cluster (Vol/Downside/MDD)",
+      "prior_f11_3_5_5_result": "N/A",
+      "f15_result": "0.11%",
+      "difference": "N/A",
+      "exact_cause": "Real Data Trajectory. Lowest volatility, downside, and MDD selections select liquid/overnight debt funds whose actual forward peak-to-trough drawdown is 0.11% (0.0011 decimal).",
+      "authoritative_definition": "Mean individual-fund forward MDD on risk-minimized cohorts."
+    }
+  ],
+  "strategy_diff": [
+    {
+      "strategy": "Production Fund Quality",
+      "prior_definition": "0.5 * (1 / (1 + Vol)) + 0.5 * min(1, max(0, Return))",
+      "f15_definition": "0.50 * Rank(1 / Vol) + 0.50 * Rank(Return)",
+      "identical": false,
+      "impact": "Percentile ranking shifts selection balance towards low-volatility debt schemes."
+    }
+  ],
+  "provenance": "100% Reconciled from db/backfill_f12_2.db using scripts/run_f15_1_oos_forensic_reconciliation.py"
+}

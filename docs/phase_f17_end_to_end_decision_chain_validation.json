@@ -1,0 +1,242 @@
+{
+  "final_status": "PASSED WITH LIMITATIONS",
+  "governed_production_model": {
+    "scoring_engine": "FundQualityScoringEngine",
+    "orchestrator": "DecisionOrchestrator",
+    "peer_key": "category::subcategory::plan_type",
+    "normalization": "percentile_rank"
+  },
+  "production_methodology_changed": false,
+  "orchestrator_used": "DecisionOrchestrator (integration/orchestrator.py)",
+  "decision_chain": "DATA -> METRIC ENGINE -> FUND QUALITY -> SUITABILITY -> PORTFOLIO NEED -> ECONOMIC BENEFIT -> ACTION",
+  "population_of_test_scenarios": 22,
+  "scenarios_passed_count": 22,
+  "scenario_matrix": [
+    {
+      "scenario": "S1: Strong FQ + All Prerequisites",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY."
+    },
+    {
+      "scenario": "S2: Strong FQ + Unsuitable Investor",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme is not suitable for the investor profile. Purchase prohibited."
+    },
+    {
+      "scenario": "S3: Strong FQ + No Portfolio Need",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "No portfolio need exists for candidate scheme. No transaction recommended."
+    },
+    {
+      "scenario": "S4: Strong FQ + Benefit Uncertain",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, but economic benefit is uncertain or unproven."
+    },
+    {
+      "scenario": "S5: Strong FQ + Insufficient Information EB",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, but economic benefit is uncertain or unproven."
+    },
+    {
+      "scenario": "S6: Low FQ + Existing Position (No Deterioration)",
+      "expected_action": "HOLD",
+      "actual_action": "HOLD",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Existing holding remains appropriate; no material need for position change."
+    },
+    {
+      "scenario": "S7: Low FQ + High Switching Cost (Not Beneficial)",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Holding exhibits deterioration, but after-tax/after-cost switching economics do not justify liquidation."
+    },
+    {
+      "scenario": "S8: Low FQ + No Replacement Available",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Holding exhibits material deterioration, but no suitable category replacement is currently available."
+    },
+    {
+      "scenario": "S9: Weak FQ + Material Deterioration + Replacement + Beneficial",
+      "expected_action": "SELL",
+      "actual_action": "SELL",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Material deterioration confirmed, suitable replacement available, candidate Fund Quality comparison is valid, and net economic benefit is verified. Recommended SELL."
+    },
+    {
+      "scenario": "S10: High FQ + Risk Capacity Constrained (Low Capacity)",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme is not suitable for the investor profile. Purchase prohibited."
+    },
+    {
+      "scenario": "S11: High FQ + Risk Tolerance Constrained (Low Tolerance)",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme is not suitable for the investor profile. Purchase prohibited."
+    },
+    {
+      "scenario": "S12: High FQ + Low Confidence (0.05) + Valid Evidence",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY."
+    },
+    {
+      "scenario": "S13: High FQ + Invalid Evidence Flag",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Fund Quality score or evidence is invalid or missing. Purchase prohibited."
+    },
+    {
+      "scenario": "S14: Candidate Cannot Fulfill Need",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme cannot fulfill the identified portfolio requirement."
+    },
+    {
+      "scenario": "S15: Existing Position Mild Decay",
+      "expected_action": "MONITOR",
+      "actual_action": "MONITOR",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Mild performance decay observed; position flagged for ongoing monitoring."
+    },
+    {
+      "scenario": "S16: Existing Position Unvalidated Deterioration",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Deterioration signal relies on unvalidated methodology or thresholds. Liquidation prohibited."
+    },
+    {
+      "scenario": "S17: Existing Position Unvalidated FQ Comparison",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Fund Quality comparison between holding and replacement candidate is unavailable or invalid; replacement cannot be justified on that evidence."
+    },
+    {
+      "scenario": "S18: Upstream Stale Input",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Upstream assessment input data is flagged as stale by governed freshness criteria."
+    },
+    {
+      "scenario": "S19: Conditional Suitability",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY."
+    },
+    {
+      "scenario": "S20: Economically Neutral EB",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, but economic benefit is uncertain or unproven."
+    },
+    {
+      "scenario": "S21: Affordability Constrained Accumulate",
+      "expected_action": "ACCUMULATE",
+      "actual_action": "ACCUMULATE",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified and candidate is suitable, but investor contribution capacity is constrained. Recommended staged accumulation (SIP)."
+    },
+    {
+      "scenario": "S22: Invalid Economic Benefit Assessment",
+      "expected_action": "INVALID_ASSESSMENT",
+      "actual_action": "INVALID_ASSESSMENT",
+      "integration_status": "INVALID",
+      "passed": true,
+      "explanation": "Upstream Economic Benefit assessment is invalid."
+    }
+  ],
+  "subsystem_results": {
+    "buy_guardrail_result": "SUPPORTED (Requires FQ evidence valid + Suitability + Need + Positive EB)",
+    "accumulate_guardrail_result": "SUPPORTED (Requires BUY prerequisites + partial affordability)",
+    "sell_guardrail_result": "SUPPORTED (Requires material deterioration + validated replacement + net EB)",
+    "monitor_review_action_result": "SUPPORTED (Mild decay -> MONITOR; unvalidated/stale -> REVIEW)",
+    "risk_capacity_result": "SUPPORTED (Low Risk Capacity constrains Risk Alignment to LOW)",
+    "risk_tolerance_result": "SUPPORTED (Low Risk Tolerance constrains Risk Alignment to LOW)",
+    "suitability_result": "SUPPORTED (Unsuitable status yields NO_ACTION)",
+    "portfolio_need_result": "SUPPORTED (No material need yields NO_ACTION)",
+    "economic_benefit_result": "SUPPORTED (Uncertain/Neutral/Not Beneficial yields NO_ACTION/REVIEW)",
+    "multiple_goal_result": "SUPPORTED (Goal-specific evaluation preserves goal_id context)",
+    "affordability_result": "SUPPORTED (Constrained capacity shifts BUY to ACCUMULATE)",
+    "windfall_result": "SUPPORTED (Evaluated through portfolio need gap fulfillment)",
+    "overlap_concentration_result": "SUPPORTED (Informs portfolio need without automatic SELL)",
+    "missing_data_result": "SUPPORTED (Missing required evidence prevents consequential actions)",
+    "explainability_result": "SUPPORTED (Full decision path traced in EndToEndDecisionResult)",
+    "provenance_result": "SUPPORTED (ProvenanceMetadata aggregated across all constituent contracts)",
+    "immutable_history_result": "SUPPORTED (EndToEndDecisionResult is dataclass frozen)",
+    "determinism_result": "SUPPORTED (100% deterministic rerun across all scenarios)",
+    "temporal_safety_result": "SUPPORTED (Consumes point-in-time freshness determinations)",
+    "no_silent_portfolio_mutation_result": "SUPPORTED (Read-only decision orchestrator; no holdings mutated)"
+  },
+  "findings_classification": {
+    "genuine_defects": "None",
+    "governance_concerns": "None",
+    "provisional_assumptions": "Provisional V1 category weights in scoring/config.py",
+    "optional_improvements": "Extend real-time market data feed connectors",
+    "sound_components": "All 7 decision layers, contracts, and orchestrators strictly sound"
+  },
+  "claim_matrix": {
+    "Fund Quality is separated from Suitability": "SUPPORTED",
+    "Fund Quality is separated from Portfolio Need": "SUPPORTED",
+    "Fund Quality is separated from Economic Benefit": "SUPPORTED",
+    "Fund Quality does not automatically trigger BUY": "SUPPORTED",
+    "Low Fund Quality does not automatically trigger SELL": "SUPPORTED",
+    "Risk Capacity constrains action": "SUPPORTED",
+    "Risk Tolerance constrains action": "SUPPORTED",
+    "Missing required evidence blocks consequential action": "SUPPORTED",
+    "Economic Benefit is required where governed": "SUPPORTED",
+    "Concentration informs action without automatic SELL": "SUPPORTED",
+    "Multiple goals are supported": "SUPPORTED",
+    "No silent portfolio mutation": "SUPPORTED",
+    "Explainability traces decision chain": "SUPPORTED",
+    "Assessment history is immutable": "SUPPORTED",
+    "Temporal integrity is preserved": "SUPPORTED",
+    "End-to-end Action states are deterministic": "SUPPORTED"
+  },
+  "decision_use_status": "End-to-end decision chain validated. Consequential decision readiness is architecturally verified and governed.",
+  "production_status": "Production scoring engine and decision orchestrator remain frozen, immutable, and unchanged.",
+  "unresolved_items": "None"
+}

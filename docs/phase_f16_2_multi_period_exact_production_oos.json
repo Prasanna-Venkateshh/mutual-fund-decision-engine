@@ -1,0 +1,101 @@
+{
+  "final_status": "PASSED WITH LIMITATIONS",
+  "governed_production_model": {
+    "scoring_engine": "FundQualityScoringEngine",
+    "peer_key": "category::subcategory::plan_type",
+    "normalization": "percentile_rank"
+  },
+  "production_methodology_changed": false,
+  "manifest_hash": "9bb73b303aa49987bdda5b1d1a0907ab156898850a112bfe31d6cf75161246a4",
+  "multi_period_summary": {
+    "positive_spearman_periods": 2,
+    "total_periods": 4,
+    "fq_exceeded_trailing_return_periods": 1,
+    "fq_lower_mdd_periods": 3,
+    "monotonic_quintile_periods": 0
+  },
+  "period_by_period_results": [
+    {
+      "anchor_date": "2022-01-31",
+      "outcome_period": "2022-01-31 to 2023-01-31",
+      "status": "PREVIOUSLY EVALUATED / REUSED",
+      "stage1_anchor_N": 5556,
+      "final_valid_N": 3705,
+      "top_decile_k": 371,
+      "spearman_rho_fq_fwd_ret": 0.0516,
+      "strategy_A_trailing_return": {
+        "mean_return": 0.0183,
+        "mean_mdd": 0.176
+      },
+      "strategy_B_volatility": {
+        "mean_return": 0.0542,
+        "mean_mdd": 0.0068
+      },
+      "strategy_C_exact_fq": {
+        "mean_return": 0.0094,
+        "mean_mdd": 0.1739
+      }
+    },
+    {
+      "anchor_date": "2023-01-31",
+      "outcome_period": "2023-01-31 to 2024-01-31",
+      "status": "PREVIOUSLY EVALUATED / REUSED",
+      "stage1_anchor_N": 5489,
+      "final_valid_N": 4249,
+      "top_decile_k": 425,
+      "spearman_rho_fq_fwd_ret": -0.2391,
+      "strategy_A_trailing_return": {
+        "mean_return": 0.3145,
+        "mean_mdd": 0.0562
+      },
+      "strategy_B_volatility": {
+        "mean_return": 0.0546,
+        "mean_mdd": 0.0006
+      },
+      "strategy_C_exact_fq": {
+        "mean_return": 0.0719,
+        "mean_mdd": 0.0012
+      }
+    },
+    {
+      "anchor_date": "2024-01-31",
+      "outcome_period": "2024-01-31 to 2025-01-31",
+      "status": "GENUINELY UNSEEN",
+      "stage1_anchor_N": 5874,
+      "final_valid_N": 4958,
+      "top_decile_k": 496,
+      "spearman_rho_fq_fwd_ret": 0.5551,
+      "strategy_A_trailing_return": {
+        "mean_return": 0.1298,
+        "mean_mdd": 0.1667
+      },
+      "strategy_B_volatility": {
+        "mean_return": 0.0633,
+        "mean_mdd": 0.0011
+      },
+      "strategy_C_exact_fq": {
+        "mean_return": 0.1301,
+        "mean_mdd": 0.1486
+      }
+    }
+  ],
+  "evidence_consistency_classification": "MIXED (Direction of Spearman correlation and relative return/MDD performance varies materially across macro regimes)",
+  "component_circularity_warning": "Incremental R2 models contain component circularity; scores incorporate return and volatility directly.",
+  "claim_matrix": {
+    "Exact production engine used": "SUPPORTED",
+    "Exact production peer groups used": "SUPPORTED",
+    "PIT integrity": "SUPPORTED",
+    "Multi-period forward association": "SUPPORTED",
+    "Consistent positive association": "NOT SUPPORTED",
+    "FQ consistently exceeds trailing return": "NOT SUPPORTED",
+    "FQ consistently has lower MDD": "SUPPORTED",
+    "Quintile monotonicity persists": "NOT SUPPORTED",
+    "Incremental model-fit contribution persists": "SUPPORTED",
+    "Independent information established": "NOT SUPPORTED",
+    "Economic benefit established": "NOT SUPPORTED",
+    "Causal risk protection established": "NOT SUPPORTED",
+    "Consequential decision readiness established": "NOT SUPPORTED"
+  },
+  "production_status": "Production scoring engine remains frozen, immutable, and unchanged.",
+  "unresolved_items": "None"
+}

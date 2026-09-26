@@ -1,0 +1,48 @@
+{
+  "dataset_version": "f12_3_v1.0.0",
+  "run_id": "run_f12_3_20260915_100000",
+  "execution_timestamp_utc": "2026-09-15T10:10:00.000000+00:00",
+  "backfill_scope": {
+    "extension_start_date": "2024-02-01",
+    "extension_end_date": "2025-01-31",
+    "daily_windows": 366
+  },
+  "windows_summary": {
+    "total_windows_requested": 366,
+    "windows_success_with_records": 366,
+    "windows_success_zero_records": 0,
+    "windows_failed": 0,
+    "windows_retry_required": 1
+  },
+  "extension_observation_counts": {
+    "total_raw_records": 1966531,
+    "total_normalized_records": 1571698,
+    "total_nav_quarantine": 26338,
+    "total_mapping_quarantine": 368495,
+    "disposition_reconciliation": true
+  },
+  "total_database_counts": {
+    "total_ledger_windows": 1515,
+    "total_ledger_raw_records": 7993379,
+    "total_ledger_normalized_records": 6210103,
+    "total_ledger_nav_quarantine": 118611,
+    "total_ledger_mapping_quarantine": 1664665,
+    "disposition_reconciliation": true,
+    "total_raw_table_records": 13469115,
+    "total_normalized_table_records": 6337995,
+    "total_quarantine_table_records": 2866136
+  },
+  "scheme_coverage": {
+    "unique_amfi_schemes_extension": 6588,
+    "unique_canonical_schemes_extension": 6588,
+    "eval_cohort_2024_01_31_schemes": 5874,
+    "eval_cohort_forward_1y_schemes": 5750,
+    "earliest_extension_date": "2024-02-01",
+    "latest_extension_date": "2025-01-31"
+  },
+  "performance": {
+    "elapsed_seconds": 36.6,
+    "average_seconds_per_window": 0.10,
+    "database_size_mb": 17582.32
+  }
+}

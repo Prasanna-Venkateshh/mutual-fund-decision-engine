@@ -1,0 +1,13 @@
+{
+  "manifest_version": "F.18-GOVERNANCE-PORTFOLIO-v1.0",
+  "audited_at_utc": "2026-09-16T19:11:06.850510",
+  "orchestrator_class": "DecisionOrchestrator",
+  "pipeline_sequence": "DATA -> METRICS -> FUND QUALITY -> SUITABILITY -> PORTFOLIO NEED -> ECONOMIC BENEFIT -> ACTION",
+  "scenarios_evaluated_count": 25,
+  "scenarios_passed_count": 25,
+  "portfolio_state_mutated": false,
+  "transactions_executed_count": 0,
+  "recommendation_vs_transaction_separated": true,
+  "user_control_agency_preserved": true,
+  "immutable_assessment_history_verified": true
+}

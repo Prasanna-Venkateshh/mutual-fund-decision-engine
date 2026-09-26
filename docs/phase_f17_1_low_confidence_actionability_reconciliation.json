@@ -1,0 +1,120 @@
+{
+  "manifest": {
+    "manifest_version": "F.17.1-RECONCILIATION-v1.0",
+    "audited_at_utc": "2026-09-16T19:07:44.221892",
+    "orchestrator_class": "DecisionOrchestrator",
+    "scenarios_evaluated_count": 10,
+    "scenarios_passed_count": 10,
+    "s12_reproduction_outcome": "REPRODUCED (BUY emitted per governed v1.0.0 contract; confidence is descriptive metadata without numerical cutoff)",
+    "s19_reproduction_outcome": "REPRODUCED (BUY emitted per governed v1.0.0 contract; CONDITIONALLY_SUITABLE is conditional permission with warnings)",
+    "governance_classification": "PASSED WITH LIMITATIONS \u2014 CONFIDENCE IS DESCRIPTIVE METADATA ONLY IN V1.0.0 (NO NUMERICAL CUTOFF RULE IN ACTION ENGINE)"
+  },
+  "scenarios": [
+    {
+      "scenario": "S12_REPRO: High FQ (90.0) + Low Confidence (0.05) + Valid Evidence",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "warnings": []
+    },
+    {
+      "scenario": "S12_VAR1: High FQ (90.0) + Invalid Evidence Flag",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Fund Quality score or evidence is invalid or missing. Purchase prohibited.",
+      "warnings": [
+        "Fund Quality Guardrail: Invalid or missing Fund Quality evidence."
+      ]
+    },
+    {
+      "scenario": "S19_REPRO: CONDITIONALLY_SUITABLE + All Prerequisites",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "warnings": [
+        "Suitability status: CONDITIONALLY_SUITABLE"
+      ]
+    },
+    {
+      "scenario": "S19_VAR1: CONDITIONALLY_SUITABLE + Lock-in Conflict Constraint",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme is not suitable for the investor profile. Purchase prohibited.",
+      "warnings": [
+        "Suitability status: CONDITIONALLY_SUITABLE",
+        "Suitability constraint: LOCK_IN_CONFLICT",
+        "Tier 3 Precedence: Suitability status is NOT_SUITABLE or lock-in conflict present."
+      ]
+    },
+    {
+      "scenario": "S19_VAR2: NOT_SUITABLE Hard Rejection",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme is not suitable for the investor profile. Purchase prohibited.",
+      "warnings": [
+        "Tier 3 Precedence: Suitability status is NOT_SUITABLE or lock-in conflict present."
+      ]
+    },
+    {
+      "scenario": "MISSING_EV_FQ: Missing FQ Evidence for New Position",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Fund Quality score or evidence is invalid or missing. Purchase prohibited.",
+      "warnings": [
+        "Fund Quality Guardrail: Invalid or missing Fund Quality evidence."
+      ]
+    },
+    {
+      "scenario": "MISSING_EV_EB: Uncertain EB Evidence for New Position",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, but economic benefit is uncertain or unproven.",
+      "warnings": [
+        "Economic Benefit Guardrail: Net economic benefit is unproven."
+      ]
+    },
+    {
+      "scenario": "LOW_FQ_LOW_CONF_HOLD: Low FQ (10.0) + Low Conf (0.05) + Existing Position (No Deterioration)",
+      "expected_action": "HOLD",
+      "actual_action": "HOLD",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Existing holding remains appropriate; no material need for position change.",
+      "warnings": []
+    },
+    {
+      "scenario": "LOW_FQ_LOW_CONF_SELL: Low FQ (10.0) + Low Conf (0.05) + Validated Deterioration + Replacement + Beneficial",
+      "expected_action": "SELL",
+      "actual_action": "SELL",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Material deterioration confirmed, suitable replacement available, candidate Fund Quality comparison is valid, and net economic benefit is verified. Recommended SELL.",
+      "warnings": []
+    },
+    {
+      "scenario": "LOW_FQ_LOW_CONF_REVIEW: Low FQ (10.0) + Low Conf (0.05) + Material Deterioration + High Switching Cost",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Holding exhibits deterioration, but after-tax/after-cost switching economics do not justify liquidation.",
+      "warnings": [
+        "Switch Guardrail: After-tax switching economics are negative or unproven."
+      ]
+    }
+  ]
+}

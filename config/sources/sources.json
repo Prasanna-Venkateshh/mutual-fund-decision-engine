@@ -1,0 +1,192 @@
+[
+  {
+    "source_id": "AMFI_OFFICIAL",
+    "source_name": "Association of Mutual Funds in India (AMFI) Official NAV Feed",
+    "source_type": "NAV_FEED",
+    "authority_level": "AMFI",
+    "official_url": "https://www.amfiindia.com",
+    "specific_data_url": "https://www.amfiindia.com/spages/NAVAll.txt",
+    "supported_data_fields": [
+      "scheme_code",
+      "isin_growth",
+      "isin_reinvest",
+      "scheme_name",
+      "nav",
+      "date"
+    ],
+    "update_frequency": "DAILY",
+    "historical_availability": "FULL_HISTORY",
+    "free_status": true,
+    "licensing_status": "PUBLIC_DOMAINS_FREE",
+    "validation_status": "VALIDATED",
+    "last_retrieval_utc": "2026-09-14T17:49:00Z",
+    "last_validation_status": "HTTP_200_SUCCESS"
+  },
+  {
+    "source_id": "SEBI_OFFICIAL",
+    "source_name": "Securities and Exchange Board of India (SEBI) Categorization Registry",
+    "source_type": "REGULATORY_CLASSIFICATION",
+    "authority_level": "SEBI",
+    "official_url": "https://www.sebi.gov.in",
+    "specific_data_url": "https://www.sebi.gov.in/filings/mutual-funds.html",
+    "supported_data_fields": [
+      "category",
+      "sub_category",
+      "investment_limits"
+    ],
+    "update_frequency": "PERIODIC",
+    "historical_availability": "HISTORICAL",
+    "free_status": true,
+    "licensing_status": "PUBLIC_DOMAINS_FREE",
+    "validation_status": "VALIDATED",
+    "last_retrieval_utc": "2026-09-14T17:56:00Z",
+    "last_validation_status": "HTTP_200_SUCCESS"
+  },
+  {
+    "source_id": "CBDT_TAX_OFFICIAL",
+    "source_name": "Central Board of Direct Taxes (CBDT) Income Tax Rules",
+    "source_type": "TAX_RULES",
+    "authority_level": "INCOME_TAX_CBDT",
+    "official_url": "https://incometaxindia.gov.in",
+    "specific_data_url": "https://incometaxindia.gov.in/pages/rules/income-tax-rules-1962.aspx",
+    "supported_data_fields": [
+      "stcg_rate",
+      "ltcg_rate",
+      "holding_period_months",
+      "exemption_limit"
+    ],
+    "update_frequency": "ANNUAL",
+    "historical_availability": "VERSIONED",
+    "free_status": true,
+    "licensing_status": "OFFICIAL_GOVT",
+    "validation_status": "VALIDATED"
+  },
+  {
+    "source_id": "AMFI_TER_FEED",
+    "source_name": "AMFI Total Expense Ratio (TER) Disclosure Feed (Direct Bulk URL)",
+    "source_type": "TER_DISCLOSURE",
+    "authority_level": "AMFI",
+    "official_url": "https://www.amfiindia.com",
+    "specific_data_url": "https://www.amfiindia.com/modules/TERData",
+    "supported_data_fields": [
+      "scheme_code",
+      "plan_type",
+      "ter_percentage",
+      "effective_date"
+    ],
+    "update_frequency": "MONTHLY",
+    "historical_availability": "HISTORICAL",
+    "free_status": true,
+    "licensing_status": "PUBLIC_DOMAINS_FREE",
+    "validation_status": "UNAVAILABLE_HTTP_404",
+    "last_retrieval_utc": "2026-09-14T17:56:00Z",
+    "last_validation_status": "HTTP_404_NOT_FOUND",
+    "notes": "Direct HTTP GET endpoint returns 404. TER disclosures require AMC portal scraping or authenticated AMFI portal API access."
+  },
+  {
+    "source_id": "AMFI_RISKOMETER_FEED",
+    "source_name": "AMFI Scheme Riskometer Disclosure Feed (Direct Bulk URL)",
+    "source_type": "RISKOMETER_DISCLOSURE",
+    "authority_level": "AMFI",
+    "official_url": "https://www.amfiindia.com",
+    "specific_data_url": "https://www.amfiindia.com/modules/RiskometerData",
+    "supported_data_fields": [
+      "scheme_code",
+      "riskometer_label",
+      "effective_date"
+    ],
+    "update_frequency": "MONTHLY",
+    "historical_availability": "HISTORICAL",
+    "free_status": true,
+    "licensing_status": "PUBLIC_DOMAINS_FREE",
+    "validation_status": "UNAVAILABLE_HTTP_404",
+    "last_retrieval_utc": "2026-09-14T17:56:00Z",
+    "last_validation_status": "HTTP_404_NOT_FOUND",
+    "notes": "Direct HTTP GET endpoint returns 404. Riskometer labels require AMC portfolio disclosures or AMFI web page parsing."
+  },
+  {
+    "source_id": "AMFI_BENCHMARK_FEED",
+    "source_name": "AMFI Scheme Benchmark Disclosure Feed (Direct Bulk URL)",
+    "source_type": "BENCHMARK_DISCLOSURE",
+    "authority_level": "AMFI",
+    "official_url": "https://www.amfiindia.com",
+    "specific_data_url": "https://www.amfiindia.com/modules/BenchmarkData",
+    "supported_data_fields": [
+      "scheme_code",
+      "benchmark_name",
+      "effective_date"
+    ],
+    "update_frequency": "MONTHLY",
+    "historical_availability": "HISTORICAL",
+    "free_status": true,
+    "licensing_status": "PUBLIC_DOMAINS_FREE",
+    "validation_status": "UNAVAILABLE_HTTP_404",
+    "last_retrieval_utc": "2026-09-14T17:56:00Z",
+    "last_validation_status": "HTTP_404_NOT_FOUND",
+    "notes": "Direct HTTP GET endpoint returns 404. Benchmark assignments require scheme SID/KIM disclosures or AMC monthly portfolio sheets."
+  },
+  {
+    "source_id": "AMFI_SCHEME_MASTER",
+    "source_name": "AMFI Comprehensive Scheme Master Metadata CSV (Direct Bulk URL)",
+    "source_type": "SCHEME_MASTER",
+    "authority_level": "AMFI",
+    "official_url": "https://www.amfiindia.com",
+    "specific_data_url": "https://www.amfiindia.com/spages/SchemeMaster.csv",
+    "supported_data_fields": [
+      "scheme_code",
+      "isin_growth",
+      "scheme_name",
+      "amc_name",
+      "category",
+      "subcategory",
+      "ter",
+      "riskometer",
+      "benchmark"
+    ],
+    "update_frequency": "DAILY",
+    "historical_availability": "FULL_HISTORY",
+    "free_status": true,
+    "licensing_status": "PUBLIC_DOMAINS_FREE",
+    "validation_status": "UNAVAILABLE_HTTP_404",
+    "last_retrieval_utc": "2026-09-14T17:56:00Z",
+    "last_validation_status": "HTTP_404_NOT_FOUND",
+    "notes": "Direct CSV download URL returns 404. Category/ISIN information is parsed directly from NAVAll.txt."
+  },
+  {
+    "source_id": "AMC_DIRECT_DISCLOSURES",
+    "source_name": "Individual AMC Statutory Web Disclosures & Factsheets (53 AMCs)",
+    "source_type": "AMC_STATUTORY_DISCLOSURE",
+    "authority_level": "AMC_OFFICIAL",
+    "official_url": "https://www.amfiindia.com/research-information/other-data",
+    "specific_data_url": "https://www.hdfcfund.com, https://www.icicipruamc.com, https://www.sbimf.com",
+    "supported_data_fields": ["ter", "riskometer", "benchmark"],
+    "update_frequency": "MONTHLY",
+    "historical_availability": "LIMITED_DOCUMENTARY",
+    "free_status": true,
+    "licensing_status": "PUBLIC_DOMAINS_FREE",
+    "validation_status": "UNUNIFORM_FRAGMENTED_AMC",
+    "last_retrieval_utc": "2026-09-14T18:00:00Z",
+    "last_validation_status": "DOCUMENTARY_PDF_AND_WAF_RESTRICTED",
+    "notes": "Evaluated in F.10.3 across 53 AMCs. Fragmented unstructured PDF disclosures and WAF/Cloudflare access restrictions make automated bulk production ingestion non-scalable (classified as Situation C)."
+  },
+  {
+    "source_id": "MFAPI_PROTOTYPE",
+    "source_name": "MFAPI Unofficial Secondary Feed (Experimental)",
+    "source_type": "NAV_FEED",
+    "authority_level": "UNVALIDATED_THIRD_PARTY",
+    "official_url": "https://www.mfapi.in",
+    "specific_data_url": "https://api.mfapi.in/mf/{scheme_code}",
+    "supported_data_fields": [
+      "scheme_code",
+      "date",
+      "nav"
+    ],
+    "update_frequency": "DAILY",
+    "historical_availability": "LIMITED",
+    "free_status": true,
+    "licensing_status": "UNVERIFIED_THIRD_PARTY",
+    "validation_status": "PROVISIONAL",
+    "last_retrieval_utc": "2026-09-14T17:56:00Z",
+    "last_validation_status": "HTTP_200_SUCCESS_NO_METADATA_FIELDS"
+  }
+]

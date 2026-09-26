@@ -1,0 +1,93 @@
+{
+  "anchor_cohort_n": 5832,
+  "outcome_eligible_n": 5713,
+  "outcome_unavailable_n": 119,
+  "cohort_hash": "e2c8c732520891c2a2fcb24ebd3acfe77b6f88e228a90fa31d41e6de986062e5",
+  "closure_months": {
+    "2024-06": 28,
+    "2024-10": 4,
+    "2024-11": 13,
+    "2024-03": 32,
+    "2024-02": 10,
+    "2024-09": 21,
+    "2024-08": 1,
+    "2024-04": 4
+  },
+  "correlations": {
+    "fq_fwd_ret_pearson": 0.1503,
+    "fq_fwd_ret_spearman": 0.2991,
+    "tr_fwd_ret_pearson": 0.3943,
+    "tr_fwd_ret_spearman": 0.5882,
+    "vol_fwd_ret_pearson": 0.4557,
+    "vol_fwd_ret_spearman": 0.4011,
+    "fq_fwd_mdd_pearson": -0.1564,
+    "fq_fwd_mdd_spearman": -0.3187,
+    "tr_fwd_mdd_pearson": 0.7912,
+    "vol_fwd_mdd_pearson": 0.9018,
+    "fq_fwd_vol_pearson": -0.2067,
+    "tr_fwd_vol_pearson": 0.7927,
+    "vol_fwd_vol_pearson": 0.9487
+  },
+  "regressions": {
+    "forward_return": {
+      "r2_m0": 0.0,
+      "r2_m1": 0.15548336214721858,
+      "r2_m2": 0.39767782987791955,
+      "r2_m3": 0.43170603990556,
+      "risk_increment": 0.24219446773070097,
+      "fq_increment": 0.03402821002764045
+    },
+    "forward_mdd": {
+      "r2_m0": 0.0,
+      "r2_m1": 0.6260691814202047,
+      "r2_m2": 0.8764261919316975,
+      "r2_m3": 0.8775812477664261,
+      "risk_increment": 0.25035701051149273,
+      "fq_increment": 0.0011550558347286355
+    },
+    "forward_volatility": {
+      "r2_m0": 0.0,
+      "r2_m1": 0.6284400983424522,
+      "r2_m2": 0.9398848759551407,
+      "r2_m3": 0.9398909783434519,
+      "risk_increment": 0.3114447776126885,
+      "fq_increment": 6.102388311224338e-06
+    },
+    "forward_downside": {
+      "r2_m0": 0.0,
+      "r2_m1": 0.6233484430445977,
+      "r2_m2": 0.9202171905349963,
+      "r2_m3": 0.9205131616760366,
+      "risk_increment": 0.2968687474903986,
+      "fq_increment": 0.00029597114104029654
+    }
+  },
+  "quintiles": {
+    "fq_q1_mean": 0.0876,
+    "fq_q5_mean": 0.0546,
+    "fq_q1_q5_spread": 0.033,
+    "tr_q1_mean": 0.1208,
+    "tr_q5_mean": 0.0182,
+    "tr_q1_q5_spread": 0.1026
+  },
+  "strategies": {
+    "strategy_a_tr": {
+      "n": 571,
+      "ret": 0.1223,
+      "mdd": 0.1683,
+      "vol": 0.1886
+    },
+    "strategy_b_vol": {
+      "n": 571,
+      "ret": 0.0434,
+      "mdd": 0.0011,
+      "vol": 0.0021
+    },
+    "strategy_c_fq": {
+      "n": 571,
+      "ret": 0.0781,
+      "mdd": 0.0126,
+      "vol": 0.016
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "final_status": "PASSED WITH LIMITATIONS",
+  "governed_production_model": {
+    "scoring_engine": "FundQualityScoringEngine",
+    "peer_key": "category::subcategory::plan_type",
+    "normalization": "percentile_rank"
+  },
+  "production_methodology_changed": false,
+  "oos_summary": {
+    "genuinely_unseen_oos": [
+      "2024-01-31 to 2025-01-31"
+    ],
+    "reused_replication": [
+      "2022-01-31 to 2023-01-31",
+      "2023-01-31 to 2024-01-31"
+    ],
+    "unavailable": [
+      "2021-01-31 to 2022-01-31"
+    ]
+  },
+  "summary_statistics": {
+    "genuinely_unseen_oos_periods": 1,
+    "reused_replication_periods": 2,
+    "unavailable_periods": 1,
+    "positive_spearman_periods": 2,
+    "negative_spearman_periods": 1,
+    "median_spearman_rho": 0.0516,
+    "range_spearman_rho": [
+      -0.2391,
+      0.5551
+    ],
+    "equal_period_weighted_mean_rho": 0.1225,
+    "fq_exceeded_trailing_return_count": 1,
+    "fq_lower_mdd_count": 3,
+    "monotonic_quintile_periods": 1
+  },
+  "period_reconciliations": [
+    {
+      "anchor_date": "2021-01-31",
+      "outcome_period": "2021-01-31 to 2022-01-31",
+      "classification": "NOT AVAILABLE",
+      "exact_production_used": false,
+      "stage1_anchor_N": 759,
+      "final_valid_N": 0,
+      "top_decile_k": 0,
+      "strategy_C_fq_return": null,
+      "strategy_A_trailing_return": null,
+      "strategy_C_fq_mdd": null,
+      "strategy_A_trailing_mdd": null,
+      "spearman_rho": null,
+      "nested_regression": null
+    },
+    {
+      "anchor_date": "2022-01-31",
+      "outcome_period": "2022-01-31 to 2023-01-31",
+      "classification": "REUSED / REPLICATION",
+      "exact_production_used": true,
+      "stage1_anchor_N": 5556,
+      "final_valid_N": 3705,
+      "top_decile_k": 371,
+      "strategy_C_fq_return": 0.0094,
+      "strategy_A_trailing_return": 0.0183,
+      "strategy_C_fq_mdd": 0.1739,
+      "strategy_A_trailing_mdd": 0.176,
+      "spearman_rho": 0.0516,
+      "nested_regression": {
+        "N": 3705,
+        "M0_R2": 0.0,
+        "M1_R2": 0.0014,
+        "M2_R2": 0.0025,
+        "M3_R2": 0.0027,
+        "incremental_R2_M3_minus_M2": 0.0001,
+        "predictors": [
+          "Intercept",
+          "Trailing 1Y Return",
+          "Annualized Volatility",
+          "Exact Production FQ"
+        ]
+      }
+    },
+    {
+      "anchor_date": "2023-01-31",
+      "outcome_period": "2023-01-31 to 2024-01-31",
+      "classification": "REUSED / REPLICATION",
+      "exact_production_used": true,
+      "stage1_anchor_N": 5489,
+      "final_valid_N": 4249,
+      "top_decile_k": 425,
+      "strategy_C_fq_return": 0.0719,
+      "strategy_A_trailing_return": 0.3145,
+      "strategy_C_fq_mdd": 0.0012,
+      "strategy_A_trailing_mdd": 0.0562,
+      "spearman_rho": -0.2391,
+      "nested_regression": {
+        "N": 4249,
+        "M0_R2": 0.0,
+        "M1_R2": 0.0006,
+        "M2_R2": 0.0508,
+        "M3_R2": 0.1056,
+        "incremental_R2_M3_minus_M2": 0.0548,
+        "predictors": [
+          "Intercept",
+          "Trailing 1Y Return",
+          "Annualized Volatility",
+          "Exact Production FQ"
+        ]
+      }
+    },
+    {
+      "anchor_date": "2024-01-31",
+      "outcome_period": "2024-01-31 to 2025-01-31",
+      "classification": "GENUINELY UNSEEN OOS",
+      "exact_production_used": true,
+      "stage1_anchor_N": 5874,
+      "final_valid_N": 4958,
+      "top_decile_k": 496,
+      "strategy_C_fq_return": 0.1301,
+      "strategy_A_trailing_return": 0.1298,
+      "strategy_C_fq_mdd": 0.1486,
+      "strategy_A_trailing_mdd": 0.1667,
+      "spearman_rho": 0.5551,
+      "nested_regression": {
+        "N": 4958,
+        "M0_R2": 0.0,
+        "M1_R2": 0.2053,
+        "M2_R2": 0.228,
+        "M3_R2": 0.3325,
+        "incremental_R2_M3_minus_M2": 0.1045,
+        "predictors": [
+          "Intercept",
+          "Trailing 1Y Return",
+          "Annualized Volatility",
+          "Exact Production FQ"
+        ]
+      }
+    }
+  ],
+  "prior_reconciliation_table": [
+    {
+      "anchor_date": "2024-01-31",
+      "prior_phase": "F.11.3.5.5",
+      "prior_N": 5713,
+      "f16_2_1_N": 4958,
+      "prior_strategy_A_return": 0.1223,
+      "f16_2_1_strategy_A_return": 0.1298,
+      "prior_strategy_C_return": 0.1185,
+      "f16_2_1_strategy_C_return": 0.1301,
+      "same_population": false,
+      "same_production_engine": false,
+      "reconciliation_explanation": "F.11.3.5.5 used raw-value scaling prototype formula and included schemes with <252 daily PIT observations. F.16.2.1 uses exact FundQualityScoringEngine with percentile-rank peer normalization and >=252 PIT requirement."
+    },
+    {
+      "anchor_date": "2024-01-31",
+      "prior_phase": "F.16 / F.16.1",
+      "prior_N": 4958,
+      "f16_2_1_N": 4958,
+      "prior_strategy_A_return": 0.1298,
+      "f16_2_1_strategy_A_return": 0.1298,
+      "prior_strategy_C_return": 0.1301,
+      "f16_2_1_strategy_C_return": 0.1301,
+      "same_population": true,
+      "same_production_engine": true,
+      "reconciliation_explanation": "Exact 100% numerical match. F.16 and F.16.2.1 execute identical FundQualityScoringEngine logic on exact 2024 anchor data."
+    }
+  ],
+  "component_circularity_statement": "Production FQ is constructed from Return and Reciprocal Volatility. Therefore incremental R2 represents model-fit contribution from a non-linear composite, NOT independent information.",
+  "market_regime_language_governance": "Causal market-regime labels removed. Periods are designated solely by neutral anchor dates (2022, 2023, 2024).",
+  "claim_matrix": {
+    "Multi-period forward association": "SUPPORTED",
+    "Consistent positive association": "NOT SUPPORTED",
+    "FQ consistently exceeds trailing return": "NOT SUPPORTED",
+    "FQ consistently has lower MDD": "SUPPORTED DESCRIPTIVELY",
+    "Quintile monotonicity persists": "NOT SUPPORTED",
+    "Incremental model-fit contribution persists": "SUPPORTED",
+    "Independent information established": "NOT SUPPORTED",
+    "Economic benefit established": "NOT SUPPORTED",
+    "Causal risk protection established": "NOT SUPPORTED",
+    "Consequential decision readiness": "NOT SUPPORTED"
+  },
+  "production_status": "Production scoring engine remains frozen, immutable, and unchanged.",
+  "unresolved_items": "None"
+}

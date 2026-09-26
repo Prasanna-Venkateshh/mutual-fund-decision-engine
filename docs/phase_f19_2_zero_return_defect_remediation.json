@@ -1,0 +1,93 @@
+{
+  "phase": "F.19.2",
+  "final_status": "PASSED",
+  "production_code_changed": true,
+  "production_methodology_changed": false,
+  "remediation_summary": {
+    "defect_id": "DEFECT-FQ-2026-001",
+    "defect_status": "FIXED",
+    "affected_file": "scoring/engine.py (Lines 81 & 89)",
+    "correction_applied": "Replaced boolean OR logic with explicit non-None check (cagr_overall if cagr_overall is not None else rolling_1y_mean)",
+    "remediation_timestamp": "2026-09-17T00:35:47.896413"
+  },
+  "deterministic_test_cases": {
+    "case_a_none_fallback": {
+      "raw": 0.1,
+      "available": true
+    },
+    "case_b_zero_retained": {
+      "raw": 0.0,
+      "available": true
+    },
+    "case_c_positive_retained": {
+      "raw": 0.05,
+      "available": true
+    },
+    "case_d_negative_retained": {
+      "raw": -0.05,
+      "available": true
+    }
+  },
+  "remediation_samples": [
+    {
+      "canonical_scheme_id": "CAN_AMFI_100044",
+      "amfi_code": "100044",
+      "scheme_name": "Aditya Birla Sun Life Liquid Fund -Retail - IDCW",
+      "raw_return": 0.0,
+      "return_data_available": true,
+      "raw_volatility": 0.00192769314939356,
+      "volatility_data_available": true,
+      "post_fix_available_dims": 2,
+      "post_fix_active_weight_sum": 100.0,
+      "post_fix_final_score": 50.0
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100842",
+      "amfi_code": "100842",
+      "scheme_name": "NIPPON INDIA LIQUID FUND - RETAIL Plan - DAILY IDCW OPTION",
+      "raw_return": 0.0,
+      "return_data_available": true,
+      "raw_volatility": 0.0017119406161143424,
+      "volatility_data_available": true,
+      "post_fix_available_dims": 2,
+      "post_fix_active_weight_sum": 100.0,
+      "post_fix_final_score": 50.0
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_101840",
+      "amfi_code": "101840",
+      "scheme_name": "DSP Credit Risk Fund - Regular Plan - IDCW - Daily",
+      "raw_return": 0.00023418975224664962,
+      "return_data_available": true,
+      "raw_volatility": 0.0029071992566438794,
+      "volatility_data_available": true,
+      "post_fix_available_dims": 2,
+      "post_fix_active_weight_sum": 100.0,
+      "post_fix_final_score": 50.0
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_101972",
+      "amfi_code": "101972",
+      "scheme_name": "Aditya Birla Sun Life Money Market Fund - Retail - Daily IDCW",
+      "raw_return": 0.0,
+      "return_data_available": true,
+      "raw_volatility": 0.0010882552096861877,
+      "volatility_data_available": true,
+      "post_fix_available_dims": 2,
+      "post_fix_active_weight_sum": 100.0,
+      "post_fix_final_score": 50.0
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_103160",
+      "amfi_code": "103160",
+      "scheme_name": "Tata Treasury Advantage Fund Regular Plan - Daily Reinvestment of IDCW Option",
+      "raw_return": 0.0,
+      "return_data_available": true,
+      "raw_volatility": 0.0007678033559203356,
+      "volatility_data_available": true,
+      "post_fix_available_dims": 2,
+      "post_fix_active_weight_sum": 100.0,
+      "post_fix_final_score": 50.0
+    }
+  ]
+}

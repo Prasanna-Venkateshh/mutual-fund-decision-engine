@@ -1,0 +1,124 @@
+{
+  "phase": "F.11.3.5.3.2.1",
+  "status": "PASSED WITH LIMITATIONS",
+  "governance_verification": "PASS \u2014 Production methodology frozen and unchanged.",
+  "population_waterfall": {
+    "stage_1_total_db_schemes": 17507,
+    "stage_2_pit_active_schemes_le_20240131": 16808,
+    "stage_3_forward_reachable_schemes_gt_20240131": 5889,
+    "stage_4_min_history_and_jan2024_active": 5826,
+    "stage_5_final_eligible_validation_population": 5713,
+    "governed_f12_anchor_reconciliation_note": "Reconciled from F.12.3.1.2 database backfill: 5889 forward reachable schemes reduced to 5826 by PIT history/activity rule and to 5713 by forward outcome availability reaching Jan 2025."
+  },
+  "point_in_time_integrity": "PASS \u2014 Zero future leakage found.",
+  "confidence_reconciliation": {
+    "high_confidence_n": 5130,
+    "low_confidence_n": 583,
+    "confidence_threshold": 0.99,
+    "classification": "EXPLORATORY / POST-HOC (Threshold 0.99 introduced during F.11.3.5.3.2)",
+    "high_confidence_return_mean": 0.078731,
+    "high_confidence_return_std": 0.069028,
+    "low_confidence_return_mean": 0.101285,
+    "low_confidence_return_std": 0.062185,
+    "high_confidence_mdd_mean": 0.067848,
+    "high_confidence_mdd_std": 0.071813,
+    "low_confidence_mdd_mean": 0.088751,
+    "low_confidence_mdd_std": 0.079651,
+    "corrected_conclusion": "RECONCILED CONTRADICTION: High-confidence return Std Dev (6.90%) is HIGHER than Low-confidence return Std Dev (6.22%). Therefore, high confidence did NOT exhibit lower forward-return dispersion in this sample. High confidence only exhibited slightly lower MDD dispersion (7.18% vs 7.97%)."
+  },
+  "regression_reconciliation": {
+    "sample_n": 5713,
+    "dependent_variable": "Equal-Weighted 1Y Forward Gross Return",
+    "estimation_method": "Ordinary Least Squares (OLS) via numpy.linalg.lstsq",
+    "inference_method": "Classical IID OLS standard errors (assuming independent scheme observations)",
+    "model_0": {
+      "specification": "y ~ 1",
+      "r2": 0.0
+    },
+    "model_1": {
+      "specification": "y ~ 1 + tr_1y",
+      "r2": 0.155483
+    },
+    "model_2": {
+      "specification": "y ~ 1 + tr_1y + vol_1y + downside_mar0",
+      "r2": 0.380564
+    },
+    "model_3": {
+      "specification": "y ~ 1 + tr_1y + vol_1y + downside_mar0 + fq_score",
+      "r2": 0.386438,
+      "fq_beta": 0.93534,
+      "fq_se": 0.126525,
+      "t_statistic": 7.3925,
+      "p_value_text": "p < 0.001 (Classical IID OLS t-test on N=5,713 df=5,708)"
+    },
+    "incremental_r2_exact": 0.005874,
+    "r2_subtraction_verification": "0.386438 - 0.380564 = 0.005874"
+  },
+  "component_overlap_matrix": {
+    "trailing_1y_return": {
+      "present_in_model_2": true,
+      "direct_overlap": true,
+      "conceptual_overlap": true,
+      "notes": "Direct mathematical input in FQ score (50% weight in baseline score) and Model 2 predictor."
+    },
+    "historical_volatility": {
+      "present_in_model_2": true,
+      "direct_overlap": true,
+      "conceptual_overlap": true,
+      "notes": "Direct mathematical input in FQ score (50% weight via 1/(1+vol)) and Model 2 predictor."
+    },
+    "downside_deviation": {
+      "present_in_model_2": true,
+      "direct_overlap": false,
+      "conceptual_overlap": true,
+      "notes": "Present in Model 2; conceptually overlaps with volatility."
+    },
+    "non_linear_composite_transformation": {
+      "present_in_model_2": false,
+      "direct_overlap": false,
+      "conceptual_overlap": false,
+      "notes": "The non-linear combination 0.5/(1+vol) + 0.5*clip(ret) creates mild non-linear interaction terms not captured by linear Model 2 terms."
+    },
+    "classification": "B \u2014 Incremental explanatory association demonstrated, but independent information NOT established due to component circularity (FQ is constructed directly from trailing return and volatility)."
+  },
+  "cohort_overlap_reconciliation": {
+    "strategy_a_n": 571,
+    "strategy_c_n": 571,
+    "shared_n": 536,
+    "unique_strategy_c_n": 35,
+    "jaccard_similarity": 0.8845,
+    "cohort_membership_turnover_proxy": "6.13%",
+    "corrected_claim": "RECONCILED COHORT CLAIM: FQ Strategy C shares 536 out of 571 funds with Trailing Return Strategy A (88.45% Jaccard similarity, 11.55% cohort non-overlap). Strategy C is NOT a 'materially distinct cohort' from Strategy A, but rather a 93.87% overlapping cohort with 35 unique fund substitutions."
+  },
+  "claim_language_corrections": {
+    "corrected_dispersion_claim": "High confidence funds exhibit higher forward-return standard deviation (6.90% vs 6.22%), correcting the prior contradictory summary.",
+    "corrected_cohort_claim": "Strategy C is 88.45% similar to Strategy A (536/571 overlap), representing a minor 35-fund refinement rather than a materially distinct cohort.",
+    "corrected_incremental_claim": "Incremental R2 is +0.005874 (0.59 percentage points). While statistically significant (t=7.39), it reflects non-linear composite term fitting rather than independent fundamental information.",
+    "prohibited_terms_enforced": [
+      "predicts",
+      "predictive superiority",
+      "risk protection",
+      "causal",
+      "investor benefit",
+      "alpha"
+    ]
+  },
+  "required_answers": {
+    "q1_confidence_dispersion_conclusion_correct": "NO \u2014 Corrected: High confidence exhibited HIGHER return Std Dev (6.90% vs 6.22%).",
+    "q2_what_is_incremental_r2": "+0.005874 represents the difference between Model 3 R2 (0.386438) and Model 2 R2 (0.380564).",
+    "q3_establishes_independent_information": "NO \u2014 FQ is constructed from trailing return and volatility, creating mathematical component circularity.",
+    "q4_fq_beta_reproducible": "YES \u2014 Beta +0.935340 (SE 0.126525) exactly reproduced.",
+    "q5_inference_method_for_p_value": "Classical IID OLS t-test on N=5,713 (df=5,708, t=7.39).",
+    "q6_strategies_constructed_without_future_info": "YES \u2014 Determined strictly <= 2024-01-31.",
+    "q7_turnover_type": "COHORT MEMBERSHIP TURNOVER PROXY (11.55% / 35 funds), not portfolio transaction turnover.",
+    "q8_cohort_distinctness": "HIGHLY OVERLAPPING \u2014 536 out of 571 funds shared (88.45% Jaccard similarity).",
+    "q9_identical_return_outcomes": "YES \u2014 All use equal-weighted arithmetic mean of 1Y forward gross NAV return.",
+    "q10_identical_mdd_outcomes": "YES \u2014 All use mean individual-fund forward maximum drawdown.",
+    "q11_quintile_relationship_nature": "Observed retrospective association in a single 1Y forward period.",
+    "q12_genuinely_supported_findings": "Point-in-time calculation integrity, 536/571 cohort overlap, exact regression beta +0.935340 and +0.005874 R2 increment.",
+    "q13_unproven_findings": "Independent information, causal risk protection, investor economic benefit, multi-regime predictive stability.",
+    "q14_justifies_production_change": "NO AUTOMATIC PRODUCTION CHANGE."
+  },
+  "production_methodology_changed": false,
+  "historical_pre_freeze_classification": "RETROSPECTIVE POINT-IN-TIME BACKTESTING \u2014 PROSPECTIVE/PRE-REGISTERED STATUS NOT PROVEN"
+}

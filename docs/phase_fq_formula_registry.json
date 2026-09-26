@@ -1,0 +1,22 @@
+{
+  "canonical_production_formula": "Weighted Percentile-Rank Score (0.0 to 100.0 scale)",
+  "scoring_methodology_version": "1.0.0",
+  "weight_config_version": "1.0.0",
+  "normalization_method_version": "1.0.0",
+  "production_entry_point": "scoring/engine.py -> FundQualityScoringEngine.calculate_fund_quality_score()",
+  "normalizer_class": "scoring/normalization.py -> PeerGroupNormalizer.normalize_dimension()",
+  "peer_normalization_scope": "Intra-Category & Intra-Subcategory & Intra-PlanType Peer Groups",
+  "score_scale": "0.0 to 100.0",
+  "mathematical_meaning_50_50": "Equal weighting of peer-percentile normalized score components across active dimensions.",
+  "evidence_hierarchy": [
+    "1. scoring/engine.py & scoring/normalization.py (Production Executable Implementation)",
+    "2. scoring/config.py (Production Config & Version Constants)",
+    "3. scoring/explanations.py (Production Explanation Generator)",
+    "4. Architecture Documentation (Category-aware peer group requirement)",
+    "5. Research scripts (run_f11 vs run_f15)"
+  ],
+  "historical_validation_classification": {
+    "F.11.3.5.5": "Used Formula A (Raw-value scaled heuristic: 0.5*(1/(1+Vol)) + 0.5*Return). NOT authoritative for production engine.",
+    "F.15": "Used Formula B (Global Percentile Rank Scoring). Closely aligns with production engine, but lacked intra-category peer grouping."
+  }
+}

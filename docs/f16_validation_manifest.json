@@ -1,0 +1,17 @@
+{
+  "validation_phase": "Phase F.16 Exact-Production Fund Quality OOS Validation",
+  "methodology_version": "1.0.0",
+  "weights_version": "1.0.0",
+  "production_engine_class": "scoring.engine.FundQualityScoringEngine",
+  "normalizer_class": "scoring.normalization.PeerGroupNormalizer",
+  "exact_peer_group_key": "category::subcategory::plan_type",
+  "anchor_date": "2024-01-31",
+  "outcome_start_date": "2024-02-01",
+  "outcome_end_date": "2025-01-31",
+  "minimum_history_days": 252,
+  "minimum_forward_days": 200,
+  "top_decile_selection_rule": "ceil(0.10 * N) sorted descending by production score",
+  "outcome_definition": "1Y forward gross NAV return and peak-to-trough maximum drawdown",
+  "status": "Validation manifest frozen before outcome computation.",
+  "manifest_hash": "0e1a696eaadd8cff2dda97115c7ab325e5aaa45d977706bb15f5dceef8c4b14a"
+}

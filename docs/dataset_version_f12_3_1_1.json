@@ -1,0 +1,45 @@
+{
+  "dataset_version": "f12_3_1_1_v1.0.0",
+  "reconciliation_run_id": "run_f12_3_1_1_20260915_134500",
+  "execution_timestamp_utc": "2026-09-15T13:45:00.000000+00:00",
+  "database_target": "db/backfill_f12_2.db",
+  "reconciliation_status": "RECONCILIED",
+  "forensic_proof_160812": {
+    "cumulative_ledger_raw_sum": 7993379,
+    "total_db_unique_raw_observations": 8154191,
+    "set_difference_untracked_jan2024_count": 160812,
+    "untracked_jan2024_window_count": 31,
+    "untracked_jan2024_date_range": "2024-01-01 to 2024-01-31",
+    "tracked_ledger_window_unique_raw": 7993379,
+    "tracked_ledger_window_difference": 0,
+    "reverse_set_difference_count": 0,
+    "exact_mathematical_match": true
+  },
+  "dataset_boundaries": {
+    "extension_start_date": "2024-02-01",
+    "extension_end_date": "2025-01-31",
+    "pre_2024_start_date": "2014-02-28",
+    "pre_2024_end_date": "2024-01-31"
+  },
+  "metrics_reconciled": {
+    "cumulative_ledger_windows": 1515,
+    "cumulative_ledger_raw_sum": 7993379,
+    "cumulative_ledger_normalized_sum": 6210103,
+    "cumulative_unique_raw_observation_grain": 8154191,
+    "cumulative_normalized_table_rows": 6337995,
+    "extension_unique_raw_observations": 1966531,
+    "extension_normalized_records": 1571698
+  },
+  "cohort_2024_01_31_reconciled": {
+    "evaluation_cohort_schemes": 5874,
+    "forward_1y_reachable_schemes": 5750,
+    "forward_1y_reach_rate_pct": 97.89,
+    "unreachable_schemes": 124,
+    "pit_zero_lookahead_verified": true
+  },
+  "governance": {
+    "production_methodology_frozen": true,
+    "synthetic_data_used": false,
+    "nav_stitching_used": false
+  }
+}

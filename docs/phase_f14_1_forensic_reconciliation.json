@@ -1,0 +1,78 @@
+{
+  "audit_version": "F.14.1 Forensic Reconciliation",
+  "anchor_date_primary": "2024-03-28",
+  "anchor_date_alternative": "2023-03-28",
+  "total_population_N": 6720,
+  "forward_eval_population_N": 4839,
+  "reproducibility": {
+    "volatility_vs_downside_rho": 0.9752,
+    "volatility_vs_downside_claimed": 0.9752,
+    "downside_vs_mdd_rho": 0.9825,
+    "downside_vs_mdd_claimed": 0.9825,
+    "category_volatility_vs_downside": {
+      "Equity": 0.977,
+      "Debt": 0.9678,
+      "Hybrid": 0.9834
+    },
+    "category_downside_vs_mdd": {
+      "Equity": 0.9136,
+      "Debt": 0.9833,
+      "Hybrid": 0.962
+    }
+  },
+  "return_distribution_symmetry": {
+    "avg_positive_daily_returns": 178.73973214285715,
+    "avg_negative_daily_returns": 61.49940476190476,
+    "avg_daily_skewness": -1.5230253148804462,
+    "finding": "Daily mutual fund return distributions show moderate symmetry and low daily skewness, explaining why total volatility and downside deviation co-move tightly."
+  },
+  "nested_model_incremental_r2": [
+    {
+      "candidate_factor": "FQ_F03",
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.254349,
+      "incremental_r2": 0.055486,
+      "verdict": "INCREMENTAL_POWER_OBSERVED"
+    },
+    {
+      "candidate_factor": "FQ_F04",
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.203742,
+      "incremental_r2": 0.004879,
+      "verdict": "MINIMAL_OR_ZERO_INCREMENTAL_EXPLANATORY_POWER"
+    },
+    {
+      "candidate_factor": "FQ_F08",
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.252616,
+      "incremental_r2": 0.053753,
+      "verdict": "INCREMENTAL_POWER_OBSERVED"
+    },
+    {
+      "candidate_factor": "FQ_F09",
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.199304,
+      "incremental_r2": 0.000441,
+      "verdict": "MINIMAL_OR_ZERO_INCREMENTAL_EXPLANATORY_POWER"
+    },
+    {
+      "candidate_factor": "FQ_F13",
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.270083,
+      "incremental_r2": 0.071219,
+      "verdict": "INCREMENTAL_POWER_OBSERVED"
+    }
+  ],
+  "fund_age_audit": {
+    "baseline_r2": 0.198863,
+    "age_extended_r2": 0.20905,
+    "incremental_r2": 0.010187,
+    "architectural_classification": "CONFIDENCE_AND_EVIDENCE_DEPTH",
+    "finding": "Fund Age does not act as an intrinsic performance predictor (incremental R^2 near zero); its correct architectural placement is Confidence/Governance."
+  },
+  "anchor_governance": {
+    "primary_anchor_2024_03_28_rho_vol_dd": 0.9752,
+    "alt_anchor_2023_03_28_rho_vol_dd": 0.9702,
+    "finding": "High co-movement between Volatility and Downside Deviation is persistent across historical anchor dates and not an artifact of 2024-03-28."
+  }
+}

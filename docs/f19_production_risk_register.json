@@ -1,0 +1,34 @@
+[
+  {
+    "Risk": "Limited Genuine Out-of-Sample Forward Predictive Validity",
+    "Evidence": "F.16.2 multi-period evaluation showed variable forward association (2022 \u0394R\u00b2=+0.0001, 2023 \u0394R\u00b2=+0.0548, 2024 \u0394R\u00b2=+0.1045).",
+    "Severity": "HIGH",
+    "Current Control": "Explicit gating and prohibition of return guarantee marketing claims.",
+    "Residual Risk": "User misinterprets FQ rank as guaranteed future return predictor.",
+    "Required Action": "Mandatory disclaimer and explicit status: 'NOT VALIDATED FOR CONSEQUENTIAL PREDICTIVE SUPERIORITY'."
+  },
+  {
+    "Risk": "Incomplete Benchmark & TER Coverage Across All Historical Schemes",
+    "Evidence": "Database contains missing TER and benchmark data for some legacy/merged schemes.",
+    "Severity": "MEDIUM",
+    "Current Control": "Missing evidence blocks consequential action where required; defaults to HOLD/NO_ACTION.",
+    "Residual Risk": "Sub-optimal decision for funds with missing metadata.",
+    "Required Action": "Ingest authoritative AMFI/SEBI TER & benchmark data feeds."
+  },
+  {
+    "Risk": "Potential Circularity Between FQ Score and Trailing Return Comparator",
+    "Evidence": "FQ incorporates return and reciprocal volatility percentile ranks directly across peers, resulting in predictor overlap in incremental R\u00b2 regressions.",
+    "Severity": "MEDIUM",
+    "Current Control": "F.14 metric interaction audit & F.16 exact production comparator tracking.",
+    "Residual Risk": "Over-attribution of FQ composite score performance relative to simple trailing return.",
+    "Required Action": "Report incremental model-fit contribution under overlapping predictors rather than claiming independent alpha."
+  },
+  {
+    "Risk": "Execution Boundary Confusion in UI/Downstream Systems",
+    "Evidence": "Users might interpret BUY/SELL recommendation as an automated trade execution.",
+    "Severity": "HIGH",
+    "Current Control": "F.18.1 contract explicit separation: System Recommendation != User Decision != Execution Status.",
+    "Residual Risk": "Client application displays recommendation as 'Executed'.",
+    "Required Action": "Enforce strict schema validation on UI client API responses."
+  }
+]

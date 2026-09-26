@@ -1,0 +1,121 @@
+{
+  "phase": "F.19.1.1.1.1",
+  "final_status": "PASSED WITH LIMITATIONS",
+  "production_code_changed": false,
+  "production_methodology_changed": false,
+  "population_waterfall": {
+    "stage_1_anchor_candidates": 5874,
+    "excluded_under_252_pit_history": 696,
+    "excluded_under_200_fwd_history": 53,
+    "f16_scored_population": 5125,
+    "f16_valid_scored_population": 4958
+  },
+  "active_dimension_distribution": [
+    {
+      "active_dimensions": 0,
+      "scheme_count": 77,
+      "percentage": "1.50%"
+    },
+    {
+      "active_dimensions": 1,
+      "scheme_count": 90,
+      "percentage": "1.76%"
+    },
+    {
+      "active_dimensions": 2,
+      "scheme_count": 4958,
+      "percentage": "96.74%"
+    },
+    {
+      "active_dimensions": 6,
+      "scheme_count": 0,
+      "percentage": "0.00%"
+    }
+  ],
+  "effective_weight_distribution": [
+    {
+      "weight_pattern": "[('return', 62.5), ('volatility', 37.5)]",
+      "scheme_count": 4958,
+      "percentage": "96.74%"
+    },
+    {
+      "weight_pattern": "[('volatility', 100.0)]",
+      "scheme_count": 90,
+      "percentage": "1.76%"
+    },
+    {
+      "weight_pattern": "[]",
+      "scheme_count": 77,
+      "percentage": "1.50%"
+    }
+  ],
+  "cagr_overall_lineage": {
+    "normal_engine_semantics": "Compound Annual Growth Rate ((End_NAV / Start_NAV) ^ (365.25 / Days) - 1) computed across full multi-year NAV history in metrics/engine.py.",
+    "f16_input_assignment": "r_1y = (NAV_T / NAV_T-252) - 1.0 (Simple Point-to-Point 1Y Return over exactly 252 daily NAV observations).",
+    "reconciliation": "F.16 assigned trailing 1Y simple NAV return directly into the cagr_overall input slot of SchemeMetricSnapshot."
+  },
+  "representative_scheme_identity": {
+    "previous_identifier": "CANONICAL_LARGE_CAP_DIR_001",
+    "classification": "SYNTHETIC TEST FIXTURE (Generated for test suites)",
+    "corrected_approach": "Replaced with 3 genuine AMFI-backed canonical schemes from the live dataset."
+  },
+  "representative_schemes_decomposition": [
+    {
+      "canonical_scheme_id": "CAN_AMFI_100033",
+      "amfi_code": "100033",
+      "isin_growth": "INF209K01165",
+      "scheme_name": "Aditya Birla Sun Life Large & Mid Cap Fund - Regular Growth",
+      "peer_group": "Equity::Large Cap::REGULAR",
+      "return_raw": 0.3059,
+      "return_norm_score": 80.95,
+      "return_weight": 62.5,
+      "return_contribution": 50.59,
+      "volatility_raw": 0.1036,
+      "volatility_norm_score": 20.11,
+      "volatility_weight": 37.5,
+      "volatility_contribution": 7.54,
+      "final_score": 58.1,
+      "calculated_sum": 58.1,
+      "reconciled": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100034",
+      "amfi_code": "100034",
+      "isin_growth": "INF209K01157",
+      "scheme_name": "Aditya Birla Sun Life Large & Mid Cap Fund -Regular - IDCW",
+      "peer_group": "Equity::Large Cap::REGULAR",
+      "return_raw": 0.2156,
+      "return_norm_score": 68.54,
+      "return_weight": 62.5,
+      "return_contribution": 42.84,
+      "volatility_raw": 0.1304,
+      "volatility_norm_score": 7.69,
+      "volatility_weight": 37.5,
+      "volatility_contribution": 2.88,
+      "final_score": 45.7,
+      "calculated_sum": 45.7,
+      "reconciled": true
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100037",
+      "amfi_code": "100037",
+      "isin_growth": "INF209K01587",
+      "scheme_name": "Aditya Birla Sun Life Medium to Long Term Fund - Regular - Quarterly IDCW",
+      "peer_group": "Equity::Large Cap::REGULAR",
+      "return_raw": 0.0002,
+      "return_norm_score": 9.06,
+      "return_weight": 62.5,
+      "return_contribution": 5.66,
+      "volatility_raw": 0.0378,
+      "volatility_norm_score": 47.29,
+      "volatility_weight": 37.5,
+      "volatility_contribution": 17.73,
+      "final_score": 23.4,
+      "calculated_sum": 23.4,
+      "reconciled": true
+    }
+  ],
+  "lineage_classification": "B. PRODUCTION ENGINE VALIDATION UNDER DEGRADED TWO-DIMENSION DATA",
+  "dynamic_rescaling_governance": "PRODUCTION IMPLEMENTED BUT EMPIRICALLY UNVALIDATED",
+  "f16_terminology_status": "Exact production engine software execution under degraded 2-dimension data (NOT full 6-dimension methodology validation)."
+}

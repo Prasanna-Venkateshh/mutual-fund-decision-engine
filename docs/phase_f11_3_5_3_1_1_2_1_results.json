@@ -1,0 +1,137 @@
+{
+  "phase": "F.11.3.5.3.1.1.2.1",
+  "status": "PASSED WITH LIMITATIONS",
+  "current_production_status": "CURRENT PRODUCTION METHODOLOGY: FROZEN",
+  "historical_pre_anchor_freeze_status": "HISTORICAL PRE-ANCHOR FREEZE: NOT PROVEN",
+  "formal_experiment_classification": "RETROSPECTIVE POINT-IN-TIME BACKTESTING \u2014 PROSPECTIVE/PRE-REGISTERED STATUS NOT PROVEN",
+  "governance_statement": "Within the repository and artifacts examined, no dated evidence establishing that the exact methodology and strategy-selection rules were frozen before 2024-01-31 was found. The analysis is point-in-time with respect to the historical data but is not prospective/pre-registered evidence because the methodology was not demonstrably frozen before the evaluation anchor.",
+  "metrics": {
+    "strategy_a_12_23": {
+      "value": 0.122288,
+      "exact_value": 12.23,
+      "formatted": "12.23%",
+      "exact_origin": "scripts/run_f11_3_5_3_unseen_validation.py line 440 -> docs/phase_f11_3_5_3_results.json line 76",
+      "population": "Valid scored schemes (N=5,713)",
+      "selection_rule": "Top 10% Trailing 1Y Return",
+      "formula": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+      "sample_size": 571,
+      "status": "RECONCILED"
+    },
+    "strategy_a_7_56": {
+      "value": null,
+      "exact_value": null,
+      "formatted": "7.56%",
+      "exact_origin": "Prompt F.11.3.5.3.1.1.2 audit question note (Absent from JSON result files and Markdown reports)",
+      "population": "Unknown draft net/portfolio path subset",
+      "selection_rule": "Top 10% Trailing 1Y Return",
+      "formula": "Unknown",
+      "status": "UNRECONCILED \u2014 ORIGIN NOT PROVEN"
+    },
+    "strategy_b_4_34": {
+      "value": 0.043439,
+      "exact_value": 4.34,
+      "formatted": "4.34%",
+      "exact_origin": "scripts/run_f11_3_5_3_unseen_validation.py line 444 -> docs/phase_f11_3_5_3_results.json line 82",
+      "population": "Valid scored schemes (N=5,713)",
+      "selection_rule": "Lowest 10% Historical Volatility",
+      "formula": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+      "sample_size": 571,
+      "status": "RECONCILED"
+    },
+    "strategy_b_6_82": {
+      "value": 0.068705,
+      "exact_value": 6.82,
+      "formatted": "6.87%",
+      "exact_origin": "docs/phase_f11_3_5_3_unseen_period_decision_value_report.md Table 29 line 89",
+      "population": "Valid scored schemes (N=5,713)",
+      "selection_rule": "Lowest 10% Historical Downside Risk",
+      "formula": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+      "sample_size": 571,
+      "status": "RECONCILED AS SEPARATE DOWNSIDE RISK COMPARATOR"
+    },
+    "strategy_b_6_87": {
+      "value": 0.068705,
+      "exact_value": 6.87,
+      "formatted": "6.87%",
+      "exact_origin": "docs/phase_f11_3_5_3_unseen_period_decision_value_report.md Table 29 line 89",
+      "population": "Valid scored schemes (N=5,713)",
+      "selection_rule": "Lowest 10% Historical Downside Risk (Alternative Aggregation)",
+      "formula": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+      "sample_size": 571,
+      "status": "RECONCILED AS SEPARATE DOWNSIDE RISK COMPARATOR"
+    },
+    "strategy_c_7_81": {
+      "value": 0.078088,
+      "exact_value": 7.81,
+      "formatted": "7.81%",
+      "exact_origin": "scripts/run_f11_3_5_3_unseen_validation.py line 448 -> docs/phase_f11_3_5_3_results.json line 88",
+      "population": "Valid scored schemes (N=5,713)",
+      "selection_rule": "Top 10% Fund Quality Score",
+      "formula": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+      "sample_size": 571,
+      "status": "RECONCILED"
+    },
+    "mdd_16_83": {
+      "value": 0.168269,
+      "exact_value": 16.83,
+      "formatted": "16.83%",
+      "exact_origin": "docs/phase_f11_3_5_3_results.json line 77",
+      "metric_name": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "strategy": "Strategy A",
+      "status": "RECONCILED"
+    },
+    "mdd_0_11": {
+      "value": 0.001073,
+      "exact_value": 0.11,
+      "formatted": "0.11%",
+      "exact_origin": "docs/phase_f11_3_5_3_results.json line 83",
+      "metric_name": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "strategy": "Strategy B (Historical Volatility Sort)",
+      "status": "RECONCILED"
+    },
+    "mdd_0_45": {
+      "value": 2e-05,
+      "exact_value": 0.45,
+      "formatted": "0.00%",
+      "exact_origin": "docs/phase_f11_3_5_3_unseen_period_decision_value_report.md Table 29 line 89",
+      "metric_name": "MEDIAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "strategy": "Strategy B (Downside Risk Sort)",
+      "status": "RECONCILED AS MEDIAN COMPARATOR"
+    },
+    "mdd_1_26": {
+      "value": 0.012633,
+      "exact_value": 1.26,
+      "formatted": "1.26%",
+      "exact_origin": "docs/phase_f11_3_5_3_results.json line 89",
+      "metric_name": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "strategy": "Strategy C",
+      "status": "RECONCILED"
+    }
+  },
+  "comparability": {
+    "common_return_definition": "Equal-weighted arithmetic mean of individual scheme 1Y forward gross NAV returns",
+    "all_strategies_sample_size": 571,
+    "forward_period": "2024-02-01 to 2025-01-31"
+  },
+  "freeze_governance": {
+    "current_production_methodology": "CURRENT PRODUCTION METHODOLOGY: FROZEN",
+    "historical_pre_anchor_freeze": "HISTORICAL PRE-ANCHOR FREEZE: NOT PROVEN",
+    "experiment_classification": "RETROSPECTIVE POINT-IN-TIME BACKTESTING \u2014 PROSPECTIVE/PRE-REGISTERED STATUS NOT PROVEN"
+  },
+  "production_impact": {
+    "scoring_logic_changed": false,
+    "weights_changed": false,
+    "suitability_changed": false,
+    "action_logic_changed": false
+  },
+  "authoritative_comparable_return_definition": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+  "authoritative_mdd_definition": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+  "prohibited_causal_terms": [
+    "Portfolio MDD",
+    "Risk protection",
+    "Portfolio protection",
+    "Causal risk reduction",
+    "Predictive superiority",
+    "Alpha"
+  ]
+}

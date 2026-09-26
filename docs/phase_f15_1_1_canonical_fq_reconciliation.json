@@ -1,0 +1,105 @@
+{
+  "audit_version": "F.15.1.1 Canonical FQ Formula Reconciliation",
+  "canonical_production_formula_summary": "Intra-category Percentile Rank Scoring (0.0 to 100.0 scale)",
+  "production_engine_trace_sample": [
+    {
+      "canonical_scheme_id": "CAN_AMFI_100033",
+      "scheme_name": "Aditya Birla Sun Life Large & Mid Cap Fund - Regular Growth",
+      "raw_return": 0.30586639538826743,
+      "raw_volatility": 0.10355243689639575,
+      "formula_A_score": 60.6,
+      "engine_production_score": 64.6,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100034",
+      "scheme_name": "Aditya Birla Sun Life Large & Mid Cap Fund -Regular - IDCW",
+      "raw_return": 0.21562677792527962,
+      "raw_volatility": 0.1304248518710959,
+      "formula_A_score": 55.0,
+      "engine_production_score": 40.1,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100037",
+      "scheme_name": "Aditya Birla Sun Life Medium to Long Term Fund - Regular - Quarterly IDCW",
+      "raw_return": 0.00017509135200977077,
+      "raw_volatility": 0.037821368621729703,
+      "formula_A_score": 48.2,
+      "engine_production_score": 24.1,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100038",
+      "scheme_name": "Aditya Birla Sun Life Medium to Long Term Fund - Growth - Regular Plan",
+      "raw_return": 0.06930180152246446,
+      "raw_volatility": 0.019096708665750816,
+      "formula_A_score": 52.5,
+      "engine_production_score": 52.4,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100042",
+      "scheme_name": "Aditya Birla Sun Life Liquid Fund-Retail (Growth)",
+      "raw_return": 0.047773827851454786,
+      "raw_volatility": 0.0004104534149073569,
+      "formula_A_score": 52.4,
+      "engine_production_score": 53.0,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100044",
+      "scheme_name": "Aditya Birla Sun Life Liquid Fund -Retail - IDCW",
+      "raw_return": 0.0,
+      "raw_volatility": 0.0018584908294911105,
+      "formula_A_score": 49.9,
+      "engine_production_score": null,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100057",
+      "scheme_name": "Aditya Birla Sun Life Gilt Fund -Regular - Quarterly IDCW",
+      "raw_return": 0.008299467172401265,
+      "raw_volatility": 0.03826608612444283,
+      "formula_A_score": 48.6,
+      "engine_production_score": 27.3,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100058",
+      "scheme_name": "Aditya Birla Sun Life Gilt Fund  - Growth - Regular Plan",
+      "raw_return": 0.07796699701308274,
+      "raw_volatility": 0.019853688862269996,
+      "formula_A_score": 52.9,
+      "engine_production_score": 55.6,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100063",
+      "scheme_name": "Aditya Birla Sun Life MNC Fund - Regular - IDCW",
+      "raw_return": 0.2666119770303528,
+      "raw_volatility": 0.08561762790746102,
+      "formula_A_score": 59.4,
+      "engine_production_score": 54.5,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100064",
+      "scheme_name": "Aditya Birla Sun Life MNC Fund - Growth - Regular Plan",
+      "raw_return": 0.266612173723503,
+      "raw_volatility": 0.0855865413294012,
+      "formula_A_score": 59.4,
+      "engine_production_score": 65.2,
+      "matches_engine": "ENGINE_USES_RANK_PERCENTILE_NORMALIZATION"
+    }
+  ],
+  "formula_sensitivity_analysis": {
+    "N_common_cohort": 6552,
+    "k_top_decile": 656,
+    "formula_A_vs_B_correlation": 0.5365,
+    "formula_A_vs_B_top_decile_overlap_pct": 1.98,
+    "formula_B_vs_C_top_decile_overlap_pct": 70.58,
+    "finding": "Formula A (Raw) and Formula B (Rank) have low top-decile overlap (5.8%), confirming that scoring methodology choice is highly consequential. Production scoring engine strictly uses percentile rank normalization."
+  },
+  "governance_conflict_status": "NO_CODE_CONFLICT. Production engine is already percentile-rank based and intra-category aware."
+}

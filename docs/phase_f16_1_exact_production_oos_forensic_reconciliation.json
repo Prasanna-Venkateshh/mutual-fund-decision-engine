@@ -1,0 +1,111 @@
+{
+  "audit_version": "F.16.1 Exact-Production OOS Result Forensic Reconciliation & Decision-Use Governance",
+  "population_waterfall_reconciliation": {
+    "stage_1_anchor_nav_population": 5874,
+    "excluded_insufficient_history_lt_252": 696,
+    "excluded_nonpositive_nav": 0,
+    "excluded_forward_unreachable_lt_200": 53,
+    "stage_6_final_scored_population": 5125,
+    "excluded_nan_production_score": 167,
+    "final_valid_scored_N": 4958,
+    "top_decile_k": 496
+  },
+  "phase_population_reconciliation_table": [
+    {
+      "phase": "F.12.3.1.2",
+      "anchor_N": 5874,
+      "reachable_N": 5750,
+      "final_scored_N": 5750,
+      "key_rule": "Strict NAV observation on anchor date T"
+    },
+    {
+      "phase": "F.11.3.5.5",
+      "anchor_N": 5874,
+      "reachable_N": 5750,
+      "final_scored_N": 5713,
+      "key_rule": "Excluded non-reachable and non-positive NAVs"
+    },
+    {
+      "phase": "F.15",
+      "anchor_N": 5874,
+      "reachable_N": 5126,
+      "final_scored_N": 5126,
+      "key_rule": "Required >= 252 PIT daily observations"
+    },
+    {
+      "phase": "F.16 / F.16.1",
+      "anchor_N": 5874,
+      "reachable_N": 5125,
+      "final_scored_N": 4958,
+      "key_rule": "Required valid non-NaN production FQ score"
+    }
+  ],
+  "strategy_results_table": [
+    {
+      "strategy": "Strategy A (Trailing Return)",
+      "N": 496,
+      "mean_return": 0.1298,
+      "median_return": 0.1108,
+      "std_return": 0.094,
+      "min_return": -0.0741,
+      "max_return": 0.7781,
+      "mean_mdd": 0.1667,
+      "median_mdd": 0.1641,
+      "std_mdd": 0.0323,
+      "min_mdd": 0.0847,
+      "max_mdd": 0.277
+    },
+    {
+      "strategy": "Strategy B (Lowest Volatility)",
+      "N": 496,
+      "mean_return": 0.0633,
+      "median_return": 0.0724,
+      "std_return": 0.0263,
+      "min_return": -0.1411,
+      "max_return": 0.0816,
+      "mean_mdd": 0.0011,
+      "median_mdd": 0.0,
+      "std_mdd": 0.0118,
+      "min_mdd": 0.0,
+      "max_mdd": 0.1728
+    },
+    {
+      "strategy": "Strategy C (Exact Production FQ)",
+      "N": 496,
+      "mean_return": 0.1301,
+      "median_return": 0.1233,
+      "std_return": 0.0585,
+      "min_return": -0.0868,
+      "max_return": 0.2908,
+      "mean_mdd": 0.1486,
+      "median_mdd": 0.1535,
+      "std_mdd": 0.0446,
+      "min_mdd": 0.0,
+      "max_mdd": 0.2439
+    }
+  ],
+  "fq_vs_trailing_return_differences": {
+    "mean_return_difference_abs": 0.0003,
+    "median_return_difference_abs": 0.0125,
+    "mean_mdd_difference_abs": 0.0181,
+    "median_mdd_difference_abs": 0.0106,
+    "interpretation_ret": "Observed mean-return difference of +0.03% gross NAV return (+0.0003).",
+    "interpretation_mdd": "Observed forward MDD difference of -1.81% gross MDD (-0.0181)."
+  },
+  "decision_use_governance_status": "Exact-production OOS validation passed mechanically, but consequential decision-use readiness remains subject to broader multi-period validation and downstream Suitability / Portfolio Need / Economic Benefit / Action controls.",
+  "claim_matrix": {
+    "Production engine executes correctly": "SUPPORTED",
+    "Exact production peer scope used": "SUPPORTED",
+    "PIT integrity": "SUPPORTED",
+    "OOS forward association": "SUPPORTED",
+    "FQ has higher mean return than trailing comparator": "SUPPORTED (+0.03% gross NAV return)",
+    "FQ has lower mean MDD than trailing comparator": "SUPPORTED (-1.81% gross MDD)",
+    "FQ adds model-fit contribution beyond Return + Vol": "SUPPORTED (Incremental R2 = +0.1045)",
+    "FQ provides independent information": "NOT SUPPORTED (Component circularity present)",
+    "FQ demonstrates causal risk protection": "NOT SUPPORTED (Observational correlation only)",
+    "FQ demonstrates economic benefit": "NOT TESTABLE (Requires transaction cost & tax modeling)",
+    "FQ is ready to drive consequential investor actions": "PARTIALLY SUPPORTED (Requires multi-period & downstream Action engine validation)"
+  },
+  "production_status": "Production scoring engine remains frozen, immutable, and unchanged.",
+  "unresolved_items": "None"
+}

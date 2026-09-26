@@ -1,0 +1,118 @@
+{
+  "phase": "F.13",
+  "generated_at": "2026-09-16",
+  "factors": [
+    {
+      "factor_id": "FQ_F01",
+      "factor_name": "Trailing 1Y Gross Return",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "DATA_FULLY_AVAILABLE",
+      "pit_status": "PIT_VERIFIED",
+      "production_eligibility": "PRODUCTION_ELIGIBLE"
+    },
+    {
+      "factor_id": "FQ_F02",
+      "factor_name": "Annualized Volatility (1Y)",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "DATA_FULLY_AVAILABLE",
+      "pit_status": "PIT_VERIFIED",
+      "production_eligibility": "PRODUCTION_ELIGIBLE"
+    },
+    {
+      "factor_id": "FQ_F03",
+      "factor_name": "Downside Deviation (MAR = 0%)",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "DATA_FULLY_AVAILABLE",
+      "pit_status": "PIT_VERIFIED",
+      "production_eligibility": "VALIDATION_REQUIRED"
+    },
+    {
+      "factor_id": "FQ_F04",
+      "factor_name": "Maximum Drawdown (Historical MDD)",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "DATA_FULLY_AVAILABLE",
+      "pit_status": "PIT_VERIFIED",
+      "production_eligibility": "VALIDATION_REQUIRED"
+    },
+    {
+      "factor_id": "FQ_F05",
+      "factor_name": "Fund Age / Evidence Depth",
+      "intended_layer": "CONFIDENCE",
+      "data_status": "DATA_FULLY_AVAILABLE",
+      "pit_status": "PIT_VERIFIED",
+      "production_eligibility": "PRODUCTION_ELIGIBLE"
+    },
+    {
+      "factor_id": "FQ_F06",
+      "factor_name": "Fund Manager Tenure & Identity",
+      "intended_layer": "CONFIDENCE",
+      "data_status": "BLOCKED_BY_DATA",
+      "pit_status": "PIT_NOT_AVAILABLE",
+      "production_eligibility": "BLOCKED_BY_DATA"
+    },
+    {
+      "factor_id": "FQ_F07",
+      "factor_name": "Total Expense Ratio (TER)",
+      "intended_layer": "ECONOMIC BENEFIT",
+      "data_status": "DATA_PARTIALLY_AVAILABLE",
+      "pit_status": "PIT_POSSIBLE_BUT_UNVALIDATED",
+      "production_eligibility": "VALIDATION_REQUIRED"
+    },
+    {
+      "factor_id": "FQ_F08",
+      "factor_name": "Sharpe Ratio (1Y / 3Y)",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "DATA_FULLY_AVAILABLE",
+      "pit_status": "PIT_VERIFIED",
+      "production_eligibility": "VALIDATION_REQUIRED"
+    },
+    {
+      "factor_id": "FQ_F09",
+      "factor_name": "Sortino Ratio (1Y / 3Y)",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "DATA_FULLY_AVAILABLE",
+      "pit_status": "PIT_VERIFIED",
+      "production_eligibility": "VALIDATION_REQUIRED"
+    },
+    {
+      "factor_id": "FQ_F10",
+      "factor_name": "Benchmark Excess Return (Alpha)",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "BLOCKED_BY_DATA",
+      "pit_status": "PIT_NOT_AVAILABLE",
+      "production_eligibility": "BLOCKED_BY_DATA"
+    },
+    {
+      "factor_id": "FQ_F11",
+      "factor_name": "Tracking Error (1Y)",
+      "intended_layer": "SUITABILITY",
+      "data_status": "BLOCKED_BY_DATA",
+      "pit_status": "PIT_NOT_AVAILABLE",
+      "production_eligibility": "BLOCKED_BY_DATA"
+    },
+    {
+      "factor_id": "FQ_F12",
+      "factor_name": "Information Ratio (1Y)",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "BLOCKED_BY_DATA",
+      "pit_status": "PIT_NOT_AVAILABLE",
+      "production_eligibility": "BLOCKED_BY_DATA"
+    },
+    {
+      "factor_id": "FQ_F13",
+      "factor_name": "Rolling Return Consistency (3Y / 5Y)",
+      "intended_layer": "FUND QUALITY",
+      "data_status": "DATA_PARTIALLY_AVAILABLE",
+      "pit_status": "PIT_VERIFIED",
+      "production_eligibility": "VALIDATION_REQUIRED"
+    },
+    {
+      "factor_id": "FQ_F14",
+      "factor_name": "SEBI Riskometer / Category Mandate Risk",
+      "intended_layer": "SUITABILITY",
+      "data_status": "DATA_PARTIALLY_AVAILABLE",
+      "pit_status": "PIT_POSSIBLE_BUT_UNVALIDATED",
+      "production_eligibility": "VALIDATION_REQUIRED"
+    }
+  ]
+}

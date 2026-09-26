@@ -1,0 +1,8 @@
+{
+  "manifest_version": "F.17-CHAIN-VALIDATION-v1.0",
+  "audited_at_utc": "2026-09-16T19:00:38.954350",
+  "orchestrator_class": "DecisionOrchestrator",
+  "pipeline_sequence": "DATA -> METRICS -> FUND QUALITY -> SUITABILITY -> PORTFOLIO NEED -> ECONOMIC BENEFIT -> ACTION",
+  "scenarios_evaluated_count": 22,
+  "scenarios_passed_count": 22
+}

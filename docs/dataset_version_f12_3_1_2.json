@@ -1,0 +1,42 @@
+{
+  "dataset_version": "f12_3_1_2_v1.0.0",
+  "reconciliation_run_id": "run_f12_3_1_2_legacy_closure",
+  "execution_timestamp_utc": "2026-09-15T15:08:46.000000+00:00",
+  "database_target": "db/backfill_f12_2.db",
+  "reconciliation_status": "RECONCILED",
+  "january_2024_legacy_closure": {
+    "ledger_window_count": 31,
+    "status": "LEGACY_UNTRACKED_RECONCILED",
+    "date_range": "2024-01-01 to 2024-01-31",
+    "unique_raw_observations": 160812,
+    "physical_raw_rows": 160812,
+    "normalized_records": 127892,
+    "nav_quarantine": 2268,
+    "mapping_quarantine": 30652,
+    "disposition_identity_reconciled": true,
+    "provenance_evidence_category": "FULL_SOURCE_EVIDENCE"
+  },
+  "cumulative_ledger_metrics": {
+    "total_windows": 1546,
+    "raw_sum": 8154191,
+    "normalized_sum": 6337995,
+    "nav_quarantine_sum": 120879,
+    "mapping_quarantine_sum": 1695317,
+    "ledger_to_db_raw_difference": 0,
+    "ledger_to_db_normalized_difference": 0,
+    "exact_match_verified": true
+  },
+  "cohort_2024_01_31_reconciled": {
+    "evaluation_cohort_schemes": 5874,
+    "forward_1y_reachable_schemes": 5750,
+    "forward_1y_reach_rate_pct": 97.89,
+    "unreachable_schemes": 124,
+    "pit_zero_lookahead_verified": true
+  },
+  "governance": {
+    "production_methodology_frozen": true,
+    "synthetic_data_used": false,
+    "nav_stitching_used": false,
+    "audit_trail_preserved": true
+  }
+}

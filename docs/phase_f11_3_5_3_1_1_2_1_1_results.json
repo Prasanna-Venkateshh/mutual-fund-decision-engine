@@ -1,0 +1,109 @@
+{
+  "phase": "F.11.3.5.3.1.1.2.1.1",
+  "status": "PASSED WITH LIMITATIONS",
+  "governed_strategy_b_definition": "LOWEST 10% HISTORICAL VOLATILITY",
+  "governance_provenance": "scripts/run_f11_3_5_3_unseen_validation.py line 437: vol_sorted_idx = np.argsort(hist_vol) -> docs/phase_f11_3_5_3_results.json line 80: strategy_b_vol",
+  "population_reconciliation": {
+    "total_eligible_scored_universe": 5713,
+    "selected_decile_n": 571,
+    "decile_fraction": 0.1
+  },
+  "metrics_reconciliation": {
+    "strategy_b_4_34": {
+      "exact_value": 4.34,
+      "reproduced_value": 4.34,
+      "selection_rule": "LOWEST 10% HISTORICAL VOLATILITY",
+      "formula": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+      "population_n": 571,
+      "exact_origin": "scripts/run_f11_3_5_3_unseen_validation.py:444 -> docs/phase_f11_3_5_3_results.json:82",
+      "status": "4.34% = RECONCILED GOVERNED STRATEGY B RESULT"
+    },
+    "strategy_b_6_82": {
+      "exact_value": 6.82,
+      "reproduced_value": null,
+      "selection_rule": "Lowest 10% Historical Downside Risk",
+      "formula": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+      "exact_origin": "docs/phase_f11_3_5_3_unseen_period_decision_value_report.md Table 29 line 89",
+      "status": "6.82% = HISTORICAL NARRATIVE VALUE \u2014 CALCULATION ORIGIN NOT REPRODUCIBLE (Differs by 0.05% from exact downside risk mean 6.87%)"
+    },
+    "strategy_b_6_87": {
+      "exact_value": 6.87,
+      "reproduced_value": 6.87,
+      "selection_rule": "Lowest 10% Historical Downside Risk",
+      "formula": "EQUAL-WEIGHTED ARITHMETIC MEAN OF INDIVIDUAL SCHEME 1Y FORWARD GROSS NAV RETURNS",
+      "population_n": 571,
+      "exact_origin": "scripts/run_f11_3_5_3_1_1_2_strategy_governance_reconciliation.py line 290 -> docs/phase_f11_3_5_3_1_1_2_results.json line 37",
+      "status": "RECONCILED AS SECONDARY HISTORICAL COMPARATOR (Comparator B-DOWN)"
+    },
+    "diff_6_82_vs_6_87": {
+      "difference_percentage_points": 0.05,
+      "explanation": "6.82% is a truncated narrative report artifact in Table 29 of F.11.3.5.3 report; 6.87% is the exact unrounded equal-weighted arithmetic mean return for the Lowest 10% Historical Downside Risk cohort.",
+      "status": "6.82% VS 6.87% = RECONCILED (Narrative truncation vs exact mean calculation)"
+    },
+    "mdd_0_11": {
+      "exact_value": 0.11,
+      "reproduced_value": 0.11,
+      "metric_name": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "strategy": "Governed Strategy B (Lowest Historical Volatility)",
+      "exact_origin": "docs/phase_f11_3_5_3_results.json line 83",
+      "status": "0.11% = RECONCILED GOVERNED STRATEGY B MDD"
+    },
+    "mdd_0_45": {
+      "exact_value": 0.45,
+      "reproduced_value": 0.0,
+      "metric_name": "MEDIAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "strategy": "Comparator B-DOWN (Lowest Historical Downside Risk)",
+      "exact_origin": "docs/phase_f11_3_5_3_unseen_period_decision_value_report.md Table 29 line 89",
+      "status": "RECONCILED AS SECONDARY COMPARATOR MEDIAN MDD (Incomparable to Mean MDD)"
+    }
+  },
+  "mdd_comparability": {
+    "strategy_a_mdd_mean": 16.83,
+    "strategy_b_vol_mdd_mean": 0.11,
+    "strategy_c_mdd_mean": 16.8,
+    "comparator_b_down_mdd_median": 0.0,
+    "comparability_note": "Strategy A (16.83%), Governed Strategy B (0.11%), and Strategy C (1.26%) all use MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN. The 0.45% figure in Table 29 is a MEDIAN statistic for the Downside Risk comparator and is statistically incomparable to the mean MDD figures."
+  },
+  "primary_authoritative_comparison": {
+    "strategy_a_trailing_return": {
+      "return": "12.23%",
+      "mdd": "16.83%",
+      "selection_rule": "Top 10% Trailing 1Y Return"
+    },
+    "strategy_b_governed_volatility": {
+      "return": "4.34%",
+      "mdd": "0.11%",
+      "selection_rule": "Lowest 10% Historical Volatility"
+    },
+    "strategy_c_fund_quality": {
+      "return": "7.81%",
+      "mdd": "1.26%",
+      "selection_rule": "Top 10% Fund Quality Score"
+    }
+  },
+  "secondary_comparators": [
+    {
+      "name": "Comparator B-DOWN",
+      "selection_variable": "Historical Downside Risk",
+      "return": "6.87%",
+      "mean_mdd": "0.13%",
+      "median_mdd": "0.00% (0.45%)",
+      "status": "SECONDARY HISTORICAL COMPARATOR \u2014 NOT GOVERNED STRATEGY B"
+    }
+  ],
+  "future_injection_invariance": {
+    "volatility_sort_invariant": true,
+    "downside_sort_invariant": true,
+    "result": "PASS"
+  },
+  "current_production_methodology_changed": false,
+  "historical_pre_freeze_classification": "RETROSPECTIVE POINT-IN-TIME BACKTESTING \u2014 PROSPECTIVE/PRE-REGISTERED STATUS NOT PROVEN",
+  "prohibited_causal_terms": [
+    "Portfolio MDD",
+    "Risk protection",
+    "Portfolio protection",
+    "Causal risk reduction",
+    "Predictive superiority",
+    "Alpha"
+  ]
+}

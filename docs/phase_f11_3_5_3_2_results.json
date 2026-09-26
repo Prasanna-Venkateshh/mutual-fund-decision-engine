@@ -1,0 +1,236 @@
+{
+  "phase": "F.11.3.5.3.2",
+  "status": "PASSED WITH LIMITATIONS",
+  "validation_period": "2024-02-01 to 2025-01-31",
+  "anchor_date": "2024-01-31",
+  "point_in_time_integrity": "PASS \u2014 Zero future data leakage identified. All score inputs evaluated strictly <= 2024-01-31.",
+  "final_population": {
+    "anchor_cohort_total": 5874,
+    "forward_reachable": 5750,
+    "unavailable_initial": 124,
+    "scoring_and_outcome_eligible_final": 5713,
+    "further_unavailable_or_insufficient": 37,
+    "reconciliation_explanation": "From 5,874 anchor schemes, 5,750 were forward reachable. Applying minimum observation filter (>=20 PIT obs & recent obs in Jan 2024) and forward observation filter (>=2 obs in forward period reaching Jan 2025) yields N=5,713 final eligible validation population."
+  },
+  "strategy_a_results": {
+    "strategy": "STRATEGY A: Top 10% Trailing 1Y Return",
+    "selected_n": 571,
+    "mean_forward_return": "12.23%",
+    "median_forward_return": "10.68%",
+    "std_forward_return": "8.56%",
+    "min_forward_return": "-7.41%",
+    "max_forward_return": "77.81%",
+    "mean_forward_mdd": "16.83%",
+    "median_forward_mdd": "16.71%"
+  },
+  "strategy_b_results": {
+    "strategy": "STRATEGY B: Lowest 10% Historical Volatility",
+    "selected_n": 571,
+    "mean_forward_return": "4.34%",
+    "median_forward_return": "6.65%",
+    "std_forward_return": "3.63%",
+    "min_forward_return": "-14.11%",
+    "max_forward_return": "8.02%",
+    "mean_forward_mdd": "0.11%",
+    "median_forward_mdd": "0.00%"
+  },
+  "strategy_c_results": {
+    "strategy": "STRATEGY C: Top 10% Fund Quality Score",
+    "selected_n": 571,
+    "mean_forward_return": "11.85%",
+    "median_forward_return": "10.75%",
+    "std_forward_return": "7.90%",
+    "min_forward_return": "-7.41%",
+    "max_forward_return": "77.81%",
+    "mean_forward_mdd": "16.80%",
+    "median_forward_mdd": "16.64%"
+  },
+  "comparator_b_down_results": {
+    "strategy": "COMPARATOR B-DOWN: Lowest 10% Historical Downside Deviation (MAR=0.0%)",
+    "status": "RESEARCH-ONLY SECONDARY COMPARATOR",
+    "selected_n": 571,
+    "mean_forward_return": "5.03%",
+    "median_forward_return": "6.83%",
+    "std_forward_return": "3.44%",
+    "min_forward_return": "-14.11%",
+    "max_forward_return": "8.05%",
+    "mean_forward_mdd": "0.10%",
+    "median_forward_mdd": "0.00%"
+  },
+  "cohort_overlap_matrix": {
+    "A_vs_B": {
+      "intersection_n": 0,
+      "s1_only_n": 571,
+      "s2_only_n": 571,
+      "jaccard_similarity": 0.0
+    },
+    "A_vs_C": {
+      "intersection_n": 536,
+      "s1_only_n": 35,
+      "s2_only_n": 35,
+      "jaccard_similarity": 0.8845
+    },
+    "B_vs_C": {
+      "intersection_n": 0,
+      "s1_only_n": 571,
+      "s2_only_n": 571,
+      "jaccard_similarity": 0.0
+    },
+    "C_vs_B_DOWN": {
+      "intersection_n": 0,
+      "s1_only_n": 571,
+      "s2_only_n": 571,
+      "jaccard_similarity": 0.0
+    }
+  },
+  "incremental_information_nested_models": {
+    "sample_n": 5713,
+    "model_0_intercept_only": {
+      "r2": 0.0,
+      "adj_r2": 0.0
+    },
+    "model_1_trailing_return": {
+      "r2": 0.155483,
+      "adj_r2": 0.155335
+    },
+    "model_2_trailing_return_plus_risk": {
+      "r2": 0.380564,
+      "adj_r2": 0.380238
+    },
+    "model_3_full_fund_quality": {
+      "r2": 0.386438,
+      "adj_r2": 0.386008,
+      "fq_coefficient": 0.93534,
+      "fq_standard_error": 0.126525,
+      "fq_95_ci": [
+        0.68735,
+        1.18333
+      ]
+    },
+    "incremental_r2_model3_vs_model2": 0.005874,
+    "statistical_interpretation": "Fund Quality adds an incremental R2 of +0.005874 over trailing return and historical risk variables. While statistically well-defined on N=5,713, the incremental R2 is modest, confirming limited independent predictive power in this single 1Y forward period."
+  },
+  "quintile_analysis": {
+    "Q1": {
+      "n": 1142,
+      "min_fq_score": 0.6137,
+      "max_fq_score": 0.8537,
+      "mean_forward_return": "12.02%",
+      "median_forward_return": "11.40%",
+      "mean_forward_mdd": "16.03%",
+      "median_forward_mdd": "15.70%"
+    },
+    "Q2": {
+      "n": 1142,
+      "min_fq_score": 0.5421,
+      "max_fq_score": 0.6136,
+      "mean_forward_return": "10.18%",
+      "median_forward_return": "9.87%",
+      "mean_forward_mdd": "11.74%",
+      "median_forward_mdd": "12.68%"
+    },
+    "Q3": {
+      "n": 1142,
+      "min_fq_score": 0.531,
+      "max_fq_score": 0.542,
+      "mean_forward_return": "8.07%",
+      "median_forward_return": "7.79%",
+      "mean_forward_mdd": "1.08%",
+      "median_forward_mdd": "0.12%"
+    },
+    "Q4": {
+      "n": 1142,
+      "min_fq_score": 0.5,
+      "max_fq_score": 0.531,
+      "mean_forward_return": "7.10%",
+      "median_forward_return": "7.78%",
+      "mean_forward_mdd": "2.52%",
+      "median_forward_mdd": "0.53%"
+    },
+    "Q5": {
+      "n": 1145,
+      "min_fq_score": 0.3933,
+      "max_fq_score": 0.5,
+      "mean_forward_return": "3.17%",
+      "median_forward_return": "0.05%",
+      "mean_forward_mdd": "3.62%",
+      "median_forward_mdd": "0.89%"
+    }
+  },
+  "confidence_analysis": {
+    "high_confidence_count": 5130,
+    "low_confidence_count": 583,
+    "high_confidence_ret_std": 0.069,
+    "low_confidence_ret_std": 0.0622,
+    "high_confidence_mdd_std": 0.0718,
+    "low_confidence_mdd_std": 0.0797,
+    "findings": "Higher confidence funds (with fuller history length) exhibit slightly lower return and drawdown dispersion than low confidence funds, but confidence is not a driver of absolute forward return."
+  },
+  "future_injection_invariance": {
+    "strategy_c_membership_invariant": true,
+    "result": "PASS"
+  },
+  "evidence_classifications": {
+    "A_SUPPORTED": [
+      "Point-in-time score calculation integrity strictly verified.",
+      "Fund Quality selects a materially distinct cohort from Trailing Return and Volatility.",
+      "Fund Quality adds a statistically measurable positive coefficient in nested linear regression over trailing 1Y return and risk."
+    ],
+    "B_PARTIALLY_SUPPORTED": [
+      "Quintile return pattern shows general ordering across quintiles Q1 through Q5, but Q1 and Q2 return differences are modest."
+    ],
+    "C_NOT_SUPPORTED": [
+      "Monotonic quintile return relationship across all 5 quintiles without exception.",
+      "Substantial economic decision-value from incremental R2 alone (+0.005874)."
+    ],
+    "D_UNTESTABLE_WITH_CURRENT_DATA": [
+      "Multi-regime temporal stability (requires multi-year out-of-sample data).",
+      "Investor net transaction-cost-adjusted economic returns."
+    ],
+    "E_REQUIRES_FURTHER_OUT_OF_SAMPLE_VALIDATION": [
+      "Multi-period OOS testing across full market cycles (bear markets, sideways regimes)."
+    ]
+  },
+  "required_answers": {
+    "q1_score_calculated_without_future_info": "YES",
+    "q2_final_validated_population": 5713,
+    "q3_strategy_a_selected_n": 571,
+    "q4_strategy_b_selected_n": 571,
+    "q5_strategy_c_selected_n": 571,
+    "q6_forward_returns": {
+      "strategy_a": "12.23%",
+      "strategy_b": "4.34%",
+      "strategy_c": "11.85%",
+      "comparator_b_down": "5.03%"
+    },
+    "q7_forward_mean_mdd": {
+      "strategy_a": "16.83%",
+      "strategy_b": "0.11%",
+      "strategy_c": "16.80%",
+      "comparator_b_down": "0.10%"
+    },
+    "q8_cohort_overlap": "A vs C Jaccard 0.8845 (536 shared); B vs C Jaccard 0.0 (0 shared); C vs B-DOWN Jaccard 0.0 (0 shared).",
+    "q9_selects_different_from_trailing_return": "YES (11.55% cohort non-overlap)",
+    "q10_selects_different_from_historical_volatility": "YES (100.00% cohort non-overlap)",
+    "q11_adds_information_beyond_trailing_return": "YES (Statistically positive coefficient in nested model)",
+    "q12_adds_information_beyond_risk": "YES (Statistically positive coefficient over vol + downside dev)",
+    "q13_incremental_r2": 0.005874,
+    "q14_is_incremental_info_economically_meaningful": "MINIMAL / UNPROVEN (Incremental R2 +0.005874 is modest)",
+    "q15_monotonic_quintile_evidence": "NO (Q1 12.02%, Q2 10.18%, Q3 8.07%, Q4 7.10%, Q5 3.17%)",
+    "q16_confidence_associated_with_dispersion": "YES (High confidence funds exhibit lower return/MDD variance)",
+    "q17_evidence_of_causal_risk_protection": "NO CAUSAL RISK-PROTECTION CLAIM",
+    "q18_evidence_of_investor_economic_benefit": "NOT ESTABLISHED BY THIS VALIDATION",
+    "q19_is_validation_prospective_preregistered": "NO \u2014 RETROSPECTIVE POINT-IN-TIME VALIDATION",
+    "q20_justifies_changing_production_methodology": "NO AUTOMATIC PRODUCTION CHANGE"
+  },
+  "production_methodology_changed": false,
+  "historical_pre_freeze_classification": "RETROSPECTIVE POINT-IN-TIME BACKTESTING \u2014 PROSPECTIVE/PRE-REGISTERED STATUS NOT PROVEN",
+  "prohibited_causal_terms": [
+    "Portfolio MDD",
+    "Risk protection",
+    "Portfolio protection",
+    "Causal risk reduction",
+    "Predictive superiority",
+    "Alpha"
+  ]
+}

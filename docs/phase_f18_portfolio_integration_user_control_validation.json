@@ -1,0 +1,267 @@
+{
+  "manifest": {
+    "manifest_version": "F.18-GOVERNANCE-PORTFOLIO-v1.0",
+    "audited_at_utc": "2026-09-16T19:11:06.850510",
+    "orchestrator_class": "DecisionOrchestrator",
+    "pipeline_sequence": "DATA -> METRICS -> FUND QUALITY -> SUITABILITY -> PORTFOLIO NEED -> ECONOMIC BENEFIT -> ACTION",
+    "scenarios_evaluated_count": 25,
+    "scenarios_passed_count": 25,
+    "portfolio_state_mutated": false,
+    "transactions_executed_count": 0,
+    "recommendation_vs_transaction_separated": true,
+    "user_control_agency_preserved": true,
+    "immutable_assessment_history_verified": true
+  },
+  "scenarios": [
+    {
+      "scenario": "P1: High FQ + Suitable + Genuine Need + Beneficial -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P2: High FQ + Unsuitable Investor Profile -> NO_ACTION",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme is not suitable for the investor profile. Purchase prohibited.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P3: High FQ + No Portfolio Need -> NO_ACTION",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "No portfolio need exists for candidate scheme. No transaction recommended.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P4: High FQ + Excessive Overlap Constraint -> NO_ACTION",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme cannot fulfill the identified portfolio requirement.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P5: High FQ + Risk Capacity Constrained -> NO_ACTION",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme is not suitable for the investor profile. Purchase prohibited.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P6: High FQ + Risk Tolerance Constrained -> NO_ACTION",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Candidate scheme is not suitable for the investor profile. Purchase prohibited.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P7: Low FQ + Existing Holding (No Deterioration) -> HOLD",
+      "expected_action": "HOLD",
+      "actual_action": "HOLD",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Existing holding remains appropriate; no material need for position change.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P8: Low FQ + Material Deterioration + Replacement + Beneficial -> SELL",
+      "expected_action": "SELL",
+      "actual_action": "SELL",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Material deterioration confirmed, suitable replacement available, candidate Fund Quality comparison is valid, and net economic benefit is verified. Recommended SELL.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P9: Low FQ + High Switching Cost / Friction -> REVIEW",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Holding exhibits deterioration, but after-tax/after-cost switching economics do not justify liquidation.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P10: Low FQ + No Suitable Replacement -> REVIEW",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Holding exhibits material deterioration, but no suitable category replacement is currently available.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P11: Missing Essential FQ Evidence -> NO_ACTION",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Fund Quality score or evidence is invalid or missing. Purchase prohibited.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P12: Immature Fund History -> CONDITIONALLY_SUITABLE BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P13: New Money Allocation Opportunity -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P14: Switch Opportunity With Friction -> REVIEW",
+      "expected_action": "REVIEW",
+      "actual_action": "REVIEW",
+      "integration_status": "PARTIAL",
+      "passed": true,
+      "explanation": "Holding exhibits deterioration, but after-tax/after-cost switching economics do not justify liquidation.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P15: Multiple Goals (Targeted Fulfillment) -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P16: Windfall Capital Distribution -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P17: Goal Target Increase Reassessment -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P18: Goal Target Decrease Reassessment -> NO_ACTION",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "No portfolio need exists for candidate scheme. No transaction recommended.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P19: Affordability Constrained -> ACCUMULATE",
+      "expected_action": "ACCUMULATE",
+      "actual_action": "ACCUMULATE",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified and candidate is suitable, but investor contribution capacity is constrained. Recommended staged accumulation (SIP).",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P20: Material Profile Income Change Reassessment -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P21: Portfolio Over-Concentration Limit -> NO_ACTION",
+      "expected_action": "NO_ACTION",
+      "actual_action": "NO_ACTION",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "No portfolio need exists for candidate scheme. No transaction recommended.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P22: Repeated Assessment Identical Recommendation -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P23: Temporal Integrity (Past Assessment Frozen) -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P24: User Rejection of Recommendation (State Untouched) -> BUY",
+      "expected_action": "BUY",
+      "actual_action": "BUY",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified, candidate is suitable and capable, and economic benefit is verified. Recommended BUY.",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    },
+    {
+      "scenario": "P25: User Adjustment of Contribution (INR 10k -> INR 5k) -> ACCUMULATE",
+      "expected_action": "ACCUMULATE",
+      "actual_action": "ACCUMULATE",
+      "integration_status": "VALID",
+      "passed": true,
+      "explanation": "Portfolio need identified and candidate is suitable, but investor contribution capacity is constrained. Recommended staged accumulation (SIP).",
+      "portfolio_mutated": false,
+      "transaction_submitted": false
+    }
+  ]
+}

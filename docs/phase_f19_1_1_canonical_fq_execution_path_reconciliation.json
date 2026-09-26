@@ -1,0 +1,149 @@
+{
+  "phase": "F.19.1.1",
+  "final_status": "PASSED WITH LIMITATIONS",
+  "production_code_changed": false,
+  "production_methodology_changed": false,
+  "actual_runtime_fq_formula": "Weighted sum of intra-peer-group percentile-ranked normalized dimensions",
+  "actual_runtime_dimensions": [
+    "return",
+    "consistency",
+    "volatility",
+    "downside_risk",
+    "max_drawdown",
+    "cost_efficiency"
+  ],
+  "actual_runtime_weights": {
+    "return": 25.0,
+    "consistency": 20.0,
+    "volatility": 15.0,
+    "downside_risk": 15.0,
+    "max_drawdown": 15.0,
+    "cost_efficiency": 10.0
+  },
+  "actual_runtime_normalization": "Percentile Rank: (Rank - 0.5) / N * 100",
+  "actual_runtime_peer_key": "category::subcategory::plan_type",
+  "score_range": "[0.0, 100.0]",
+  "methodology_version": "1.0.0",
+  "weight_version": "1.0.0",
+  "config_vs_execution_finding": {
+    "finding": "Scoring engine at runtime executes 6 weighted dimensions when full metric snapshots are provided. In historical research phases F.15/F.16, simplified 2-variable inputs (cagr_overall and annualized_volatility) were supplied to the input dataclass.",
+    "runtime_active_dimensions_full_input": [
+      "return",
+      "consistency",
+      "volatility",
+      "downside_risk",
+      "max_drawdown",
+      "cost_efficiency"
+    ],
+    "runtime_active_dimensions_f16_input": [
+      "return",
+      "volatility"
+    ],
+    "dynamic_rescaling_mechanism": "Engine dynamically re-scales weights across active available metrics: adjusted_weight = (base_weight / active_weights_sum) * 100. When only Return and Volatility inputs are non-None, base weights 25% and 15% dynamically sum to 40%, rescaling to exactly 62.5% Return / 37.5% Volatility (or 50/50 under equal base weight profiles)."
+  },
+  "f16_reconciliation": {
+    "f16_script": "scripts/run_f16_exact_production_oos_validation.py",
+    "f16_scoring_function_invoked": "FundQualityScoringEngine.calculate_fund_quality_score()",
+    "f16_metrics_supplied": "SchemeMetricSnapshot(cagr_overall=r_1y, annualized_volatility=vol_1y) with all other 4 dimensions default to None.",
+    "f16_runtime_weight_resolution": "Return base=25.0, Volatility base=15.0 -> Active sum = 40.0 -> Rescaled: Return=62.5%, Volatility=37.5%.",
+    "f16_formula_match_status": "F.16 invoked the exact production FundQualityScoringEngine code, but passed partial 2-metric input snapshots, causing dynamic weight rescaling to 2 active dimensions.",
+    "f16_exact_production_status": "PARTIAL MATCH \u2014 F.16 used exact production engine code with 2 active metrics available in backfill dataset. Full 6-dimension scoring executes when complete metadata is present."
+  },
+  "representative_decomposition": [
+    {
+      "dimension": "return",
+      "raw_value": 0.15,
+      "normalized_score": 50.0,
+      "weight": 25.0,
+      "weighted_contribution": 12.5,
+      "data_available": true
+    },
+    {
+      "dimension": "consistency",
+      "raw_value": 0.15,
+      "normalized_score": 50.0,
+      "weight": 20.0,
+      "weighted_contribution": 10.0,
+      "data_available": true
+    },
+    {
+      "dimension": "volatility",
+      "raw_value": 0.12,
+      "normalized_score": 50.0,
+      "weight": 15.0,
+      "weighted_contribution": 7.5,
+      "data_available": true
+    },
+    {
+      "dimension": "downside_risk",
+      "raw_value": 0.08,
+      "normalized_score": 50.0,
+      "weight": 15.0,
+      "weighted_contribution": 7.5,
+      "data_available": true
+    },
+    {
+      "dimension": "max_drawdown",
+      "raw_value": 0.1,
+      "normalized_score": 50.0,
+      "weight": 15.0,
+      "weighted_contribution": 7.5,
+      "data_available": true
+    },
+    {
+      "dimension": "cost_efficiency",
+      "raw_value": 0.01,
+      "normalized_score": 50.0,
+      "weight": 10.0,
+      "weighted_contribution": 5.0,
+      "data_available": true
+    }
+  ],
+  "claim_matrix": [
+    {
+      "Item": "Actual Runtime Scoring Function",
+      "Observed Code": "FundQualityScoringEngine.calculate_fund_quality_score()",
+      "Status": "VERIFIED"
+    },
+    {
+      "Item": "Actual Active Dimensions (Full Input)",
+      "Observed Code": "6 dimensions (return, consistency, volatility, downside_risk, max_drawdown, cost_efficiency)",
+      "Status": "VERIFIED"
+    },
+    {
+      "Item": "Actual Active Dimensions (F.16 Input)",
+      "Observed Code": "2 dimensions (return, volatility) via dynamic missing-data weight rescaling",
+      "Status": "VERIFIED"
+    },
+    {
+      "Item": "Runtime Weight Resolution",
+      "Observed Code": "ScoringWeightManager.get_dimension_weights() from CATEGORY_FAMILY_WEIGHTS",
+      "Status": "VERIFIED"
+    },
+    {
+      "Item": "Runtime Normalization",
+      "Observed Code": "PeerGroupNormalizer.normalize_dimension() percentile rank: (Rank - 0.5)/N * 100",
+      "Status": "VERIFIED"
+    },
+    {
+      "Item": "Runtime Peer Key",
+      "Observed Code": "category::subcategory::plan_type",
+      "Status": "VERIFIED"
+    },
+    {
+      "Item": "Score Decomposition",
+      "Observed Code": "sum(norm * adjusted_weight / 100) == quality_score",
+      "Status": "VERIFIED"
+    },
+    {
+      "Item": "F.15.1.1 Reconciliation",
+      "Observed Code": "F.15.1.1 documented 50/50 simplified model; production engine supports full 6-dim schema with dynamic fallback",
+      "Status": "RECONCILED"
+    },
+    {
+      "Item": "F.16 Execution Path",
+      "Observed Code": "F.16 invoked exact production engine; 2 metrics non-None in dataset",
+      "Status": "RECONCILED"
+    }
+  ]
+}

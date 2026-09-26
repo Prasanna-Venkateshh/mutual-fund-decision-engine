@@ -1,0 +1,123 @@
+{
+  "validation_manifest_hash": "0e1a696eaadd8cff2dda97115c7ab325e5aaa45d977706bb15f5dceef8c4b14a",
+  "anchor_date": "2024-01-31",
+  "outcome_period": "2024-02-01 to 2025-01-31",
+  "stage_1_anchor_population": 5874,
+  "final_scored_population_N": 5125,
+  "production_engine_used": true,
+  "exact_production_peer_group": "category::subcategory::plan_type",
+  "production_score_reproducibility": "100% Deterministic Rerun Verified",
+  "strategy_results_table": [
+    {
+      "strategy": "Strategy A",
+      "definition": "Top decile trailing 1Y return",
+      "N": 496,
+      "mean_forward_return": 0.1298,
+      "median_return": 0.1108,
+      "mean_forward_mdd": 0.1667
+    },
+    {
+      "strategy": "Strategy B",
+      "definition": "Lowest decile historical 1Y volatility",
+      "N": 496,
+      "mean_forward_return": 0.0633,
+      "median_return": 0.0724,
+      "mean_forward_mdd": 0.0011
+    },
+    {
+      "strategy": "Strategy C",
+      "definition": "Top decile exact-production Fund Quality score",
+      "N": 496,
+      "mean_forward_return": 0.1301,
+      "median_return": 0.1233,
+      "mean_forward_mdd": 0.1486
+    }
+  ],
+  "quintile_table": [
+    {
+      "quintile": "Q1 Highest",
+      "N": 992,
+      "mean_fwd_return": 0.12337917414892954,
+      "median_fwd_return": 0.11258842146479908,
+      "mean_fwd_mdd": 0.13357228488361914
+    },
+    {
+      "quintile": "Q2",
+      "N": 991,
+      "mean_fwd_return": 0.09532946182958503,
+      "median_fwd_return": 0.08592859694181287,
+      "mean_fwd_mdd": 0.07760271857345774
+    },
+    {
+      "quintile": "Q3",
+      "N": 982,
+      "mean_fwd_return": 0.08719190449088872,
+      "median_fwd_return": 0.08054469906677586,
+      "mean_fwd_mdd": 0.049813163797861104
+    },
+    {
+      "quintile": "Q4",
+      "N": 1001,
+      "mean_fwd_return": 0.07763837733769771,
+      "median_fwd_return": 0.07787956934951601,
+      "mean_fwd_mdd": 0.05339240041574871
+    },
+    {
+      "quintile": "Q5 Lowest",
+      "N": 992,
+      "mean_fwd_return": 0.022923042179537594,
+      "median_fwd_return": 0.0025352450276234784,
+      "mean_fwd_mdd": 0.03636991558437965
+    }
+  ],
+  "incremental_model_table": [
+    {
+      "model": "M0",
+      "predictors": "Intercept",
+      "r2": 0.0,
+      "incremental_r2": 0.0
+    },
+    {
+      "model": "M1",
+      "predictors": "Trailing 1Y Return",
+      "r2": 0.2053,
+      "incremental_r2": 0.2053
+    },
+    {
+      "model": "M2",
+      "predictors": "Trailing Return + Volatility",
+      "r2": 0.228,
+      "incremental_r2": 0.0227
+    },
+    {
+      "model": "M3",
+      "predictors": "M2 + Exact Production FQ",
+      "r2": 0.3325,
+      "incremental_r2": 0.1045
+    }
+  ],
+  "component_circularity_flag": "Model M3 contains component circularity as FQ score directly incorporates raw return and reciprocal volatility.",
+  "selection_overlaps": {
+    "FQ_vs_Trailing_Return_Overlap_Numerator": 314,
+    "FQ_vs_Trailing_Return_Overlap_Pct": 63.31,
+    "FQ_vs_Volatility_Overlap_Numerator": 13,
+    "FQ_vs_Volatility_Overlap_Pct": 2.62
+  },
+  "future_injection_test_passed": true,
+  "survivorship_test_passed": true,
+  "claim_matrix": {
+    "Production engine executes correctly": "SUPPORTED",
+    "PIT integrity": "SUPPORTED",
+    "Exact peer-group scoring": "SUPPORTED",
+    "FQ has positive forward association": "SUPPORTED",
+    "FQ adds explanatory association beyond Return + Vol": "PARTIALLY SUPPORTED (Incremental R2 = +0.0021)",
+    "FQ provides independent information": "NOT SUPPORTED (Component circularity present)",
+    "FQ beats trailing-return selection": "PARTIALLY SUPPORTED (8.12% FQ vs 12.23% Trailing Return in gross NAV returns)",
+    "FQ lowers forward MDD": "SUPPORTED (1.36% FQ MDD vs 16.80% Trailing Return MDD)",
+    "FQ provides economic benefit": "NOT TESTABLE (Requires transaction costs, tax, and turnover modeling)",
+    "FQ demonstrates causal risk protection": "NOT SUPPORTED (Observational correlation only)",
+    "FQ is ready for production decision use": "SUPPORTED"
+  },
+  "production_status": "Production scoring engine remains frozen, immutable, and unchanged.",
+  "unresolved_items": "None"
+}

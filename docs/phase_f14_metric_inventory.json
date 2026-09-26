@@ -1,0 +1,258 @@
+{
+  "metrics": [
+    {
+      "metric_id": "FQ_F01",
+      "name": "Trailing 1Y Gross Return",
+      "financial_definition": "Measures total percentage capital growth of a fund over a 1-year (252 trading days) historical window without adjusting for risk or cost.",
+      "mathematical_formula": "R_1Y = (NAV_t / NAV_{t-252}) - 1",
+      "input_fields": [
+        "normalized_nav",
+        "nav_date"
+      ],
+      "input_frequency": "Daily",
+      "observation_window": "1 Year (252 trading days)",
+      "annualization": "None (Direct 1Y compounding)",
+      "mar_assumption": "N/A",
+      "unit": "Percentage (%)",
+      "directionality": "Higher is Better",
+      "category_applicability": "All Categories (Equity, Debt, Hybrid, Other)",
+      "minimum_history_requirement": "252 trading days (~1 year)",
+      "source": "db/backfill_f12_2.db (normalized_nav_records)",
+      "pit_requirement": "Strict PIT cutoff at Anchor Date t",
+      "current_implementation_status": "Fully Implemented",
+      "validation_status": "Validated (F.11.3.5 / F.11.3.5.5)",
+      "production_status": "PRODUCTION (50% weight in Fund Quality Score v1.0)",
+      "question_answered": "How much has the fund grown over the selected 1-year historical period?"
+    },
+    {
+      "metric_id": "FQ_F02",
+      "name": "Annualized Volatility 1Y",
+      "financial_definition": "Measures total return variability (dispersion of daily logarithmic returns around their mean) over 1 year.",
+      "mathematical_formula": "Sigma_1Y = std(ln(NAV_t / NAV_{t-1})) * sqrt(252)",
+      "input_fields": [
+        "normalized_nav",
+        "nav_date"
+      ],
+      "input_frequency": "Daily",
+      "observation_window": "1 Year (252 trading days)",
+      "annualization": "Annualized using sqrt(252)",
+      "mar_assumption": "N/A",
+      "unit": "Percentage (%)",
+      "directionality": "Lower is Better (Score uses Reciprocal)",
+      "category_applicability": "All Categories",
+      "minimum_history_requirement": "252 trading days (~1 year)",
+      "source": "db/backfill_f12_2.db (normalized_nav_records)",
+      "pit_requirement": "Strict PIT cutoff at Anchor Date t",
+      "current_implementation_status": "Fully Implemented",
+      "validation_status": "Validated (F.11.3.5 / F.11.3.5.5)",
+      "production_status": "PRODUCTION (50% weight in Fund Quality Score v1.0)",
+      "question_answered": "How much have the fund's returns moved around their average over the past year?"
+    },
+    {
+      "metric_id": "FQ_F03",
+      "name": "Downside Deviation (MAR=0%)",
+      "financial_definition": "Measures variability of daily returns specifically on the downside below the governed Minimum Acceptable Return of MAR=0%.",
+      "mathematical_formula": "DD_0 = sqrt( (1/N) * sum( min(0, r_t - 0)^2 ) ) * sqrt(252)",
+      "input_fields": [
+        "normalized_nav",
+        "nav_date"
+      ],
+      "input_frequency": "Daily",
+      "observation_window": "1 Year (252 trading days)",
+      "annualization": "Annualized using sqrt(252)",
+      "mar_assumption": "MAR = 0.0% Daily",
+      "unit": "Percentage (%)",
+      "directionality": "Lower is Better",
+      "category_applicability": "All Categories",
+      "minimum_history_requirement": "252 trading days (~1 year)",
+      "source": "db/backfill_f12_2.db (normalized_nav_records)",
+      "pit_requirement": "Strict PIT cutoff at Anchor Date t",
+      "current_implementation_status": "Fully Implemented (Metric Engine)",
+      "validation_status": "Validated in F.13 Factor Registry",
+      "production_status": "RESEARCH-ONLY (Not in Production Score)",
+      "question_answered": "How much variability occurred specifically on the downside relative to a zero-loss threshold?"
+    },
+    {
+      "metric_id": "FQ_F04",
+      "name": "Maximum Drawdown 1Y",
+      "financial_definition": "Measures the largest single peak-to-trough percentage decline observed over the 1-year historical window.",
+      "mathematical_formula": "MDD_1Y = max_{t} ( (Peak_t - NAV_t) / Peak_t ) where Peak_t = max_{s <= t} (NAV_s)",
+      "input_fields": [
+        "normalized_nav",
+        "nav_date"
+      ],
+      "input_frequency": "Daily",
+      "observation_window": "1 Year (252 trading days)",
+      "annualization": "None",
+      "mar_assumption": "N/A",
+      "unit": "Percentage (%)",
+      "directionality": "Lower Peak-to-Trough Decline is Better",
+      "category_applicability": "All Categories",
+      "minimum_history_requirement": "252 trading days (~1 year)",
+      "source": "db/backfill_f12_2.db (normalized_nav_records)",
+      "pit_requirement": "Strict PIT cutoff at Anchor Date t",
+      "current_implementation_status": "Fully Implemented (Metric Engine)",
+      "validation_status": "Validated in F.13 Factor Registry",
+      "production_status": "RESEARCH-ONLY (Not in Production Score)",
+      "question_answered": "How large was the worst peak-to-trough loss during the measurement period?"
+    },
+    {
+      "metric_id": "FQ_F05",
+      "name": "Fund Age / Track Record Depth",
+      "financial_definition": "Measures total historical longevity / depth of available daily NAV observations for a fund scheme.",
+      "mathematical_formula": "Age_years = (Anchor_Date - Inception_Date) / 365.25",
+      "input_fields": [
+        "first_nav_date",
+        "anchor_date"
+      ],
+      "input_frequency": "Static / Daily Update",
+      "observation_window": "Full Inception History",
+      "annualization": "Years",
+      "mar_assumption": "N/A",
+      "unit": "Years",
+      "directionality": "Higher is Better (More Evidence Depth)",
+      "category_applicability": "All Categories",
+      "minimum_history_requirement": "None (Continuous Variable)",
+      "source": "db/backfill_f12_2.db (canonical_schemes / normalized_nav_records)",
+      "pit_requirement": "Strict PIT cutoff (Inception to Anchor Date)",
+      "current_implementation_status": "Fully Implemented (Engine Metadata)",
+      "validation_status": "Governed in F.13 (Maturity / Evidence Layer)",
+      "production_status": "RESEARCH-ONLY / GOVERNANCE (Used for Eligibility Gate, not Scoring Weight)",
+      "question_answered": "How much historical track record exists to evaluate this fund?"
+    },
+    {
+      "metric_id": "FQ_F08",
+      "name": "Sharpe Ratio 1Y",
+      "financial_definition": "Measures return generated per unit of total risk (volatility) over 1 year, assuming zero risk-free rate per governed benchmark baseline.",
+      "mathematical_formula": "Sharpe_1Y = Annualized_Return_1Y / Annualized_Volatility_1Y",
+      "input_fields": [
+        "normalized_nav",
+        "nav_date"
+      ],
+      "input_frequency": "Daily",
+      "observation_window": "1 Year (252 trading days)",
+      "annualization": "Annualized Return / Annualized Volatility",
+      "mar_assumption": "Rf = 0.0%",
+      "unit": "Ratio (Dimensionless)",
+      "directionality": "Higher is Better",
+      "category_applicability": "All Categories",
+      "minimum_history_requirement": "252 trading days (~1 year)",
+      "source": "db/backfill_f12_2.db (normalized_nav_records)",
+      "pit_requirement": "Strict PIT cutoff at Anchor Date t",
+      "current_implementation_status": "Fully Implemented (Metric Engine)",
+      "validation_status": "Governed in F.13 Factor Registry",
+      "production_status": "RESEARCH-ONLY (Not in Production Score)",
+      "question_answered": "How much return was generated relative to total return variability?"
+    },
+    {
+      "metric_id": "FQ_F09",
+      "name": "Sortino Ratio 1Y (MAR=0%)",
+      "financial_definition": "Measures return generated per unit of downside risk (downside deviation below MAR=0%) over 1 year.",
+      "mathematical_formula": "Sortino_1Y = Annualized_Return_1Y / Downside_Deviation_0%",
+      "input_fields": [
+        "normalized_nav",
+        "nav_date"
+      ],
+      "input_frequency": "Daily",
+      "observation_window": "1 Year (252 trading days)",
+      "annualization": "Annualized Return / Downside Deviation",
+      "mar_assumption": "MAR = 0.0% Daily",
+      "unit": "Ratio (Dimensionless)",
+      "directionality": "Higher is Better",
+      "category_applicability": "All Categories",
+      "minimum_history_requirement": "252 trading days (~1 year)",
+      "source": "db/backfill_f12_2.db (normalized_nav_records)",
+      "pit_requirement": "Strict PIT cutoff at Anchor Date t",
+      "current_implementation_status": "Fully Implemented (Metric Engine)",
+      "validation_status": "Governed in F.13 Factor Registry",
+      "production_status": "RESEARCH-ONLY (Not in Production Score)",
+      "question_answered": "How much return was generated relative to downside variability below MAR=0%?"
+    },
+    {
+      "metric_id": "FQ_F13",
+      "name": "Rolling Return Consistency 1Y (1M Windows)",
+      "financial_definition": "Measures the percentage of 1-month rolling windows over a 1-year historical period that yielded positive returns.",
+      "mathematical_formula": "Consistency_1Y = Count(Rolling_1M_Return > 0) / Total_1M_Rolling_Windows",
+      "input_fields": [
+        "normalized_nav",
+        "nav_date"
+      ],
+      "input_frequency": "Daily NAV (21-day rolling windows)",
+      "observation_window": "1 Year (252 trading days)",
+      "annualization": "N/A",
+      "mar_assumption": "MAR = 0.0% per rolling period",
+      "unit": "Percentage (%)",
+      "directionality": "Higher is Better",
+      "category_applicability": "All Categories",
+      "minimum_history_requirement": "252 trading days (~1 year)",
+      "source": "db/backfill_f12_2.db (normalized_nav_records)",
+      "pit_requirement": "Strict PIT cutoff at Anchor Date t",
+      "current_implementation_status": "Fully Implemented (Metric Engine)",
+      "validation_status": "Governed in F.13 Factor Registry",
+      "production_status": "RESEARCH-ONLY (Not in Production Score)",
+      "question_answered": "How consistently did the fund produce positive returns across repeated 1-month rolling windows?"
+    }
+  ],
+  "dependencies": {
+    "FQ_F01": {
+      "dependencies": [
+        "NAV Path"
+      ],
+      "classification": "NO_DIRECT_DEPENDENCY",
+      "explanation": "Primary primitive computed directly from endpoints NAV_t / NAV_{t-252}."
+    },
+    "FQ_F02": {
+      "dependencies": [
+        "NAV Path (Daily Log Returns)"
+      ],
+      "classification": "NO_DIRECT_DEPENDENCY",
+      "explanation": "Primary primitive computed from daily logarithmic return series."
+    },
+    "FQ_F03": {
+      "dependencies": [
+        "NAV Path (Daily Log Returns)",
+        "MAR=0%"
+      ],
+      "classification": "PARTIAL_DEPENDENCY",
+      "explanation": "Shares daily return inputs with Volatility (FQ_F02), but truncates positive returns above MAR=0%."
+    },
+    "FQ_F04": {
+      "dependencies": [
+        "NAV Path"
+      ],
+      "classification": "NO_DIRECT_DEPENDENCY",
+      "explanation": "Non-linear path metric computed from cumulative maximum array and trailing NAV points."
+    },
+    "FQ_F05": {
+      "dependencies": [
+        "Inception Date",
+        "Anchor Date"
+      ],
+      "classification": "NO_DIRECT_DEPENDENCY",
+      "explanation": "Orthogonal metadata attribute measuring observation history depth."
+    },
+    "FQ_F08": {
+      "dependencies": [
+        "FQ_F01 (Return)",
+        "FQ_F02 (Volatility)"
+      ],
+      "classification": "DIRECT_DEPENDENCY",
+      "explanation": "Sharpe is a direct ratio construct: Return / Volatility. Contains zero new raw data inputs."
+    },
+    "FQ_F09": {
+      "dependencies": [
+        "FQ_F01 (Return)",
+        "FQ_F03 (Downside Deviation)"
+      ],
+      "classification": "DIRECT_DEPENDENCY",
+      "explanation": "Sortino is a direct ratio construct: Return / Downside Deviation. Contains zero new raw data inputs."
+    },
+    "FQ_F13": {
+      "dependencies": [
+        "NAV Path (Rolling 21-day Return Windows)"
+      ],
+      "classification": "PARTIAL_DEPENDENCY",
+      "explanation": "Derived from rolling sub-windows of the NAV return series."
+    }
+  }
+}

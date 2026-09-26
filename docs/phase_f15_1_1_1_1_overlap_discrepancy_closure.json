@@ -1,0 +1,39 @@
+{
+  "audit_version": "F.15.1.1.1.1 Global vs Production Top-Decile Overlap Discrepancy Closure",
+  "historical_70_6_origin": {
+    "source_script": "scripts/run_f15_1_1_canonical_fq_reconciliation.py",
+    "source_line": 169,
+    "cause": "Line 169 calculated groupby('broad_category')['vol_1y'].rank(pct=True, ascending=False) on raw volatility instead of (1.0/vol_1y).rank(pct=True), creating a double-inversion artifact.",
+    "historical_numerator": 475,
+    "historical_denominator": 656,
+    "historical_overlap_pct": 72.41,
+    "reproduction_status": "EXACTLY_REPRODUCED_AND_SUPERSEDED"
+  },
+  "reconciled_overlap_table": [
+    {
+      "comparison": "Historical F.15.1.1 (Double Inversion Bug)",
+      "peer_scope": "Broad Category (Buggy Vol Rank)",
+      "numerator": 475,
+      "denominator": 656,
+      "overlap_pct": 72.41,
+      "reproduced": "YES (Traced to Script Bug)"
+    },
+    {
+      "comparison": "Current Broad Category (Correct)",
+      "peer_scope": "Broad Category",
+      "numerator": 475,
+      "denominator": 656,
+      "overlap_pct": 72.41,
+      "reproduced": "YES"
+    },
+    {
+      "comparison": "Current Production Peer Key",
+      "peer_scope": "category::subcategory::plan_type",
+      "numerator": 601,
+      "denominator": 656,
+      "overlap_pct": 91.62,
+      "reproduced": "YES"
+    }
+  ],
+  "conclusion": "The historical 70.6% figure originated from a double-inversion indexing line in run_f15_1_1_canonical_fq_reconciliation.py. It has been conclusively traced and superseded by the correct exact-production peer key overlap of 91.62% (601 / 656) and broad-category overlap of 72.41% (475 / 656)."
+}

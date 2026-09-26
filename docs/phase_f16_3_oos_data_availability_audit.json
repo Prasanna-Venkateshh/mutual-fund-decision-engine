@@ -1,0 +1,81 @@
+{
+  "final_status": "PASSED WITH LIMITATIONS",
+  "governed_production_model": {
+    "scoring_engine": "FundQualityScoringEngine",
+    "peer_key": "category::subcategory::plan_type",
+    "normalization": "percentile_rank"
+  },
+  "production_methodology_changed": false,
+  "database_metrics": {
+    "database_path": "db/backfill_f12_2.db",
+    "minimum_nav_date": "2014-02-28",
+    "maximum_nav_date": "2025-01-31",
+    "total_nav_observations": 6337995,
+    "unique_schemes_count": 17507
+  },
+  "current_exact_production_oos_evidence": {
+    "genuinely_unseen_periods": [
+      "2024-01-31 to 2025-01-31"
+    ],
+    "reused_replication_periods": [
+      "2022-01-31 to 2023-01-31",
+      "2023-01-31 to 2024-01-31"
+    ],
+    "unavailable_periods": [
+      "2021-01-31 to 2022-01-31",
+      "2025-01-31 to 2026-01-31"
+    ]
+  },
+  "validation_data_availability_matrix": [
+    {
+      "anchor_date": "2021-01-31",
+      "forward_end_date": "2022-01-31",
+      "data_available": true,
+      "exact_production_oos_status": "NOT AVAILABLE",
+      "reason": "Database lacks >=252 PIT records prior to 2020-01-31 anchor setup"
+    },
+    {
+      "anchor_date": "2022-01-31",
+      "forward_end_date": "2023-01-31",
+      "data_available": true,
+      "exact_production_oos_status": "REUSED / REPLICATION",
+      "reason": "Outcomes previously exposed to methodology decisions in F.11"
+    },
+    {
+      "anchor_date": "2023-01-31",
+      "forward_end_date": "2024-01-31",
+      "data_available": true,
+      "exact_production_oos_status": "REUSED / REPLICATION",
+      "reason": "Outcomes previously exposed to methodology decisions in F.11/F.15"
+    },
+    {
+      "anchor_date": "2024-01-31",
+      "forward_end_date": "2025-01-31",
+      "data_available": true,
+      "exact_production_oos_status": "GENUINELY UNSEEN OOS",
+      "reason": "First evaluated strictly OOS under frozen production engine in F.16"
+    },
+    {
+      "anchor_date": "2025-01-31",
+      "forward_end_date": "2026-01-31",
+      "data_available": false,
+      "exact_production_oos_status": "NOT AVAILABLE",
+      "reason": "Governed dataset maximum NAV date is 2025-01-31. Outcome period 2025-02-01 -> 2026-01-31 does not yet exist."
+    }
+  ],
+  "next_possible_anchor_evaluation": {
+    "next_possible_anchor": "2025-01-31",
+    "next_full_forward_outcome_period": "2025-02-01 to 2026-01-31",
+    "anchor_2025_stage1_N": 6386,
+    "anchor_2025_pit_ready_N": 7189,
+    "forward_observations_count_after_2025_01_31": 0,
+    "data_sufficient_for_next_period": false,
+    "readiness_status": "2025-01-31 -> 2026-01-31 cannot yet be evaluated because the governed dataset does not contain the complete forward outcome period."
+  },
+  "pit_readiness": "Point-in-time scoring input construction for 2025-01-31 anchor is 100% ready and verified.",
+  "provenance": "Source: db/backfill_f12_2.db, table normalized_nav_records. All records derived from official AMFI NAV backfill.",
+  "decision_use_status": "Data availability audit complete. Consequential decision readiness remains constrained by single genuinely unseen OOS period.",
+  "outcome_analysis_performed_in_this_phase": false,
+  "production_status": "Production scoring engine remains frozen, immutable, and unchanged.",
+  "unresolved_items": "None"
+}

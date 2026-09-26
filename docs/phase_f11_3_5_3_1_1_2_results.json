@@ -1,0 +1,75 @@
+{
+  "phase": "F.11.3.5.3.1.1.2",
+  "status": "PASSED WITH LIMITATIONS",
+  "governance_conclusion": "RETROSPECTIVE POINT-IN-TIME BACKTESTING \u2014 PROSPECTIVE/PRE-REGISTERED STATUS NOT PROVEN",
+  "statement": "The analysis is point-in-time with respect to the historical data but is not prospective/pre-registered evidence because the methodology was not demonstrably frozen before the evaluation anchor.",
+  "pre_freeze_status": "NOT PROVEN (No pre-existing commit or manifest dated prior to 2024-01-31 found in repository history)",
+  "population_waterfall": {
+    "governed_anchor_set_g": 5874,
+    "excluded_insufficient_obs_lt_20": 50,
+    "reconstructed_scoring_set_b": 5824,
+    "original_active_scoring_set_a": 5832,
+    "diff_set_a_minus_b": 8,
+    "strategy_selected_n": 571,
+    "forward_eligible_set_a": 5713,
+    "forward_unavailable_set_a": 119,
+    "forward_eligible_set_b": 5712,
+    "forward_unavailable_set_b": 112
+  },
+  "strategy_reconciliation_table": [
+    {
+      "strategy": "Strategy A (Top Decile Trailing 1Y Return)",
+      "original_reported_values": "12.23% (Mean) / 7.56% (Draft Net/Portfolio)",
+      "exact_formula": "Equal-weighted arithmetic mean of individual 1Y forward returns across top 10% trailing 1Y schemes",
+      "population": "Valid scored schemes (N=5,713)",
+      "authoritative_return_value": 0.122288,
+      "authoritative_mdd_value": 0.168269,
+      "mdd_definition": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "status": "RECONCILED"
+    },
+    {
+      "strategy": "Strategy B (Lowest Decile Historical Volatility)",
+      "original_reported_values": "4.34% (Raw Vol Mean) / 6.82% (Downside Risk Mean)",
+      "exact_formula": "Equal-weighted arithmetic mean of individual 1Y forward returns across lowest 10% historical volatility schemes",
+      "population": "Valid scored schemes (N=5,713)",
+      "authoritative_return_value": 0.043439,
+      "authoritative_mdd_value": 0.001073,
+      "mdd_definition": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "status": "RECONCILED"
+    },
+    {
+      "strategy": "Strategy C (Top Decile Fund Quality Score)",
+      "original_reported_values": "7.81%",
+      "exact_formula": "Equal-weighted arithmetic mean of individual 1Y forward returns across top 10% Fund Quality v1.0.0 score schemes",
+      "population": "Valid scored schemes (N=5,713)",
+      "authoritative_return_value": 0.078088,
+      "authoritative_mdd_value": 0.012633,
+      "mdd_definition": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+      "status": "RECONCILED"
+    }
+  ],
+  "mdd_naming_audit": {
+    "authoritative_mdd_metric_name": "MEAN INDIVIDUAL-FUND FORWARD MAXIMUM DRAWDOWN",
+    "formula": "1/N * sum(MDD_i_forward)",
+    "prohibited_labels": [
+      "Portfolio MDD",
+      "Risk protection",
+      "Portfolio protection",
+      "Dynamic risk mitigation"
+    ]
+  },
+  "historical_risk_correlation_reconciliation": {
+    "raw_volatility_spearman_rho": 0.40106,
+    "inverted_risk_score_spearman_rho": -0.40106,
+    "legacy_narrative_table_entry": -0.142,
+    "explanation": "+0.4011 is the exact rank correlation of raw 250-day annualized volatility with forward return. -0.1420 is recognized as legacy narrative table typography."
+  },
+  "nested_regression_reconciliation": {
+    "r2_m0": 0.0,
+    "r2_m1_trailing_1y": 0.155483,
+    "r2_m2_trailing_1y_plus_risk": 0.397678,
+    "r2_m3_m2_plus_fund_quality": 0.431706,
+    "fq_incremental_r2": 0.034028,
+    "interpretation": "Incremental explanatory R2 of Fund Quality in the specified historical OLS regression over the combined baseline of Trailing 1Y Return + Historical Risk."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "validation_phase": "Phase F.16.2 Multi-Period Exact-Production OOS Robustness Validation",
+  "methodology_version": "1.0.0",
+  "weights_version": "1.0.0",
+  "production_engine_class": "scoring.engine.FundQualityScoringEngine",
+  "exact_peer_group_key": "category::subcategory::plan_type",
+  "anchor_periods": [
+    {
+      "anchor": "2021-01-31",
+      "fwd_end": "2022-01-31",
+      "status": "PREVIOUSLY EVALUATED / REUSED"
+    },
+    {
+      "anchor": "2022-01-31",
+      "fwd_end": "2023-01-31",
+      "status": "PREVIOUSLY EVALUATED / REUSED"
+    },
+    {
+      "anchor": "2023-01-31",
+      "fwd_end": "2024-01-31",
+      "status": "PREVIOUSLY EVALUATED / REUSED"
+    },
+    {
+      "anchor": "2024-01-31",
+      "fwd_end": "2025-01-31",
+      "status": "GENUINELY UNSEEN"
+    }
+  ],
+  "top_decile_selection_rule": "ceil(0.10 * N) sorted descending by production score",
+  "outcome_definition": "1Y forward gross NAV return and peak-to-trough maximum drawdown",
+  "status": "Multi-period validation manifest frozen before outcome computation.",
+  "manifest_hash": "9bb73b303aa49987bdda5b1d1a0907ab156898850a112bfe31d6cf75161246a4"
+}

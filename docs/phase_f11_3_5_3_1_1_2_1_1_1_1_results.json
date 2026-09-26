@@ -1,0 +1,100 @@
+{
+  "phase": "F.11.3.5.3.1.1.2.1.1.1.1",
+  "status": "PASSED WITH LIMITATIONS",
+  "governed_fund_metric_methodology": {
+    "source_file": "metrics/risk.py",
+    "function": "calculate_downside_deviation(nav_records, mar_daily=0.0, trading_days_per_year=252)",
+    "governed_mar_daily": 0.0,
+    "governed_mar_annualized": "0.0%",
+    "annualization": "sqrt(252)",
+    "status": "FROZEN PRODUCTION METHODOLOGY"
+  },
+  "origin_of_6_percent_mar": {
+    "source_file": "scripts/run_f11_3_5_3_1_1_2_1_1_1_downside_comparator_closure.py line 95",
+    "classification": "UNSUPPORTED NEW ASSUMPTION",
+    "is_governed": false,
+    "note": "6.0% annual MAR (0.06/252 daily) appeared only in the newly created forensic script and has zero repository provenance prior to Phase F.11.3.5.3.1.1.2.1.1.1."
+  },
+  "comparator_b_down_governance_status": {
+    "is_independently_governed": false,
+    "governance_classification": "RESEARCH-ONLY SECONDARY COMPARATOR",
+    "default_inherited_mar": "0.0% (Inherited from metrics/risk.py)"
+  },
+  "governed_mar0_reconstruction": {
+    "mar_annualized": "0.0%",
+    "population_n": 5713,
+    "selected_n": 571,
+    "cohort_sha256_hash": "36e600b506249b5ca6fc5f5f6f2bc8c5dfcad67b63dbfc56260a4eba4aa7caad",
+    "mean_return": "5.03% (0.050292)",
+    "mean_mdd": "0.10% (0.001029)",
+    "median_mdd": "0.00% (0.000000)"
+  },
+  "exploratory_mar6_reconstruction": {
+    "mar_annualized": "6.0%",
+    "population_n": 5713,
+    "selected_n": 571,
+    "cohort_sha256_hash": "10f4ea1412bfb707adc7b637afb0832523b21761a3f9b36a636b78ec549663a9",
+    "mean_return": "6.87% (0.068705)",
+    "mean_mdd": "0.13% (0.001274)",
+    "median_mdd": "0.00% (0.000020)"
+  },
+  "cohort_comparison_0_vs_6_percent": {
+    "intersection_n": 422,
+    "mar0_only_n": 149,
+    "mar6_only_n": 149,
+    "jaccard_similarity": 0.5861,
+    "observed_difference_note": "Changing MAR from 0.0% to 6.0% alters 149 schemes out of 571 (26.1% cohort turnover, Jaccard similarity 0.5861). 6.87% return belongs specifically to the 6.0% MAR cohort; Governed 0.0% MAR produces 5.03% return, 0.10% mean MDD, and 0.00% median MDD."
+  },
+  "specific_historical_artifact_provenance": {
+    "return_6_87": {
+      "exact_value": 6.87,
+      "methodology_origin": "6.0% MAR Exploratory Downside Sort",
+      "raw_mean_mar0": 0.050292,
+      "raw_mean_mar6": 0.068705,
+      "status": "RECONCILED (6.87% equal-weighted mean return belongs specifically to the 6.0% MAR exploratory cohort)"
+    },
+    "mdd_0_13": {
+      "exact_value": 0.13,
+      "methodology_origin": "6.0% MAR Exploratory Downside Sort Mean MDD (Governed MAR=0.0% yields 0.10%)",
+      "raw_mean_mar0": 0.001029,
+      "raw_mean_mar6": 0.001274,
+      "status": "RECONCILED MEAN MDD"
+    },
+    "mdd_0_00": {
+      "exact_value": 0.0,
+      "methodology_origin": "Governed 0.0% MAR Downside Sort & 6.0% MAR Downside Sort Median MDD",
+      "raw_median_mar0": 0.0,
+      "raw_median_mar6": 2e-05,
+      "status": "RECONCILED MEDIAN MDD"
+    },
+    "return_6_82": {
+      "exact_value": 6.82,
+      "status": "UNRECONCILED HISTORICAL NARRATIVE VALUE \u2014 CALCULATION ORIGIN NOT REPRODUCIBLE"
+    },
+    "mdd_0_45": {
+      "exact_value": 0.45,
+      "status": "UNRECONCILED HISTORICAL VALUE \u2014 CALCULATION ORIGIN NOT REPRODUCIBLE FROM CURRENT DATASET"
+    }
+  },
+  "governed_strategy_b_volatility_confirmation": {
+    "selection_rule": "LOWEST 10% HISTORICAL VOLATILITY",
+    "return": "4.34%",
+    "mean_mdd": "0.11%",
+    "status": "CONFIRMED GOVERNED STRATEGY B"
+  },
+  "future_injection_invariance": {
+    "mar0_sort_invariant": true,
+    "mar6_sort_invariant": true,
+    "result": "PASS"
+  },
+  "current_production_methodology_changed": false,
+  "historical_pre_freeze_classification": "RETROSPECTIVE POINT-IN-TIME BACKTESTING \u2014 PROSPECTIVE/PRE-REGISTERED STATUS NOT PROVEN",
+  "prohibited_causal_terms": [
+    "Portfolio MDD",
+    "Risk protection",
+    "Portfolio protection",
+    "Causal risk reduction",
+    "Predictive superiority",
+    "Alpha"
+  ]
+}

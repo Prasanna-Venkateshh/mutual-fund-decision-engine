@@ -1,0 +1,180 @@
+# Lifecycle Event Methodology Configuration
+# ==========================================
+# Project: mutual-fund-decision-engine
+# Phase: C — Point-in-Time Scheme Lifecycle & Entity Resolution
+# Version: 1.0.0
+# Effective Date: 2026-09-08
+#
+# Purpose:
+#   Governs the effective date precision handling, confidence thresholds,
+#   and resolution rules for scheme lifecycle events.
+#
+# IMPORTANT:
+#   This file is the authoritative record of the approved lifecycle methodology.
+#   Changes to any parameter require a new methodology_version string and
+#   must be documented with the effective date of the change.
+#   All lifecycle events and universe snapshots carry methodology_version
+#   so outputs remain reproducible under past methodology versions.
+#
+# Governing Documents:
+#   - ARCHITECTURE.md §4 (data/mapping/ entity resolution boundary)
+#   - DECISION_RULES.md §12.18.2 (bias prevention safeguards)
+#   - PRODUCT_SPEC.md §24 (provenance layer)
+#
+# Approved Methodology Decisions (2026-09-08):
+#   MD-1: Effective date storage convention
+#   MD-2: AMFI scheme code reuse → new canonical ID
+#   MD-3: ISIN change → investigation required (no automatic ID creation or continuity)
+#   MD-4: NAV stitching across mergers → EXPLICITLY OUT OF SCOPE
+#   MD-5: Phase B.2 pipeline not modified by Phase C
+
+methodology_version: "1.0.0"
+effective_date: "2026-09-08"
+
+# ---------------------------------------------------------------------------
+# MD-1: Effective Date Precision Handling
+# ---------------------------------------------------------------------------
+# When a lifecycle event source provides only month/year or year information,
+# the stored effective_date follows this convention:
+#
+#   DAY precision:   Store the actual date. Example: 2018-03-15
+#   MONTH precision: Store YYYY-MM-01 (first of month). Example: 2018-03-01
+#   YEAR precision:  Store YYYY-01-01 (first of year). Example: 2018-01-01
+#
+# CRITICAL: The stored YYYY-MM-01 or YYYY-01-01 is a STORAGE REPRESENTATION,
+# NOT a claim that the event actually occurred on that specific day.
+#
+# Downstream point-in-time resolution MUST:
+# - Read the effective_date_precision field before comparing dates.
+# - For MONTH precision: treat the event as occurring anywhere in that month.
+#   An event is "definitely before" query_date only if the LAST day of the
+#   stored month is <= query_date.
+# - For YEAR precision: treat the event as occurring anywhere in that year.
+#   An event is "definitely before" query_date only if Dec 31 of the stored
+#   year is <= query_date.
+# - If the query_date falls WITHIN the precision window (e.g., query is March
+#   2018 and event has MONTH precision for March 2018), return UNKNOWN rather
+#   than manufacturing day-level certainty.
+effective_date_precision_convention: "CONSERVATIVE_FIRST_OF_PERIOD"
+# CONSERVATIVE_FIRST_OF_PERIOD means: store first day of the precision period.
+# Resolvers use the LAST day of the period as the "definitely before" threshold.
+
+# ---------------------------------------------------------------------------
+# Confidence Assignment Rules
+# ---------------------------------------------------------------------------
+# HIGH:     Event corroborated by 2+ independent authoritative attributes
+#           (e.g., AMFI gazette notice + ISIN change + scheme code change,
+#            all independently consistent).
+# MEDIUM:   Single authoritative source with at least 1 supporting attribute.
+# LOW:      Single source, no corroboration. Must be manually reviewed
+#           before promotion and use in universe construction.
+# AMBIGUOUS: Conflicting evidence from multiple sources, OR identity cannot
+#            be safely resolved. Events with AMBIGUOUS confidence are
+#            automatically quarantined on creation and excluded from
+#            production resolution.
+#
+# LOW confidence ≠ AMBIGUOUS:
+#   LOW = weak but directionally consistent evidence.
+#   AMBIGUOUS = evidence conflicts; identity cannot be resolved safely.
+
+confidence_levels:
+  HIGH:
+    description: "Multi-attribute corroboration from independent authoritative sources"
+    example: "AMFI gazette notice + ISIN change + scheme code change all consistent"
+    requires_manual_review: false
+  MEDIUM:
+    description: "Single authoritative source with at least one supporting attribute"
+    requires_manual_review: false
+  LOW:
+    description: "Single source, no corroboration"
+    requires_manual_review: true
+    note: "Must be reviewed before use in universe construction"
+  AMBIGUOUS:
+    description: "Conflicting evidence; automatically quarantined"
+    requires_manual_review: true
+    auto_quarantine: true
+
+# Minimum confidence level for a lifecycle event to be used in
+# point-in-time universe construction without manual review.
+minimum_confidence_for_universe_construction: "MEDIUM"
+
+# ---------------------------------------------------------------------------
+# MD-2: AMFI Scheme Code Reuse
+# ---------------------------------------------------------------------------
+# An AMFI scheme code must NOT be assumed to represent one immutable economic
+# entity forever.
+#
+# If evidence establishes that an AMFI code was assigned to a genuinely
+# different economic scheme:
+#   1. Create a NEW canonical_scheme_id for the new scheme.
+#   2. Preserve the historical predecessor identity unchanged.
+#   3. Record an AMFI_CODE_REASSIGNED lifecycle event with provenance.
+#   4. Do NOT merge economic histories.
+#   5. Do NOT overwrite historical observations.
+#
+# CRITICAL: Do not manufacture code-reassignment events without evidence.
+# The existing Slice 1 scheme-master behavior must not be retroactively
+# rewritten merely because this rule exists. Implement the identity model
+# so a FUTURE validated reassignment can be represented correctly.
+amfi_code_reuse_policy: "NEW_CANONICAL_ID_ON_EVIDENCE"
+
+# ---------------------------------------------------------------------------
+# MD-3: ISIN Change Handling
+# ---------------------------------------------------------------------------
+# An ISIN change does NOT automatically create a new canonical scheme ID.
+# An ISIN change does NOT automatically confirm identity continuity.
+#
+# Rules:
+#   - Store ISIN_CHANGED lifecycle event with full provenance.
+#   - Set confidence based on available evidence.
+#   - Conflicting evidence → AMBIGUOUS → quarantine.
+#   - Historical NAV continuity must NOT be assumed across ISIN changes.
+#   - A new canonical ID may be created ONLY when evidence establishes
+#     that the economic identity is genuinely different.
+isin_change_policy: "INVESTIGATE_REQUIRED"
+
+# ---------------------------------------------------------------------------
+# MD-4: NAV Stitching Across Mergers
+# ---------------------------------------------------------------------------
+# Explicitly OUT OF SCOPE for Phase C.
+# Phase C records identity relationships only.
+# No NAV concatenation, synthetic series, or return reconstruction.
+nav_stitching_policy: "PROHIBITED_PHASE_C"
+
+# ---------------------------------------------------------------------------
+# Existence Status Definitions
+# ---------------------------------------------------------------------------
+existence_statuses:
+  ACTIVE:
+    description: "Scheme was trading and receiving subscriptions on query date"
+  MERGED_PREDECESSOR:
+    description: "Scheme had been absorbed into a successor scheme by query date"
+  CLOSED:
+    description: "Scheme had been wound up by query date; no successor"
+  PRE_LAUNCH:
+    description: "Scheme had not yet launched / come into existence by query date"
+  UNKNOWN:
+    description: >
+      Insufficient lifecycle evidence to determine state.
+      Conservative, safe state — never assume ACTIVE when evidence is absent.
+  AMBIGUOUS:
+    description: >
+      Lifecycle evidence exists but conflicts; identity cannot safely be resolved.
+      Distinct from UNKNOWN: UNKNOWN = no evidence; AMBIGUOUS = conflicting evidence.
+
+# ---------------------------------------------------------------------------
+# Data Source Status
+# ---------------------------------------------------------------------------
+# Per DATA_SOURCES.md fields J–N: All lifecycle data sources are classified
+# 'DATA SOURCE TO BE VALIDATED'. No unified machine-readable lifecycle feed
+# exists as of Phase C. Lifecycle events must be populated via a separate
+# future ingestion task after data source validation.
+#
+# This configuration describes the infrastructure; it does not claim that
+# historical lifecycle data is populated or validated.
+lifecycle_data_source_status: "DATA_SOURCE_TO_BE_VALIDATED"
+lifecycle_data_sources_note: >
+  Historical lifecycle events (mergers, closures, renames) must be sourced
+  from AMFI gazette notices, SEBI circulars, and AMC regulatory disclosures.
+  All source classifications are per DATA_SOURCES.md fields J, K, L, M, N.
+  Phase C delivers infrastructure only; population is a separate future task.

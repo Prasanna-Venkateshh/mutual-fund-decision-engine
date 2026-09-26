@@ -1,0 +1,70 @@
+{
+  "audit_version": "F.15.1.1.1 Production Peer-Group Scope & Formula Sensitivity Forensic Reconciliation",
+  "production_peer_group_definition": {
+    "peer_key_structure": "category::subcategory::plan_type",
+    "is_category_required": true,
+    "is_subcategory_required": true,
+    "is_plan_type_required": true,
+    "missing_metadata_fallback": "Defaults to Equity::Large Cap::DIRECT if unassigned",
+    "dimension_normalization_scope": "Peer group filtering performed prior to PeerGroupNormalizer execution per dimension"
+  },
+  "percentile_rank_formula_audit": {
+    "formula": "((rank - 0.5) / N) * 100.0",
+    "higher_is_better_dimensions": [
+      "return",
+      "consistency"
+    ],
+    "lower_is_better_dimensions": [
+      "volatility"
+    ],
+    "tie_handling": "Average rank assignment",
+    "score_bounds": "[0.0, 100.0]"
+  },
+  "reconstructed_metrics": {
+    "common_cohort_N": 6552,
+    "top_decile_k": 656,
+    "formula_A_vs_B": {
+      "pearson_r": 0.5365,
+      "spearman_rho": 0.4923,
+      "top_decile_overlap_numerator": 13,
+      "top_decile_overlap_denominator": 656,
+      "top_decile_overlap_pct": 1.98,
+      "jaccard_similarity": 0.01,
+      "status": "EXACTLY_REPRODUCED"
+    },
+    "global_vs_production_rank": {
+      "pearson_r": 0.9641,
+      "top_decile_overlap_numerator": 475,
+      "top_decile_overlap_denominator": 656,
+      "top_decile_overlap_pct": 72.41,
+      "exact_peer_key_top_decile_overlap_numerator": 601,
+      "exact_peer_key_top_decile_overlap_pct": 91.62,
+      "status": "RECONCILED"
+    }
+  },
+  "formal_validation_lineage": [
+    {
+      "phase": "F.11.3.5.5",
+      "transformation": "Raw-value scaling (0.5*(1/(1+Vol)) + 0.5*Return)",
+      "peer_scope": "Universe-wide raw values",
+      "current_production_match": "NO",
+      "validation_status": "HISTORICAL_PROTOTYPE_ONLY (Not evidence for current production)"
+    },
+    {
+      "phase": "F.15",
+      "transformation": "Percentile-rank scoring (0.5*Rank(1/Vol) + 0.5*Rank(Return))",
+      "peer_scope": "Global mutual-fund universe",
+      "current_production_match": "TRANSFORMATION_MATCH_ONLY (Lacked intra-category peer scoping)",
+      "validation_status": "PARTIAL_VALIDATION (Evaluated rank transformation, not peer scoping)"
+    },
+    {
+      "phase": "Current Production",
+      "transformation": "PeerGroupNormalizer percentile rank",
+      "peer_scope": "Intra-category, intra-subcategory, intra-plan_type peer group",
+      "current_production_match": "YES",
+      "validation_status": "CANONICAL_PRODUCTION_METHODOLOGY (Exact OOS validation pending)"
+    }
+  ],
+  "exact_production_oos_validation_status": "EXACT_PRODUCTION_OOS_VALIDATION_PENDING",
+  "governance_conflict_status": "NO_CODE_CONFLICT"
+}

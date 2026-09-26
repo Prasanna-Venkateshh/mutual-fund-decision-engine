@@ -1,0 +1,115 @@
+{
+  "audit_version": "F.14.1.1 Forensic Closure",
+  "governance_status": "RETROSPECTIVE_RESEARCH_ANCHOR_VERIFIED",
+  "anchor_date_primary": "2024-03-28",
+  "same_sample_N": 4839,
+  "symmetry_claim_correction": {
+    "avg_positive_days": 178.74,
+    "avg_negative_days": 61.5,
+    "avg_skewness": -1.523,
+    "corrected_finding": "Daily mutual fund return distributions exhibit negative skewness (-1.52) and asymmetric positive day frequency. The phrase 'symmetry explains co-movement' is CORRECTED to 'empirical co-movement is observed across daily return series'."
+  },
+  "incremental_r2_reconciliation": {
+    "rolling_consistency_reported_inc_r2": 0.0712,
+    "rolling_consistency_reproduced_inc_r2": 0.071219,
+    "same_sample_verified": true,
+    "exact_baseline_model": "Y_fwd ~ FQ_F01 (Return) + FQ_F02 (Volatility)",
+    "exact_extended_model": "Y_fwd ~ FQ_F01 (Return) + FQ_F02 (Volatility) + FQ_F13 (Rolling Consistency)"
+  },
+  "candidate_factor_matrix": [
+    {
+      "candidate_id": "FQ_F03",
+      "candidate_name": "Downside Deviation MAR=0%",
+      "N_same_sample": 4839,
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.254349,
+      "incremental_r2": 0.055486,
+      "coefficient": -2.358069,
+      "se_coefficient": 0.124318,
+      "t_statistic": -18.968,
+      "dependency_classification": "PARTIAL_DEPENDENCY",
+      "interpretation": "Derived from daily return/path series. Incremental R^2 is 0.055486."
+    },
+    {
+      "candidate_id": "FQ_F04",
+      "candidate_name": "Maximum Drawdown 1Y",
+      "N_same_sample": 4839,
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.203742,
+      "incremental_r2": 0.004879,
+      "coefficient": 0.376787,
+      "se_coefficient": 0.069226,
+      "t_statistic": 5.4428,
+      "dependency_classification": "PARTIAL_DEPENDENCY",
+      "interpretation": "Derived from daily return/path series. Incremental R^2 is 0.004879."
+    },
+    {
+      "candidate_id": "FQ_F13",
+      "candidate_name": "Rolling Return Consistency",
+      "N_same_sample": 4839,
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.270083,
+      "incremental_r2": 0.071219,
+      "coefficient": 0.082997,
+      "se_coefficient": 0.003821,
+      "t_statistic": 21.72,
+      "dependency_classification": "PARTIAL_DEPENDENCY",
+      "interpretation": "Rolling 21-day window win-rate. Reconciled same-sample incremental R^2 = 0.071219 (Reported +0.0712 confirmed)."
+    },
+    {
+      "candidate_id": "FQ_F08",
+      "candidate_name": "Sharpe Ratio 1Y",
+      "N_same_sample": 4839,
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.252616,
+      "incremental_r2": 0.053753,
+      "coefficient": 0.002946,
+      "se_coefficient": 0.000158,
+      "t_statistic": 18.6478,
+      "dependency_classification": "DIRECT_DEPENDENCY",
+      "interpretation": "Mathematically derived ratio construct (Return / Risk). Incremental R^2 (0.053753) is a ratio re-expression."
+    },
+    {
+      "candidate_id": "FQ_F09",
+      "candidate_name": "Sortino Ratio 1Y",
+      "N_same_sample": 4839,
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.199304,
+      "incremental_r2": 0.000441,
+      "coefficient": 1e-06,
+      "se_coefficient": 1e-06,
+      "t_statistic": 1.6323,
+      "dependency_classification": "DIRECT_DEPENDENCY",
+      "interpretation": "Mathematically derived ratio construct (Return / Risk). Incremental R^2 (0.000441) is a ratio re-expression."
+    },
+    {
+      "candidate_id": "FQ_F05",
+      "candidate_name": "Fund Age / History Depth",
+      "N_same_sample": 4839,
+      "baseline_r2": 0.198863,
+      "extended_r2": 0.20905,
+      "incremental_r2": 0.010187,
+      "coefficient": -0.006842,
+      "se_coefficient": 0.000867,
+      "t_statistic": -7.8912,
+      "dependency_classification": "NO_DIRECT_DEPENDENCY",
+      "interpretation": "Evidence depth metadata. Incremental R^2 = 0.010187. Belongs in Confidence/Governance layer."
+    }
+  ],
+  "traceability_sample": {
+    "canonical_scheme_id": "CAN_AMFI_100033",
+    "scheme_name": "Aditya Birla Sun Life Large & Mid Cap Fund - Regular Growth",
+    "category": "Equity",
+    "FQ_F01_Trailing_Return": 0.372538,
+    "FQ_F02_Volatility": 0.107435,
+    "FQ_F13_Rolling_Consistency": 0.800866,
+    "Forward_1Y_Return": 0.07126,
+    "database_file": "db/backfill_f12_2.db",
+    "anchor_date": "2024-03-28",
+    "audit_verdict": "Fully Traceable from raw daily NAVs to metric values to regression matrix."
+  },
+  "provenance_audit": {
+    "database_reproducibility": "100% Verified",
+    "source_provenance_level": "Database Level (Table: normalized_nav_records, canonical_schemes)"
+  }
+}

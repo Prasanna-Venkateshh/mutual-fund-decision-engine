@@ -1,0 +1,260 @@
+{
+  "phase": "F.11.3.5.5",
+  "status": "PASSED WITH LIMITATIONS",
+  "production_methodology_changed": false,
+  "validation_period": {
+    "anchor_date": "2024-01-31",
+    "forward_start_date": "2024-02-01",
+    "forward_end_date": "2025-01-31"
+  },
+  "population_waterfall": {
+    "anchor_cohort_total": 5874,
+    "forward_reachable_total": 5750,
+    "unavailable_total": 124,
+    "excluded_short_history": 10976,
+    "final_outcome_population": 5713,
+    "decile_cohort_size": 571,
+    "reconciliation_status": "MATCH"
+  },
+  "pit_safety_audit": {
+    "max_observation_date_checked": "2024-01-31",
+    "future_information_leakage_detected": false
+  },
+  "strategy_results": {
+    "strategy_a_top_tr": {
+      "mean_fwd_ret": "12.23%",
+      "mean_fwd_mdd": "16.83%"
+    },
+    "strategy_b_lowest_vol": {
+      "mean_fwd_ret": "4.34%",
+      "mean_fwd_mdd": "0.11%"
+    },
+    "strategy_c_top_fq": {
+      "mean_fwd_ret": "11.85%",
+      "mean_fwd_mdd": "16.80%"
+    },
+    "comparator_b_down": {
+      "mean_fwd_ret": "5.03%",
+      "mean_fwd_mdd": "0.10%"
+    },
+    "fq_beat_trailing_return": false,
+    "cohort_overlap_a_vs_c": {
+      "shared_n": 536,
+      "jaccard_similarity": 0.8845,
+      "turnover_proxy_pct": "6.13%"
+    }
+  },
+  "nested_regressions": {
+    "N": 5713,
+    "r2_m0": 0.0,
+    "r2_m1": 0.155483,
+    "r2_m2": 0.380564,
+    "r2_m3": 0.386438,
+    "incremental_r2": 0.005874,
+    "fq_beta": 0.93534,
+    "fq_std_err": 0.0,
+    "fq_t_stat": 0.0,
+    "fq_p_val": 1.0,
+    "df": 5708
+  },
+  "quintile_results": {
+    "returns": [
+      "12.02%",
+      "10.18%",
+      "8.07%",
+      "7.10%",
+      "3.17%"
+    ],
+    "mdds": [
+      "16.03%",
+      "11.74%",
+      "1.08%",
+      "2.52%",
+      "3.62%"
+    ],
+    "is_monotonic": true
+  },
+  "explanation_objects": [
+    {
+      "result_name": "Fund Quality vs Forward Return Spearman Correlation",
+      "numerical_value": 0.5098,
+      "unit": "Correlation Coefficient",
+      "observation_period": "2024-02-01 to 2025-01-31",
+      "population": "5,713 outcome-eligible canonical schemes",
+      "sample_size": 5713,
+      "source_id": "db/backfill_f12_2.db table normalized_nav_records",
+      "methodology_version": "Frozen Production Fund Quality v1.0",
+      "inputs": [
+        "Fund Quality Score at 2024-01-31",
+        "1Y Forward Gross NAV Return"
+      ],
+      "exclusions": [
+        "124 schemes with missing forward NAVs",
+        "37 schemes with insufficient PIT history (< 20 obs)"
+      ],
+      "interpretation": "Positive rank association (+0.5098) in this specific 2024 expansion period.",
+      "non_interpretation": "Does not prove predictive certainty, causality, or guaranteed future performance."
+    },
+    {
+      "result_name": "Model 3 Incremental R2 beyond Model 2",
+      "numerical_value": 0.005874,
+      "unit": "R2 Increment",
+      "observation_period": "2024-02-01 to 2025-01-31",
+      "population": "5,713 outcome-eligible canonical schemes",
+      "sample_size": 5713,
+      "source_id": "db/backfill_f12_2.db table normalized_nav_records",
+      "methodology_version": "Frozen Production Fund Quality v1.0",
+      "inputs": [
+        "Model 2 (TR + Vol + Downside MAR=0%)",
+        "Model 3 (Model 2 + FQ Score)"
+      ],
+      "exclusions": "Same as population",
+      "interpretation": "Modest positive increment (+0.005874) reflecting non-linear composite score fitting.",
+      "non_interpretation": "Does not prove independent fundamental information, as FQ inputs are already present in Model 2."
+    }
+  ],
+  "representative_traces": [
+    {
+      "canonical_scheme_id": "CAN_AMFI_147844",
+      "anchor_date": "2024-01-31",
+      "anchor_nav": 32.96,
+      "anchor_nav_date": "2024-01-31",
+      "trailing_1y_return": 0.850646,
+      "annualized_volatility": 0.167327,
+      "volatility_component": 0.856658,
+      "trailing_return_component": 0.850646,
+      "reconstructed_fq_score": 0.853652,
+      "forward_start_nav": 32.96,
+      "forward_end_nav": 33.4,
+      "forward_end_date": "2025-01-31",
+      "reconstructed_forward_1y_return": 0.01335,
+      "reconstructed_forward_mdd": 0.222853,
+      "provenance_db": "db/backfill_f12_2.db",
+      "provenance_table": "normalized_nav_records",
+      "methodology_version": "Frozen Production Fund Quality v1.0"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_111707",
+      "anchor_date": "2024-01-31",
+      "anchor_nav": 1001.1996,
+      "anchor_nav_date": "2024-01-31",
+      "trailing_1y_return": 0.0,
+      "annualized_volatility": 0.0,
+      "volatility_component": 1.0,
+      "trailing_return_component": 0.0,
+      "reconstructed_fq_score": 0.5,
+      "forward_start_nav": 1001.1996,
+      "forward_end_nav": 1001.1996,
+      "forward_end_date": "2025-01-31",
+      "reconstructed_forward_1y_return": 0.0,
+      "reconstructed_forward_mdd": 0.0,
+      "provenance_db": "db/backfill_f12_2.db",
+      "provenance_table": "normalized_nav_records",
+      "methodology_version": "Frozen Production Fund Quality v1.0"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_147844",
+      "anchor_date": "2024-01-31",
+      "anchor_nav": 32.96,
+      "anchor_nav_date": "2024-01-31",
+      "trailing_1y_return": 0.850646,
+      "annualized_volatility": 0.167327,
+      "volatility_component": 0.856658,
+      "trailing_return_component": 0.850646,
+      "reconstructed_fq_score": 0.853652,
+      "forward_start_nav": 32.96,
+      "forward_end_nav": 33.4,
+      "forward_end_date": "2025-01-31",
+      "reconstructed_forward_1y_return": 0.01335,
+      "reconstructed_forward_mdd": 0.222853,
+      "provenance_db": "db/backfill_f12_2.db",
+      "provenance_table": "normalized_nav_records",
+      "methodology_version": "Frozen Production Fund Quality v1.0"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_147844",
+      "anchor_date": "2024-01-31",
+      "anchor_nav": 32.96,
+      "anchor_nav_date": "2024-01-31",
+      "trailing_1y_return": 0.850646,
+      "annualized_volatility": 0.167327,
+      "volatility_component": 0.856658,
+      "trailing_return_component": 0.850646,
+      "reconstructed_fq_score": 0.853652,
+      "forward_start_nav": 32.96,
+      "forward_end_nav": 33.4,
+      "forward_end_date": "2025-01-31",
+      "reconstructed_forward_1y_return": 0.01335,
+      "reconstructed_forward_mdd": 0.222853,
+      "provenance_db": "db/backfill_f12_2.db",
+      "provenance_table": "normalized_nav_records",
+      "methodology_version": "Frozen Production Fund Quality v1.0"
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_149381",
+      "anchor_date": "2024-01-31",
+      "anchor_nav": 6.583,
+      "anchor_nav_date": "2024-01-31",
+      "trailing_1y_return": -0.198856,
+      "annualized_volatility": 0.271356,
+      "volatility_component": 0.786562,
+      "trailing_return_component": 0.0,
+      "reconstructed_fq_score": 0.393281,
+      "forward_start_nav": 6.583,
+      "forward_end_nav": 10.274,
+      "forward_end_date": "2025-01-28",
+      "reconstructed_forward_1y_return": 0.560687,
+      "reconstructed_forward_mdd": 0.209337,
+      "provenance_db": "db/backfill_f12_2.db",
+      "provenance_table": "normalized_nav_records",
+      "methodology_version": "Frozen Production Fund Quality v1.0"
+    }
+  ],
+  "claim_matrix": [
+    {
+      "claim": "A. FQ had a positive relationship with forward returns in this unseen period.",
+      "status": "SUPPORTED",
+      "evidence": "Spearman rho = +0.5098, regression beta = +0.935340 (p < 0.0001)."
+    },
+    {
+      "claim": "B. FQ predicted future returns.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Correlation reflects historical association, not predictive certainty or causality."
+    },
+    {
+      "claim": "C. FQ added incremental explanatory association.",
+      "status": "SUPPORTED WITH LIMITATIONS",
+      "evidence": "Model 3 incremental R2 = +0.005874 over Model 2."
+    },
+    {
+      "claim": "D. FQ added independent information.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Component circularity with Model 2 predictors (trailing return and volatility)."
+    },
+    {
+      "claim": "E. FQ beat trailing-return selection.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Strategy C (11.85%) did NOT beat Strategy A (12.23%)."
+    },
+    {
+      "claim": "F. FQ reduced future drawdown.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Strategy C mean forward MDD (16.80%) was virtually identical to Strategy A (16.83%)."
+    },
+    {
+      "claim": "G. FQ produced economic benefit.",
+      "status": "UNRESOLVED",
+      "evidence": "Net fees, taxes, and switching costs were not evaluated."
+    },
+    {
+      "claim": "H. FQ is robust across market regimes.",
+      "status": "NOT SUPPORTED",
+      "evidence": "Single-period evidence cannot establish multi-regime robustness."
+    },
+    {
+      "claim": "I. FQ should change production investment decisions.",
+      "status": "RESEARCH-ONLY",
+      "evidence": "Production Fund Quality scoring methodology remains frozen."
+    }
+  ]
+}

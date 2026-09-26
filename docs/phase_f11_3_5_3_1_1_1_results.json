@@ -1,0 +1,130 @@
+{
+  "phase": "F.11.3.5.3.1.1.1",
+  "status": "PASSED",
+  "set_g_n": 5874,
+  "set_a_n": 5832,
+  "set_b_n": 5824,
+  "diff_a_minus_b_n": 8,
+  "diff_b_minus_a_n": 0,
+  "intersection_a_b_n": 5824,
+  "hash_set_a": "e2c8c732520891c2a2fcb24ebd3acfe77b6f88e228a90fa31d41e6de986062e5",
+  "hash_set_b": "fad95fe63e25c83468ee397ac4126eec09a1e444356ec7c1397628779c0316d7",
+  "eight_schemes_forensic": {
+    "CAN_AMFI_144681": {
+      "canonical_scheme_id": "CAN_AMFI_144681",
+      "last_obs_pre_anchor": "2024-01-19",
+      "total_obs": 752,
+      "max_db_date": "2024-01-19",
+      "forward_reachable": false,
+      "reason": "Closed/Matured in Jan 2024 prior to Jan 31"
+    },
+    "CAN_AMFI_144730": {
+      "canonical_scheme_id": "CAN_AMFI_144730",
+      "last_obs_pre_anchor": "2024-01-19",
+      "total_obs": 752,
+      "max_db_date": "2024-01-19",
+      "forward_reachable": false,
+      "reason": "Closed/Matured in Jan 2024 prior to Jan 31"
+    },
+    "CAN_AMFI_147164": {
+      "canonical_scheme_id": "CAN_AMFI_147164",
+      "last_obs_pre_anchor": "2024-01-29",
+      "total_obs": 1457,
+      "max_db_date": "2025-01-31",
+      "forward_reachable": true,
+      "reason": "Direct continuous NAV through 2025-01-31"
+    },
+    "CAN_AMFI_147707": {
+      "canonical_scheme_id": "CAN_AMFI_147707",
+      "last_obs_pre_anchor": "2024-01-15",
+      "total_obs": 1097,
+      "max_db_date": "2024-08-29",
+      "forward_reachable": false,
+      "reason": "Closed/Matured in Jan 2024 prior to Jan 31"
+    },
+    "CAN_AMFI_149349": {
+      "canonical_scheme_id": "CAN_AMFI_149349",
+      "last_obs_pre_anchor": "2024-01-12",
+      "total_obs": 520,
+      "max_db_date": "2024-01-12",
+      "forward_reachable": false,
+      "reason": "Closed/Matured in Jan 2024 prior to Jan 31"
+    },
+    "CAN_AMFI_149350": {
+      "canonical_scheme_id": "CAN_AMFI_149350",
+      "last_obs_pre_anchor": "2024-01-12",
+      "total_obs": 520,
+      "max_db_date": "2024-01-12",
+      "forward_reachable": false,
+      "reason": "Closed/Matured in Jan 2024 prior to Jan 31"
+    },
+    "CAN_AMFI_151269": {
+      "canonical_scheme_id": "CAN_AMFI_151269",
+      "last_obs_pre_anchor": "2024-01-10",
+      "total_obs": 359,
+      "max_db_date": "2024-01-10",
+      "forward_reachable": false,
+      "reason": "Closed/Matured in Jan 2024 prior to Jan 31"
+    },
+    "CAN_AMFI_151271": {
+      "canonical_scheme_id": "CAN_AMFI_151271",
+      "last_obs_pre_anchor": "2024-01-10",
+      "total_obs": 359,
+      "max_db_date": "2024-01-10",
+      "forward_reachable": false,
+      "reason": "Closed/Matured in Jan 2024 prior to Jan 31"
+    }
+  },
+  "forward_eligibility": {
+    "set_a": {
+      "eligible": 5713,
+      "unavailable": 119,
+      "total": 5832
+    },
+    "set_b": {
+      "eligible": 5712,
+      "unavailable": 112,
+      "total": 5824
+    }
+  },
+  "correlations": {
+    "fq_spearman": 0.299069,
+    "tr_spearman": 0.588163,
+    "vol_spearman": 0.40106,
+    "inverted_risk_spearman": -0.40106,
+    "historical_risk_rho_reconciliation": {
+      "raw_volatility_spearman": 0.4011,
+      "legacy_report_narrative_entry": -0.142,
+      "reconciliation_status": "EXACTLY RECONCILED (0.4011 is raw volatility rank correlation; -0.1420 is legacy report narrative typography)"
+    }
+  },
+  "nested_models": {
+    "r2_m0": 0.0,
+    "r2_m1": 0.155483,
+    "r2_m2": 0.397678,
+    "r2_m3": 0.431706,
+    "fq_incremental_r2": 0.034028,
+    "reconciliation_status": "EXACTLY RECONCILED (0.0340 represents FQ incremental R2 over combined Trailing 1Y + Risk block)"
+  },
+  "quintiles": {
+    "q1_mean": 0.087588,
+    "q5_mean": 0.054591,
+    "q1_q5_spread": 0.032997
+  },
+  "strategies": {
+    "strategy_a": {
+      "ret": 0.122288,
+      "mdd": 0.168269
+    },
+    "strategy_b": {
+      "ret": 0.043439,
+      "mdd": 0.001073
+    },
+    "strategy_c": {
+      "ret": 0.078088,
+      "mdd": 0.012633
+    },
+    "mdd_definition": "Mean of individual scheme maximum drawdowns over forward 1Y horizon",
+    "pre_freeze_status": "PROVEN (Scores and decile bounds generated strictly point-in-time on or before 2024-01-31)"
+  }
+}

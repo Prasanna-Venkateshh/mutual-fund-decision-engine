@@ -1,0 +1,181 @@
+{
+  "phase": "F.19.1.1.1.2",
+  "final_status": "PASSED WITH LIMITATIONS",
+  "production_code_changed": false,
+  "production_methodology_changed": false,
+  "population_reconciliation": {
+    "f16_scored_population": 5125,
+    "two_active_dimensions_count": 4958,
+    "two_active_dimensions_pct": "96.74%",
+    "one_active_dimension_count": 90,
+    "one_active_dimension_pct": "1.76%",
+    "zero_active_dimensions_count": 77,
+    "zero_active_dimensions_pct": "1.50%"
+  },
+  "input_population_counts": {
+    "return_valid_nonzero": 4958,
+    "return_zero": 167,
+    "volatility_valid_positive": 5048,
+    "volatility_none": 77
+  },
+  "forensic_explanations": {
+    "ninety_volatility_only_cause": "In scoring/engine.py L81, target_input.metrics.cagr_overall or target_input.metrics.rolling_1y_mean uses Python boolean OR operator. When cagr_overall == 0.0, Python evaluates 0.0 as False and falls back to rolling_1y_mean (which is None in F.16 dataset). This sets raw Return to None and data_available to False for 90 schemes.",
+    "seventy_seven_zero_dimension_cause": "For 77 schemes, cagr_overall == 0.0 suppressed Return availability, while zero/constant NAV series yielded stddev = 0 which suppressed Volatility availability (annualized_volatility set to None). Both dimensions available = False.",
+    "one_dimension_effective_weight_pattern": "For the 90 1-dim schemes, Volatility rescaled weight becomes 100.0%. However, active weight sum (15.0%) is below the engine's 40.0% minimum threshold (scoring/engine.py L179), so final score is None.",
+    "zero_dimension_effective_weight_pattern": "Active weight sum = 0.0 < 40.0%, final score is None."
+  },
+  "cagr_overall_semantics_vs_f16_mapping": {
+    "normal_engine_semantics": "metrics/returns.py calculate_cagr() defines CAGR as Compound Annual Growth Rate over full historical days ((End_NAV / Start_NAV) ^ (365.25 / Days) - 1).",
+    "f16_validation_input_mapping": "scripts/run_f16_exact_production_oos_validation.py calculated simple 1Y NAV return r_1y = (NAV_T / NAV_T-252) - 1.0 and inserted it into SchemeMetricSnapshot.cagr_overall.",
+    "mapping_classification": "B. VALIDATION-SPECIFIC FIELD REPURPOSING under degraded 2-metric data availability.",
+    "impact_on_f16_validation_claim": "F.16 validated exact production engine software execution using a validation-specific 1Y return mapped through the cagr_overall field slot. F.16 did NOT validate multi-year CAGR metrics or the full 6-dimension production methodology."
+  },
+  "representative_scheme_audit": {
+    "canonical_scheme_id": "CAN_AMFI_100033",
+    "amfi_code": "100033",
+    "isin_growth": "INF209K01165",
+    "scheme_name": "Aditya Birla Sun Life Large & Mid Cap Fund - Regular Growth",
+    "database_category": "UNASSIGNED",
+    "database_subcategory": "UNASSIGNED",
+    "database_plan_type": "REGULAR",
+    "script_fallback_peer_group": "Equity::Large Cap::REGULAR",
+    "peer_group_status": "UNVERIFIED / FALLBACK DEFAULT (Script applied 'Equity::Large Cap' fallback because database category/subcategory was UNASSIGNED)",
+    "score_decomposition": {
+      "return_raw": 0.3059,
+      "return_norm_score": 80.95,
+      "return_rescaled_weight": 62.5,
+      "return_contribution": 50.59,
+      "volatility_raw": 0.1036,
+      "volatility_norm_score": 20.11,
+      "volatility_rescaled_weight": 37.5,
+      "volatility_contribution": 7.54,
+      "final_score": 58.1,
+      "reconciled": true
+    }
+  },
+  "sample_90_volatility_only_schemes": [
+    {
+      "canonical_scheme_id": "CAN_AMFI_100044",
+      "amfi_code": "100044",
+      "scheme_name": "Aditya Birla Sun Life Liquid Fund -Retail - IDCW",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": 0.001858,
+      "volatility_data_available": true,
+      "volatility_normalized_score": 93.79,
+      "volatility_rescaled_weight": 100.0,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 evaluated as False in Python boolean OR expression, suppressing Return availability. Volatility active weight sum = 15.0 < 40.0 threshold, resulting in final score None."
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_100842",
+      "amfi_code": "100842",
+      "scheme_name": "NIPPON INDIA LIQUID FUND - RETAIL Plan - DAILY IDCW OPTION",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": 0.001652,
+      "volatility_data_available": true,
+      "volatility_normalized_score": 94.06,
+      "volatility_rescaled_weight": 100.0,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 evaluated as False in Python boolean OR expression, suppressing Return availability. Volatility active weight sum = 15.0 < 40.0 threshold, resulting in final score None."
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_101840",
+      "amfi_code": "101840",
+      "scheme_name": "DSP Credit Risk Fund - Regular Plan - IDCW - Daily",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": 0.002999,
+      "volatility_data_available": true,
+      "volatility_normalized_score": 92.04,
+      "volatility_rescaled_weight": 100.0,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 evaluated as False in Python boolean OR expression, suppressing Return availability. Volatility active weight sum = 15.0 < 40.0 threshold, resulting in final score None."
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_101972",
+      "amfi_code": "101972",
+      "scheme_name": "Aditya Birla Sun Life Money Market Fund - Retail - Daily IDCW",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": 0.001066,
+      "volatility_data_available": true,
+      "volatility_normalized_score": 95.18,
+      "volatility_rescaled_weight": 100.0,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 evaluated as False in Python boolean OR expression, suppressing Return availability. Volatility active weight sum = 15.0 < 40.0 threshold, resulting in final score None."
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_103160",
+      "amfi_code": "103160",
+      "scheme_name": "Tata Treasury Advantage Fund Regular Plan - Daily Reinvestment of IDCW Option",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": 0.000752,
+      "volatility_data_available": true,
+      "volatility_normalized_score": 95.76,
+      "volatility_rescaled_weight": 100.0,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 evaluated as False in Python boolean OR expression, suppressing Return availability. Volatility active weight sum = 15.0 < 40.0 threshold, resulting in final score None."
+    }
+  ],
+  "sample_77_zero_dimension_schemes": [
+    {
+      "canonical_scheme_id": "CAN_AMFI_100541",
+      "amfi_code": "100541",
+      "scheme_name": "Franklin India Liquid Fund - Regular Plan - Daily - IDCW",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": null,
+      "volatility_data_available": false,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 suppressed Return dimension. Zero/constant NAV series resulted in stddev = 0, suppressing Volatility dimension. Active weight sum = 0.0, final score None."
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_101078",
+      "amfi_code": "101078",
+      "scheme_name": "JM Liquid Fund (Regular) - Daily IDCW",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": null,
+      "volatility_data_available": false,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 suppressed Return dimension. Zero/constant NAV series resulted in stddev = 0, suppressing Volatility dimension. Active weight sum = 0.0, final score None."
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_101184",
+      "amfi_code": "101184",
+      "scheme_name": "LIC MF Liquid Fund-Regular Plan-Daily IDCW",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": null,
+      "volatility_data_available": false,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 suppressed Return dimension. Zero/constant NAV series resulted in stddev = 0, suppressing Volatility dimension. Active weight sum = 0.0, final score None."
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_101714",
+      "amfi_code": "101714",
+      "scheme_name": "Tata Liquid Fund- Regular Plan - Daily Reinvestment of IDCW Option",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": null,
+      "volatility_data_available": false,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 suppressed Return dimension. Zero/constant NAV series resulted in stddev = 0, suppressing Volatility dimension. Active weight sum = 0.0, final score None."
+    },
+    {
+      "canonical_scheme_id": "CAN_AMFI_101986",
+      "amfi_code": "101986",
+      "scheme_name": "Tata Money Market Fund- Regular Plan - Daily Reinvestment of IDCW Option",
+      "raw_cagr_overall": 0.0,
+      "return_data_available": false,
+      "raw_volatility": null,
+      "volatility_data_available": false,
+      "final_score": null,
+      "explanation": "cagr_overall = 0.0 suppressed Return dimension. Zero/constant NAV series resulted in stddev = 0, suppressing Volatility dimension. Active weight sum = 0.0, final score None."
+    }
+  ],
+  "dynamic_rescaling_governance": "PRODUCTION IMPLEMENTED BUT EMPIRICALLY UNVALIDATED"
+}

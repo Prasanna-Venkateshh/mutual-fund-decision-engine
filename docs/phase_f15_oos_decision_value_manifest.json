@@ -1,0 +1,36 @@
+{
+  "manifest_version": "F.15.0 Pre-Specified Validation Manifest",
+  "anchor_date": "2024-01-31",
+  "outcome_window": "2024-02-01 to 2025-01-31",
+  "production_baseline": "50% Trailing 1Y Gross Return + 50% 1Y Reciprocal Volatility",
+  "comparators": [
+    {
+      "id": "COMP_RETURN",
+      "name": "Trailing 1Y Gross Return (Top Decile)"
+    },
+    {
+      "id": "COMP_VOL",
+      "name": "Lowest 10% Historical Volatility"
+    }
+  ],
+  "candidate_strategies": [
+    {
+      "id": "CAND_CONSISTENCY",
+      "name": "Rolling Return Consistency 1Y (Top Decile)"
+    },
+    {
+      "id": "CAND_DOWNSIDE",
+      "name": "Lowest 10% Downside Deviation (MAR=0%)"
+    },
+    {
+      "id": "CAND_MDD",
+      "name": "Lowest 10% Maximum Drawdown 1Y"
+    }
+  ],
+  "selection_threshold": "Top 10% (Top Decile) of eligible schemes",
+  "pit_barrier_rule": "Strict cutoff: only NAV data on or before 2024-01-31 used for selection",
+  "outcome_definition": "Equal-weighted arithmetic mean of individual-scheme 1Y forward gross NAV returns & forward MDD",
+  "methodology_version": "Fund Quality Engine v1.0",
+  "dataset_version": "db/backfill_f12_2.db",
+  "manifest_hash": "b1a41fa15e48d3e4a35d92a85d82a73b0f7edfd9fbea868c9e6e02a557300c2e"
+}

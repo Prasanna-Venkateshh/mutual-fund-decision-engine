@@ -216,3 +216,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local SQLite databases and runtime database artifacts
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Local forensic / scratch investigation files
+scratch/
+
+# Local runtime and generated artifacts
+*.tmp
+*.bak
+
+# Generated QA / forensic snapshots
+collected_nodes.txt
+tests_nodes.txt

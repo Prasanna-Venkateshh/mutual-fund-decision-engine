@@ -1,0 +1,56 @@
+{
+  "validation_id": "phase_f11_3_5_3_unseen_validation",
+  "dataset_version": "f12_3_1_2_v1.0.0",
+  "database_identifier": "db/backfill_f12_2.db",
+  "anchor_date": "2024-01-31",
+  "evaluation_period": {
+    "start_date": "2024-02-01",
+    "end_date": "2025-01-31"
+  },
+  "cohort_hash_algorithm": "SHA-256",
+  "minimum_pit_observations": 20,
+  "methodology_version": "1.0.0",
+  "weight_configuration": {
+    "return": 0.25,
+    "consistency": 0.20,
+    "volatility": 0.15,
+    "downside_risk": 0.15,
+    "max_drawdown": 0.15,
+    "cost_efficiency": 0.10
+  },
+  "score_version": "1.0.0",
+  "baselines": {
+    "primary_simple": "trailing_1y_return",
+    "historical_risk": "historical_volatility"
+  },
+  "outcomes": {
+    "primary_return": "forward_1y_nav_total_return",
+    "risk_metrics": [
+      "forward_max_drawdown",
+      "forward_annualized_volatility",
+      "forward_downside_deviation"
+    ]
+  },
+  "missing_data_policy": "EXCLUDE_FROM_OUTCOME_STATISTICS_NOT_ZERO",
+  "quintile_rule": "Q1_HIGHEST_TO_Q5_LOWEST",
+  "model_nesting": [
+    "Model 0: Intercept Only",
+    "Model 1: Trailing 1Y Return",
+    "Model 2: Trailing 1Y Return + Historical Risk",
+    "Model 3: Trailing 1Y Return + Historical Risk + Frozen Fund Quality Score"
+  ],
+  "decision_strategies": {
+    "Strategy A": "Select Top Decile by Trailing 1Y Return",
+    "Strategy B": "Select Lowest Decile by Historical Volatility",
+    "Strategy C": "Select Top Decile by Frozen Fund Quality Score"
+  },
+  "turnover_definition": "cohort_membership_turnover_proxy",
+  "cost_tax_assumptions": "GROSS_NAV_RETURN_HISTORICAL_TRANSACTION_COSTS_UNAVAILABLE",
+  "statistical_methods": [
+    "Pearson_correlation",
+    "Spearman_rank_correlation",
+    "OLS_regression_R2",
+    "Incremental_R2"
+  ],
+  "created_timestamp": "2026-09-15T20:56:30Z"
+}
